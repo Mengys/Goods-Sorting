@@ -5,7 +5,7 @@ namespace _Project.Code.Architecture
 {
     public interface ICoroutinePerformer
     {
-        Coroutine Start(IEnumerator coroutineFunction);
-        void Stop(Coroutine coroutine);
+        Coroutine Start(IEnumerator routine);
+        void Stop(Coroutine routine);
     }
 }

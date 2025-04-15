@@ -12,10 +12,10 @@ namespace _Project.Code.Architecture
             _monoBehaviour = monoBehaviour;
         }
         
-        public Coroutine Start(IEnumerator coroutineFunction)
-            => _monoBehaviour.StartCoroutine(coroutineFunction);
+        public Coroutine Start(IEnumerator routine)
+            => _monoBehaviour.StartCoroutine(routine);
 
-        public void Stop(Coroutine coroutine)
-            => _monoBehaviour.StopCoroutine(coroutine);
+        public void Stop(Coroutine routine)
+            => _monoBehaviour.StopCoroutine(routine);
     }
 }
