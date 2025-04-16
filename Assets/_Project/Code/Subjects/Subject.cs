@@ -7,8 +7,9 @@ public class Subject : MonoBehaviour
 
     private Cell _currentCell;
     private int _defaultSiblingIndex;
-    //private DragAndDrop _dragAndDrop;
+    private bool _isActive = true;
 
+    public bool IsActive => _isActive;
     public Cell CurrentCell => _currentCell;
     public TypeSubject SubjectType => _typeSubject;
     public DragAndDrop DragAndDrop => _dragAndDrop;
@@ -21,5 +22,15 @@ public class Subject : MonoBehaviour
     public void ToFree()
     {
         _currentCell = null;
+    }
+
+    public void Deactivate()
+    {
+        _isActive = false;
+    }
+
+    public void SetSubjectType(TypeSubject newType)
+    {
+        _typeSubject = newType;
     }
 }

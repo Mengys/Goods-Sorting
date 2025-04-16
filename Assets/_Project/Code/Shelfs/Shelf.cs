@@ -20,16 +20,6 @@ public class Shelf : MonoBehaviour
         foreach (var cell in _cells)
         {
             cell.Init(this);
-
-            if (cell != null)
-            {
-                Debug.Log("ֵסעü ßקויא");
-
-            }
-            else
-            {
-                Debug.Log("ֽוע ßקויא");
-            }
         }
     }
 
@@ -61,6 +51,7 @@ public class Shelf : MonoBehaviour
         foreach (var cell in _cells)
         {
             cell.Subject.gameObject.SetActive(false);
+            cell.Subject.Deactivate();
             cell.ToFree();
         }
     }

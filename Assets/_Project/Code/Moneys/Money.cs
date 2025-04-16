@@ -7,6 +7,8 @@ public class Money : MonoBehaviour
 
     private int _money = 0;
 
+    public int CyrrentMoney => _money;
+
     private void Start()
     {
         ShoweMoney();

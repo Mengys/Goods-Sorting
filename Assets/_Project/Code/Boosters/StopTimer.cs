@@ -1,18 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StopTimer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int _delay = 5;
+    [SerializeField] private int _prise = 3;
+
+    private Timer _timer;
+
+    public int Prise => _prise;
+
+    public void PauseForSeconds()
     {
-        
+        StartCoroutine(PauseTimer());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitialuzeTimer(Timer timer)
     {
-        
+        _timer = timer;
+    }
+
+    private IEnumerator PauseTimer()
+    {
+        _timer.StopTimer();
+        yield return new WaitForSeconds(_delay);
+        _timer.StartTimer();
     }
 }

@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Timer _timer;
     [SerializeField] private Transform _layerDragging;
     [SerializeField] private Image _gameOver;
+    [SerializeField] private BostersController _bostersController;
 
     private static bool _hasFirstMoveHappened = false;
 
@@ -29,6 +30,8 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         _gameOver.gameObject.SetActive(false);
+        _bostersController.Initialize(_timer, _money, _shelves);
+        _spawnerSubjects.SpawnSubjects(_shelves);
     }
 
     private void Start()

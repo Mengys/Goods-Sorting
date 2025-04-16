@@ -17,16 +17,6 @@ public class Cell : MonoBehaviour
     public void GetSubject(Subject subject)
     {
         _subject = subject;
-
-        if (_subject != null)
-        {
-            Debug.Log("Есть объекта");
-        }
-        else
-        {
-            Debug.Log("Нет объекта");
-        }
-
         _isBusy = true;
         subject.GetCell(this);
 
