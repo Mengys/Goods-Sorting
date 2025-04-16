@@ -4,22 +4,16 @@ using UnityEngine;
 public class SpawnerSubjects : MonoBehaviour
 {
     [SerializeField] private List<Subject> _prefabSubjects = new List<Subject>();
-    [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
-    [SerializeField] private Transform _layerDragging;
     [SerializeField, Range(0f, 1f)] private float _spawnProbability = 0.7f;
 
-    private void Start()
+    public void SpawnSubjects(List<Shelf> shelves)
     {
-        SpawnSubjects();
-    }
-
-    private void SpawnSubjects()
-    {
-        foreach (Shelf shelf in _shelves)
+        foreach (Shelf shelf in shelves)
         {
             foreach (Cell cell in shelf.Cells)
             {
-                if (cell.IsBusy) continue;
+                if (cell.IsBusy) 
+                    continue;
 
                 if (Random.value < _spawnProbability)
                 {
