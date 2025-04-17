@@ -1,7 +1,5 @@
 using System.Collections;
 using _Project.Code.Architecture;
-using UnityEngine;
-using Zenject;
 
 namespace _Project.Code
 {

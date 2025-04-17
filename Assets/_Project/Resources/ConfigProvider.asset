@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c279b1ee7c5d43a7ad39ab8ed808530c, type: 3}
-  m_Name: GameConfig
+  m_Name: ConfigProvider
   m_EditorClassIdentifier: 
-  GameName: test
+  <GameStates>k__BackingField: {fileID: 11400000, guid: c42adcaae4918bb4f8133be9a97af3ab, type: 2}

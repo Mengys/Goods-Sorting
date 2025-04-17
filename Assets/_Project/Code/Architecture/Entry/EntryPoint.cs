@@ -22,12 +22,10 @@ namespace _Project.Code
                 .FromInstance(new CoroutinePerformer(this))
                 .AsSingle();
 
-
-            Container.Bind<GameConfig>()
-                .FromScriptableObjectResource(ResourcesPaths.GameConfigPath)
+            Container.Bind<ConfigProvider>()
+                .FromScriptableObjectResource(ResourcesPaths.ConfigProviderPath)
                 .AsSingle();
-
-
+            
             Container.Bind<LoadingCurtain>()
                 .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtainPath)
                 .AsSingle();

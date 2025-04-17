@@ -14,6 +14,8 @@ namespace _Project.Code
 
         private readonly Dictionary<GameState, IState> _states;
 
+        private readonly GameStatesConfig _config;
+        
         private GameState _state;
 
         [Inject]
@@ -21,8 +23,10 @@ namespace _Project.Code
             ISceneLoader sceneLoader,
             LoadingCurtain loadingCurtain,
             ICoroutinePerformer coroutinePerformer,
+            ConfigProvider config,
             SceneArgs args)
         {
+            _config = config.GameStates;
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
             _coroutinePerformer = coroutinePerformer;
@@ -61,7 +65,15 @@ namespace _Project.Code
             _states[_state].Enter();
         }
 
-        private IState GetNewStateFor(GameState state) =>
-            new SceneState(_coroutinePerformer, _sceneLoader, _loadingCurtain, state.ToString());
+        private IState GetNewStateFor(GameState state)
+        {
+            if (!_config.StateScenes.TryGetValue(state, out var scene))
+                throw new ArgumentException($"State {state} is not defined in config");
+
+            if (string.IsNullOrEmpty(scene))
+                throw new ArgumentException($"Scene for state {state} is not defined in config");
+
+            return new SceneState(_coroutinePerformer, _sceneLoader, _loadingCurtain, scene);
+        }
     }
 }
