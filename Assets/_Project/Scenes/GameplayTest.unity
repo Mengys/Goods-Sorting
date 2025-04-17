@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 117454201}
   - component: {fileID: 117454204}
   - component: {fileID: 117454203}
-  - component: {fileID: 117454202}
+  - component: {fileID: 117454205}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -602,20 +602,6 @@ RectTransform:
   m_AnchoredPosition: {x: 69.80078, y: -23.767578}
   m_SizeDelta: {x: 137.5987, y: 45.535}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &117454202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117454200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0402b43c39f3b84085cc92295b08f43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textTimer: {fileID: 117454203}
-  _startSeconds: 30
 --- !u!114 &117454203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +699,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117454200}
   m_CullTransparentMesh: 1
+--- !u!114 &117454205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117454200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75c62d183b8bf34f948c82761cae184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTimer: {fileID: 117454203}
 --- !u!1 &195157236
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +847,6 @@ MonoBehaviour:
   _replaceObjectsButton: {fileID: 64007525}
   _shuffleButton: {fileID: 788297172}
   _bombButton: {fileID: 976195536}
-  _stopTimer: {fileID: 1114618269}
   _collectingPair: {fileID: 681618089}
   _replaceObjects: {fileID: 64007528}
   _shuffle: {fileID: 788297167}
@@ -997,10 +995,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 322185983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53982d9f760dbe45b7941cbeec87a91, type: 3}
+  m_Script: {fileID: 11500000, guid: 44f15bfe18501e64c9efc5c06027382a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textMoney: {fileID: 322185985}
+  _textWallet: {fileID: 322185985}
 --- !u!224 &354546297 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8875151394943011415, guid: 1ca660e45ef451542ad91e0ff6194b9f, type: 3}
@@ -1549,8 +1547,9 @@ GameObject:
   m_Component:
   - component: {fileID: 816154633}
   - component: {fileID: 816154632}
+  - component: {fileID: 816154634}
   m_Layer: 0
-  m_Name: GameCintroller
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1576,11 +1575,8 @@ MonoBehaviour:
   - {fileID: 354546300}
   - {fileID: 1132816081}
   _spawnerSubjects: {fileID: 1668565959}
-  _money: {fileID: 322185987}
-  _timer: {fileID: 117454202}
   _layerDragging: {fileID: 1993342240}
-  _gameOver: {fileID: 304328}
-  boostersInitializer: {fileID: 269999597}
+  _bostersController: {fileID: 269999597}
 --- !u!4 &816154633
 Transform:
   m_ObjectHideFlags: 0
@@ -1596,6 +1592,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816154634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816154631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c61e888f7066a5488a8a054aa351756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lossWindow: {fileID: 304328}
 --- !u!1 &937292879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,6 +2117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delay: 5
   _prise: 3
+  _timer: {fileID: 0}
 --- !u!1001 &1118222599
 PrefabInstance:
   m_ObjectHideFlags: 0

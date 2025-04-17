@@ -10,7 +10,7 @@ public class Shelf : MonoBehaviour
 
     public List<Cell> Cells => _cells;
 
-    public event Action<int> Matches;
+    public event Action<int> Matched;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Shelf : MonoBehaviour
 
     public void UnsubscribeAll()
     {
-        Matches = null;
+        Matched = null;
     }
 
     public void CheckMatches()
@@ -47,7 +47,7 @@ public class Shelf : MonoBehaviour
         }
 
         DestroyCells();
-        Matches?.Invoke(RewardMatch);
+        Matched?.Invoke(RewardMatch);
     }
 
     private void DestroyCells()

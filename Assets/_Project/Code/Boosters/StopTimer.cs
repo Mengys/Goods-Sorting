@@ -1,23 +1,33 @@
+using _Project.Code.Architecture;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
-public class StopTimer : MonoBehaviour
+public class StopTimer : IAbility
 {
-    [SerializeField] private int _delay = 5;
-    [SerializeField] private int _prise = 3;
-
+    private int _delay;
+    private ICoroutinePerformer _coroutinePerformer;
     private Timer _timer;
 
-    public int Prise => _prise;
+    public StopTimer(int delay)
+    {
+        _delay = delay;
+    }
 
     public void PauseForSeconds()
     {
-        StartCoroutine(PauseTimer());
+        _coroutinePerformer.Start(PauseTimer());
     }
 
-    public void InitialuzeTimer(Timer timer)
+    public void Initialize(DiContainer container)
     {
-        _timer = timer;
+        _timer = container.Resolve<Timer>();
+        _coroutinePerformer = container.Resolve<ICoroutinePerformer>();
+    }
+
+    public void Use()
+    {
+        PauseForSeconds();
     }
 
     private IEnumerator PauseTimer()
