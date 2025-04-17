@@ -5,10 +5,15 @@ public class CollectingPair : MonoBehaviour
 {
     [SerializeField] private int _prise = 3;
 
+    private bool _isEnough = true;
+
     public int Prise => _prise;
+    public bool IsEnough => _isEnough;
 
     public void StartCollectPairs(List<Shelf> shelves)
     {
+        _isEnough = false;
+
         Dictionary<TypeSubject, List<Subject>> subjectsByType = new Dictionary<TypeSubject, List<Subject>>();
 
         foreach (Shelf shelf in shelves)
@@ -46,6 +51,7 @@ public class CollectingPair : MonoBehaviour
                     subjectToDestroy.CurrentCell?.ToFree();
                 }
 
+                _isEnough = true; 
                 break;
             }
         }

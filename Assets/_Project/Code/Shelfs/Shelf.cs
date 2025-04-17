@@ -7,7 +7,6 @@ public class Shelf : MonoBehaviour
     private readonly int RewardMatch = 3;
 
     private List<Cell> _cells;
-    private bool _isMadeFirstMove = false;
 
     public List<Cell> Cells => _cells;
 
@@ -21,6 +20,11 @@ public class Shelf : MonoBehaviour
         {
             cell.Init(this);
         }
+    }
+
+    public void UnsubscribeAll()
+    {
+        Matches = null;
     }
 
     public void CheckMatches()

@@ -25,13 +25,17 @@ public class GameController : MonoBehaviour
     private void OnDisable()
     {
         _timer.Ended -= ShoveGameOver;
+
+        foreach (Shelf shelf in _shelves)
+        {
+            shelf.Matches -= _money.AddMoney;
+        }
     }
 
     private void Awake()
     {
         _gameOver.gameObject.SetActive(false);
         _bostersController.Initialize(_timer, _money, _shelves);
-        _spawnerSubjects.SpawnSubjects(_shelves);
     }
 
     private void Start()
@@ -47,8 +51,8 @@ public class GameController : MonoBehaviour
                 if (cell.Subject != null)
                 {
                     cell.Subject.DragAndDrop.InitializeLayerDrage(_layerDragging);
+                    cell.Subject.SubjectViev.SetDisplay();
                 }
-
             }
         }
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3539896359569989353}
   - component: {fileID: 8464881164596680161}
   - component: {fileID: 3555933626767855455}
+  - component: {fileID: 223780453793940408}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeSubject: 0
   _dragAndDrop: {fileID: 3555933626767855455}
+  _subjectViev: {fileID: 223780453793940408}
 --- !u!114 &3555933626767855455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +106,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8ef2cfceac4104d9fe2ba5f44e8141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &223780453793940408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842256089017653054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72a47fa78bc74a44a98c3f375bcd1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subject: {fileID: 8464881164596680161}
+  _vievSubject: {fileID: 1349175451177748755}
 --- !u!1 &4055375759206400655
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
