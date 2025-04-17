@@ -18,4 +18,4 @@ MonoBehaviour:
   - State: 2
     SceneName: Menu
   - State: 3
-    SceneName: Test
+    SceneName: GameplayTest

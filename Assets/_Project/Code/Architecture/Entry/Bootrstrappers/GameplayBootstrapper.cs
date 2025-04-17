@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,12 @@ namespace _Project.Code
         
         public override void InstallBindings()
         {
+            
+        }
+
+        private void Update()
+        {
+            
         }
     }
 }
