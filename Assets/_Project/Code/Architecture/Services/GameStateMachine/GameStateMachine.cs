@@ -10,26 +10,23 @@ namespace _Project.Code
         private readonly ISceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
         private readonly ICoroutinePerformer _coroutinePerformer;
+        private readonly SceneArgs _args;
 
-        private readonly Dictionary<GameState, SceneArgs> _args;
         private readonly Dictionary<GameState, IState> _states;
 
         private GameState _state;
 
         [Inject]
-        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain,
-            ICoroutinePerformer coroutinePerformer)
+        public GameStateMachine(
+            ISceneLoader sceneLoader,
+            LoadingCurtain loadingCurtain,
+            ICoroutinePerformer coroutinePerformer,
+            SceneArgs args)
         {
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
             _coroutinePerformer = coroutinePerformer;
-
-            _args = new Dictionary<GameState, SceneArgs>
-            {
-                { GameState.Entry, new SceneArgs() },
-                { GameState.Gameplay, new SceneArgs() },
-                { GameState.Menu, new SceneArgs() },
-            };
+            _args = args;
 
             _states = new Dictionary<GameState, IState>
             {
@@ -50,31 +47,21 @@ namespace _Project.Code
 
         private void HandleTransition(GameState from, GameState to)
         {
-            if (to == GameState.None)
+            if (to is GameState.None)
                 throw new ArgumentException("Cannot enter None state");
 
-            if (from == to) return;
+            if (to == from) return;
 
-            if (from != GameState.None)
-            {
-                var output = _args[from].Output;
+            if (from is not GameState.None) ExitCurrentState();
 
-                ExitCurrentState();
-
-                _args[to].Input = output;
-            }
-            else
-            {
-                _args[to].Input = new DiContainer();
-            }
-
-            _args[to].Output = new DiContainer();
+            _args.Input = _args.Output;
+            _args.Output = new DiContainer();
 
             _state = to;
             _states[_state].Enter();
         }
 
         private IState GetNewStateFor(GameState state) =>
-            new SceneState(_coroutinePerformer, _sceneLoader, _loadingCurtain, state.ToString(), _args[state]);
+            new SceneState(_coroutinePerformer, _sceneLoader, _loadingCurtain, state.ToString());
     }
 }

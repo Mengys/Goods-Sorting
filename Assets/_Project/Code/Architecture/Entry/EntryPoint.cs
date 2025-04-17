@@ -31,6 +31,12 @@ namespace _Project.Code
             Container.Bind<LoadingCurtain>()
                 .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtainPath)
                 .AsSingle();
+            
+            var sceneArgs = new SceneArgs();
+            
+            Container.Bind<ISceneInputArgs>().FromInstance(sceneArgs);
+            Container.Bind<ISceneOutputArgs>().FromInstance(sceneArgs);
+            Container.Bind<SceneArgs>().FromInstance(sceneArgs);
         }
     }
 }
