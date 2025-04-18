@@ -1,11 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class Shuffle : MonoBehaviour
+public class Shuffle : IAbility
 {
-    [SerializeField] private int _prise = 3;
+    private List<Shelf> _shelves;
 
-    public int Prise => _prise;
+    public void Initialize(DiContainer container)
+    {
+        _shelves = container.Resolve<List<Shelf>>();
+    }
+
+    public void Use()
+    {
+        StartShuffle(_shelves);
+    }
 
     public void StartShuffle(List<Shelf> shelves)
     {

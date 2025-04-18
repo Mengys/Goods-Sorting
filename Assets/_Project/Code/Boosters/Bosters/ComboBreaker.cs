@@ -1,19 +1,28 @@
 using System.Collections.Generic;
-using UnityEngine;
+using Zenject;
 
-public class CollectingPair : MonoBehaviour
+public class ComboBreaker : IAbility
 {
-    [SerializeField] private int _prise = 3;
+    private List<Shelf> _shelves;
+    private int _numberObjectsSameType;
 
-    private bool _isEnough = true;
+    public ComboBreaker(List<Shelf> shelves, int numberObjectsSameType)
+    {
+        _numberObjectsSameType = numberObjectsSameType;
+    }
 
-    public int Prise => _prise;
-    public bool IsEnough => _isEnough;
+    public void Initialize(DiContainer container)
+    {
+        _shelves = container.Resolve<List<Shelf>>();
+    }
+
+    public void Use()
+    {
+        StartCollectPairs(_shelves);
+    }
 
     public void StartCollectPairs(List<Shelf> shelves)
     {
-        _isEnough = false;
-
         Dictionary<TypeSubject, List<Subject>> subjectsByType = new Dictionary<TypeSubject, List<Subject>>();
 
         foreach (Shelf shelf in shelves)
@@ -40,9 +49,9 @@ public class CollectingPair : MonoBehaviour
         {
             List<Subject> subjects = pair.Value;
 
-            if (subjects.Count >= 3)
+            if (subjects.Count >= _numberObjectsSameType)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < _numberObjectsSameType; i++)
                 {
                     Subject subjectToDestroy = subjects[i];
 
@@ -51,7 +60,6 @@ public class CollectingPair : MonoBehaviour
                     subjectToDestroy.CurrentCell?.ToFree();
                 }
 
-                _isEnough = true; 
                 break;
             }
         }

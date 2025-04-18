@@ -9,6 +9,7 @@ namespace _Project.Code
     {
         [Inject] private ISceneInputArgs _inputArgs;
         [Inject] private ICoroutinePerformer _coroutinePerformer;
+        [Inject] private ConfigProvider _configProvider;
 
         private VictoryLossService _victoryLossService;
         private WalletPresenter _walletPresenter;

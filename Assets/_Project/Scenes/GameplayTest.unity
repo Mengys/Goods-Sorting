@@ -307,7 +307,6 @@ GameObject:
   - component: {fileID: 64007527}
   - component: {fileID: 64007526}
   - component: {fileID: 64007525}
-  - component: {fileID: 64007528}
   m_Layer: 5
   m_Name: ButtonReplaceObjects
   m_TagString: Untagged
@@ -332,7 +331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.18233144}
   m_AnchorMax: {x: 1, y: 0.18233144}
-  m_AnchoredPosition: {x: -54, y: -2.5}
+  m_AnchoredPosition: {x: -54, y: -2.5000153}
   m_SizeDelta: {x: 94.2835, y: 48.914597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64007525
@@ -417,19 +416,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64007523}
   m_CullTransparentMesh: 1
---- !u!114 &64007528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64007523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f34b13fd94ecc48b4041f67fdad3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prise: 3
 --- !u!1 &116219498
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,10 +833,6 @@ MonoBehaviour:
   _replaceObjectsButton: {fileID: 64007525}
   _shuffleButton: {fileID: 788297172}
   _bombButton: {fileID: 976195536}
-  _collectingPair: {fileID: 681618089}
-  _replaceObjects: {fileID: 64007528}
-  _shuffle: {fileID: 788297167}
-  _bomb: {fileID: 976195539}
 --- !u!1 &322185983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +1261,6 @@ GameObject:
   - component: {fileID: 681618088}
   - component: {fileID: 681618087}
   - component: {fileID: 681618086}
-  - component: {fileID: 681618089}
   m_Layer: 5
   m_Name: ButtonCollectingPair
   m_TagString: Untagged
@@ -1304,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.18233144}
   m_AnchorMax: {x: 0.5, y: 0.18233144}
-  m_AnchoredPosition: {x: -1, y: -2.5}
+  m_AnchoredPosition: {x: -1, y: -2.5000153}
   m_SizeDelta: {x: 94.2835, y: 48.914597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681618086
@@ -1389,19 +1370,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681618084}
   m_CullTransparentMesh: 1
---- !u!114 &681618089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681618084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d3b0606f91453479d9a2c0f2417736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prise: 3
 --- !u!1 &788297166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1382,6 @@ GameObject:
   - component: {fileID: 788297170}
   - component: {fileID: 788297169}
   - component: {fileID: 788297172}
-  - component: {fileID: 788297167}
   m_Layer: 5
   m_Name: ButtonShuffle
   m_TagString: Untagged
@@ -1422,19 +1389,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &788297167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788297166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90832eaab21297c4c9654d50b12efdd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prise: 3
 --- !u!114 &788297169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,7 +1705,6 @@ GameObject:
   - component: {fileID: 976195538}
   - component: {fileID: 976195537}
   - component: {fileID: 976195536}
-  - component: {fileID: 976195539}
   m_Layer: 5
   m_Name: BombButton
   m_TagString: Untagged
@@ -1861,19 +1814,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976195533}
   m_CullTransparentMesh: 1
---- !u!114 &976195539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976195533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd5706db1c46464d884de21527fa38c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prise: 3
 --- !u!1 &998499493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,7 +1933,6 @@ GameObject:
   - component: {fileID: 1114618268}
   - component: {fileID: 1114618267}
   - component: {fileID: 1114618266}
-  - component: {fileID: 1114618269}
   m_Layer: 5
   m_Name: ButtonStopTimer
   m_TagString: Untagged
@@ -2018,7 +1957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.18233144}
   m_AnchorMax: {x: 0, y: 0.18233144}
-  m_AnchoredPosition: {x: 51.85742, y: -2.5}
+  m_AnchoredPosition: {x: 51.85742, y: -2.5000153}
   m_SizeDelta: {x: 94.2835, y: 48.914597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114618266
@@ -2103,21 +2042,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114618264}
   m_CullTransparentMesh: 1
---- !u!114 &1114618269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114618264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e114afd2a18d054d885fcd0b428a7cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delay: 5
-  _prise: 3
-  _timer: {fileID: 0}
 --- !u!1001 &1118222599
 PrefabInstance:
   m_ObjectHideFlags: 0

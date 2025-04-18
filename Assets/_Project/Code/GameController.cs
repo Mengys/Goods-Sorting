@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private SpawnerSubjects _spawnerSubjects;
     [SerializeField] private Timer _timer;
     [SerializeField] private Transform _layerDragging;
-    [SerializeField] private BostersInitialize _bostersController;
+    [SerializeField] private BostersInitializeButtons _bostersController;
 
     private static bool _hasFirstMoveHappened = false;
 

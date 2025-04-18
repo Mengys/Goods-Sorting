@@ -1,21 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class ReplaceObjects : MonoBehaviour
+public class ReplaceObjects : IAbility
 {
-    private readonly int CountObjectsReplace = 6;
+    private List<Shelf> _shelves;
+    private int _countObjectsReplace;
+    
+    public ReplaceObjects(List<Shelf> shelves, int countObjectsReplace)
+    {
+        _countObjectsReplace = countObjectsReplace;
+    }
 
-    [SerializeField] private int _prise = 3;
+    public void Use()
+    {
+        StartReplaceObjects(_shelves);
+    }
 
-    private bool _isEnough = true;
-
-    public int Prise => _prise;
-    public bool IsEnough => _isEnough;
+    public void Initialize(DiContainer container)
+    {
+        _shelves = container.Resolve<List<Shelf>>();
+    }
 
     public void StartReplaceObjects(List<Shelf> shelves)
     {
-        _isEnough = false; 
-
         List<Subject> allActiveSubjects = new List<Subject>();
 
         foreach (Shelf shelf in shelves)
@@ -29,17 +37,15 @@ public class ReplaceObjects : MonoBehaviour
             }
         }
 
-        if (allActiveSubjects.Count < CountObjectsReplace)
+        if (allActiveSubjects.Count < _countObjectsReplace)
         {
             return;
         }
 
-        _isEnough = true;
-
         TypeSubject newType = (TypeSubject)Random.Range(0, System.Enum.GetValues(typeof(TypeSubject)).Length);
 
         Shuffle(allActiveSubjects);
-        List<Subject> selectedSubjects = allActiveSubjects.GetRange(0, CountObjectsReplace);
+        List<Subject> selectedSubjects = allActiveSubjects.GetRange(0, _countObjectsReplace);
 
         foreach (Subject subject in selectedSubjects)
         {

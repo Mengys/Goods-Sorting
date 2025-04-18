@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class AbilityConfig : ScriptableObject
-{
-    public abstract IAbility GetAbility(); 
-}
-
+[CreateAssetMenu(fileName = "TimeStopAbility", menuName = "Configs/Abilities/ TimeStopAbility")]
 public class TimeStopAbilityConfig : AbilityConfig
 {
     int _delay = 5;

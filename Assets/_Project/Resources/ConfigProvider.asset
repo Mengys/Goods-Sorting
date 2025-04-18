@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ConfigProvider
   m_EditorClassIdentifier: 
   <GameStates>k__BackingField: {fileID: 11400000, guid: 1c9a755270933744c9c50d233cd2d258, type: 2}
+  <AbilityConfigProvider>k__BackingField: {fileID: 11400000, guid: 3577d7c624e5d734dadb39d7bb6b5d66, type: 2}
