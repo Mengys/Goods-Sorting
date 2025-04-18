@@ -13,7 +13,7 @@ namespace _Project.Code
         [Inject] private ConfigProvider _configProvider;
 
         private VictoryLossService _victoryLossService;
-        private WalletPresenter _walletPresenter;
+        private ScorePresenter _walletPresenter;
         private MatchService _matchService;
         private Timer _timer;
         private TimerPresenter _timerPresenter;
@@ -29,7 +29,7 @@ namespace _Project.Code
         public override void InstallBindings()
         {
             var windowService = FindObjectOfType<WindowService>();
-            var walletView = FindObjectOfType<WalletView>();
+            var walletView = FindObjectOfType<ScoreView>();
             var shelfs = FindObjectsOfType<Shelf>();
             _shelves = shelfs.ToList();
             var timerView = FindObjectOfType<TimerView>();
@@ -37,8 +37,8 @@ namespace _Project.Code
             _timer = new Timer(_coroutinePerformer, 30);
             _timerPresenter = new TimerPresenter(_timer, timerView);
             _victoryLossService = new VictoryLossService(_timer, windowService);
-            Wallet wallet = new Wallet();
-            _walletPresenter = new WalletPresenter(wallet, walletView);
+            Score wallet = new Score();
+            _walletPresenter = new ScorePresenter(wallet, walletView);
             _matchService = new MatchService(wallet, _shelves);
             _boostActivator = new BoostActivator(_configProvider, Container);
 
