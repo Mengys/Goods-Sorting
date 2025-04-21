@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d677f9954ed8b3a44b7a62c43a98f5ca, type: 3}
-  m_Name: BoosterConfig 1
+  m_Name: StopTimer
   m_EditorClassIdentifier: 
-  _boosterId: 2
-  _boosterName: CollectingPair
-  _description: Collects a match
+  _boosterId: 1
+  _boosterName: StopTimer
+  _description: Stops time
   _price: 3

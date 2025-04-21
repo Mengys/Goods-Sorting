@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d677f9954ed8b3a44b7a62c43a98f5ca, type: 3}
-  m_Name: BoosterConfig
+  m_Name: ReplaceObjects
   m_EditorClassIdentifier: 
-  _boosterId: 1
-  _boosterName: StopTimer
-  _description: Stops time
+  _boosterId: 3
+  _boosterName: ReplaceObjects
+  _description: Makes 6 random objects of the same type
   _price: 3
