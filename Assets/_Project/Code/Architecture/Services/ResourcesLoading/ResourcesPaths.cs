@@ -4,5 +4,6 @@ namespace _Project.Code.Architecture
     {
         public const string LoadingCurtainPath = "LoadingCurtain";
         public const string ConfigProviderPath = "ConfigProvider";
+        public const string ShelfPrefab = "Shelf";
     }
 }

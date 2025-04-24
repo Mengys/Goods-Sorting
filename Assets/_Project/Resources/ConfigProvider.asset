@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c279b1ee7c5d43a7ad39ab8ed808530c, type: 3}
   m_Name: ConfigProvider
   m_EditorClassIdentifier: 
-  <GameStates>k__BackingField: {fileID: 11400000, guid: 1c9a755270933744c9c50d233cd2d258, type: 2}
+  <GameStates>k__BackingField: {fileID: 11400000, guid: a2f6c10a357f4f54a88ca3db85603b3d, type: 2}
+  <LevelsConfigProvider>k__BackingField: {fileID: 11400000, guid: 9d3476248f7fef74b89cac55f29acfca, type: 2}

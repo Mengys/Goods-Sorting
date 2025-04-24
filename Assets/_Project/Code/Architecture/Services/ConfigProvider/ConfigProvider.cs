@@ -6,5 +6,6 @@ namespace _Project.Code
     public class ConfigProvider : ScriptableObject
     {
         [field: SerializeField] public GameStatesConfig GameStates { get; private set; }
+        [field: SerializeField] public LevelsConfigProvider LevelsConfigProvider { get; private set; }
     }
 }
