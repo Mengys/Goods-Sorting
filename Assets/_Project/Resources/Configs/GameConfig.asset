@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   <GameStatesConfig>k__BackingField: {fileID: 11400000, guid: a2f6c10a357f4f54a88ca3db85603b3d, type: 2}
-  <WindowsConfig>k__BackingField: {fileID: 11400000, guid: 59dbd82b98a91934f95774ca40b33b1d, type: 2}
+  <WindowsConfig>k__BackingField: {fileID: 11400000, guid: 67700e55b4d92b646a73363949f9eac1, type: 2}
+  <ParticlesConfig>k__BackingField: {fileID: 11400000, guid: 686c260343180cb45a7b28b23f405fbc, type: 2}
+  <SoundsConfig>k__BackingField: {fileID: 11400000, guid: 0f4a607f4c03dd24299cc5fc4ef86977, type: 2}

@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7517422076030979065}
-  - component: {fileID: 2926351577658046594}
+  - component: {fileID: 6505003356444081727}
   m_Layer: 0
   m_Name: LoadingCurtain
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 4224960701357370136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2926351577658046594
+--- !u!114 &6505003356444081727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7594696351581283837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e72fa15e171dd847a107a4ae8fc1855, type: 3}
+  m_Script: {fileID: 11500000, guid: fc34f9c56f7987542af72708771daa44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 7260756264585469125}

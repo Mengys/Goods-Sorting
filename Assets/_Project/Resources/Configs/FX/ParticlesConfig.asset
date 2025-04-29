@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad5aad58f284a01bc20b007cbd55609, type: 3}
-  m_Name: TestGameStatesConfig
+  m_Script: {fileID: 11500000, guid: 6407e180a18140b7920860d6cbc3c259, type: 3}
+  m_Name: ParticlesConfig
   m_EditorClassIdentifier: 
-  _stateScenes:
-  - State: 1
-    SceneName: Entry
-  - State: 2
-    SceneName: Menu
-  - State: 3
-    SceneName: Test
+  ParticleConfigs: []
