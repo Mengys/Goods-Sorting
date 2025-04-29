@@ -1,5 +1,5 @@
 using _Project.Code.Services.ConfigProvider;
-using ParticlesPlayer;
+using _Project.Code.Services.ParticlesPlayer.Config;
 using UnityEngine;
 using Zenject;
 

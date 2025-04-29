@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ParticlesPlayer
+namespace _Project.Code.Services.ParticlesPlayer.Config
 {
     [CreateAssetMenu(fileName = "ParticlesConfig", menuName = "Configs/ParticlesConfig")]
     public class ParticlesConfig : ScriptableObject

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParticlesPlayer;
 using _Project.Code.Configs;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Services.ParticlesPlayer.Config;
+using _Project.Code.Services.SoundPlayer.Config;
 using _Project.Code.Services.UIFactory.Config;
 using _Project.Code.UI.Window;
 
@@ -14,6 +15,7 @@ namespace _Project.Code.Services.ConfigProvider
         private Dictionary<GameStateId, GameStateConfig> _gameStateConfigs;
         private Dictionary<WindowId, WindowConfig> _windowConfigs;
         private Dictionary<ParticleId, ParticleConfig> _particleConfigs;
+        private Dictionary<SoundId, SoundConfig> _soundConfigs;
 
         public ConfigProvider(GameConfig config)
         {
@@ -31,6 +33,11 @@ namespace _Project.Code.Services.ConfigProvider
                 .ParticlesConfig
                 .ParticleConfigs
                 .ToDictionary(x => x.Id, x => x);
+            
+            _soundConfigs = config
+                .SoundsConfig
+                .Sounds
+                .ToDictionary(x => x.Id, x => x);
         }
 
         public WindowConfig? ForWindow(WindowId id) =>
@@ -41,5 +48,8 @@ namespace _Project.Code.Services.ConfigProvider
 
         public ParticleConfig? ForParticle(ParticleId id) =>
             _particleConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
+
+        public SoundConfig? ForSound(SoundId id) => 
+            _soundConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ParticlesPlayer
+namespace _Project.Code.Services.ParticlesPlayer.Config
 {
     [System.Serializable]
     public struct ParticleConfig

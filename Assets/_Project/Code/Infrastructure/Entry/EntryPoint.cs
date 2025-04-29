@@ -7,8 +7,10 @@ using _Project.Code.Services.AssetsLoading;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.CoroutinePerformer;
 using _Project.Code.Services.Curtain;
+using _Project.Code.Services.ParticlesPlayer;
 using _Project.Code.Services.SceneArgs;
 using _Project.Code.Services.SceneLoading;
+using _Project.Code.Services.SoundPlayer;
 using _Project.Code.Services.UIFactory;
 using Zenject;
 
@@ -34,6 +36,9 @@ namespace _Project.Code.Infrastructure.Entry
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<SoundPlayer>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ParticlesPlayer>().AsSingle();
         }
 
         private void BindGameStateMachine()

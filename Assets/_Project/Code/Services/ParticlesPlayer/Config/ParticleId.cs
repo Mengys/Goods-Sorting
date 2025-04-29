@@ -1,4 +1,4 @@
-namespace ParticlesPlayer
+namespace _Project.Code.Services.ParticlesPlayer.Config
 {
     public enum ParticleId
     {

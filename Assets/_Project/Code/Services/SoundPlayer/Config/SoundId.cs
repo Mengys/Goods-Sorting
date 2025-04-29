@@ -1,4 +1,4 @@
-namespace _Project.Code.Architecture.Services.SoundPlayer
+namespace _Project.Code.Services.SoundPlayer.Config
 {
     public enum SoundId
     {

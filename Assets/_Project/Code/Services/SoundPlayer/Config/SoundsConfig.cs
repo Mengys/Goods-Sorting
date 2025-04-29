@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Code.Architecture.Services.SoundPlayer
+namespace _Project.Code.Services.SoundPlayer.Config
 {
     [CreateAssetMenu(fileName = "SoundsConfig", menuName = "Sounds/SoundsConfig", order = 0)]
     public class SoundsConfig : ScriptableObject

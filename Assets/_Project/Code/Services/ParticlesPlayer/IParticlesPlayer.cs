@@ -1,6 +1,7 @@
+using _Project.Code.Services.ParticlesPlayer.Config;
 using UnityEngine;
 
-namespace ParticlesPlayer
+namespace _Project.Code.Services.ParticlesPlayer
 {
     public interface IParticlesPlayer
     {
