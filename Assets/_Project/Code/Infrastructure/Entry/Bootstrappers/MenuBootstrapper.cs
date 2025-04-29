@@ -1,6 +1,6 @@
-using _Project.Code.Infrastructure.Services.GameStateMachine;
-using _Project.Code.Infrastructure.Services.GameStateMachine.State;
-using _Project.Code.Infrastructure.Services.SceneArgs;
+using _Project.Code.Infrastructure.GameStateMachine;
+using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Services.SceneArgs;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Entry.Bootstrappers

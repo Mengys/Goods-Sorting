@@ -1,4 +1,4 @@
-using _Project.Code.Infrastructure.Services.SceneArgs;
+using _Project.Code.Services.SceneArgs;
 using UnityEngine;
 using Zenject;
 

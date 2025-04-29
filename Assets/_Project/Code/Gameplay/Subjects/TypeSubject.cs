@@ -1,4 +1,4 @@
-﻿namespace _Project.Code.Gameplay.Subjects
+namespace _Project.Code.Gameplay.Subjects
 {
     public enum TypeSubject
     {

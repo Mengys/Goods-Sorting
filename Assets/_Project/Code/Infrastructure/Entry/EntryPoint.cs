@@ -1,11 +1,15 @@
-using _Project.Code.Infrastructure.Services.ConfigProvider;
-using _Project.Code.Infrastructure.Services.CoroutinePerformer;
-using _Project.Code.Infrastructure.Services.Curtain;
-using _Project.Code.Infrastructure.Services.GameStateMachine;
-using _Project.Code.Infrastructure.Services.GameStateMachine.State;
-using _Project.Code.Infrastructure.Services.ResourcesLoading;
-using _Project.Code.Infrastructure.Services.SceneArgs;
-using _Project.Code.Infrastructure.Services.SceneLoading;
+using System;
+using _Project.Code.Configs;
+using _Project.Code.Infrastructure.GameStateMachine;
+using _Project.Code.Infrastructure.GameStateMachine.Factory;
+using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Services.AssetsLoading;
+using _Project.Code.Services.ConfigProvider;
+using _Project.Code.Services.CoroutinePerformer;
+using _Project.Code.Services.Curtain;
+using _Project.Code.Services.SceneArgs;
+using _Project.Code.Services.SceneLoading;
+using _Project.Code.Services.UIFactory;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Entry
@@ -14,28 +18,57 @@ namespace _Project.Code.Infrastructure.Entry
     {
         private void Awake()
         {
-            var stateMachine = Container.Resolve<IStateMachine<GameStateId>>();
-            stateMachine.Enter(GameStateId.Entry);
+            Container
+                .Resolve<IStateMachine<GameStateId>>()
+                .Enter(GameStateId.Entry);
         }
 
         public override void InstallBindings()
         {
-            Container.Bind<ResourcesLoader>().AsSingle();
-            
-            Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
+            BindGameStateMachine();
+            BindCoroutinePerformer();
+            BindLoadingCurtain();
+            BindConfigProvider();
+
+            Container.BindInterfacesAndSelfTo<AssetLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
+        }
 
+        private void BindGameStateMachine()
+        {
+            Container.BindInterfacesAndSelfTo<GameStatesFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameStateMachine.GameStateMachine>().AsSingle();
+        }
+
+        private void BindCoroutinePerformer()
+        {
             Container.Bind<ICoroutinePerformer>()
                 .FromInstance(new CoroutinePerformer(this))
                 .AsSingle();
+        }
 
-            Container.Bind<ConfigProvider>()
-                .FromScriptableObjectResource(ResourcesPaths.ConfigProviderPath)
-                .AsSingle();
-            
+        private void BindLoadingCurtain()
+        {
             Container.Bind<LoadingCurtain>()
-                .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtainPath)
+                .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtain)
+                .AsSingle();
+        }
+
+        private void BindConfigProvider()
+        {
+            Container.BindInterfacesAndSelfTo<ConfigProvider>()
+                .FromMethod(ctx =>
+                {
+                    var loader = ctx.Container.Resolve<IAssetsLoader>();
+                    var gameConfig = loader.Load<GameConfig>(ResourcesPaths.GameConfig);
+
+                    if (gameConfig is null)
+                        throw new NullReferenceException("Game config is not found");
+
+                    return new ConfigProvider(gameConfig);
+                })
                 .AsSingle();
         }
     }
