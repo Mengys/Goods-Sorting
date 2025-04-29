@@ -1,21 +1,24 @@
 using TMPro;
 using UnityEngine;
 
-public class SubjectViev : MonoBehaviour
+namespace _Project.Code.Subjects
 {
-    [SerializeField] private Subject _subject;
-    [SerializeField] private TMP_Text _vievSubject;
-
-    public void SetDisplay()
+    public class SubjectViev : MonoBehaviour
     {
-        string displayValue = _subject.SubjectType switch
-        {
-            TypeSubject.Triangle => "1",
-            TypeSubject.Circle => "2",
-            TypeSubject.Square => "3",
-            _ => "?"
-        };
+        [SerializeField] private Subject _subject;
+        [SerializeField] private TMP_Text _vievSubject;
 
-        _vievSubject.text = displayValue;
+        public void SetDisplay()
+        {
+            string displayValue = _subject.SubjectType switch
+            {
+                TypeSubject.Triangle => "1",
+                TypeSubject.Circle => "2",
+                TypeSubject.Square => "3",
+                _ => "?"
+            };
+
+            _vievSubject.text = displayValue;
+        }
     }
 }

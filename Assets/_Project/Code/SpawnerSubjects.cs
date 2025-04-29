@@ -1,32 +1,38 @@
 using System.Collections.Generic;
+using _Project.Code.Shelfs;
+using _Project.Code.Shelfs.Cells;
+using _Project.Code.Subjects;
 using UnityEngine;
 
-public class SpawnerSubjects : MonoBehaviour
+namespace _Project.Code
 {
-    [SerializeField] private List<Subject> _prefabSubjects = new List<Subject>();
-    [SerializeField, Range(0f, 1f)] private float _spawnProbability = 0.7f;
-
-    public void SpawnSubjects(List<Shelf> shelves)
+    public class SpawnerSubjects : MonoBehaviour
     {
-        foreach (Shelf shelf in shelves)
+        [SerializeField] private List<Subject> _prefabSubjects = new List<Subject>();
+        [SerializeField, Range(0f, 1f)] private float _spawnProbability = 0.7f;
+
+        public void SpawnSubjects(List<Shelf> shelves)
         {
-            foreach (Cell cell in shelf.Cells)
+            foreach (Shelf shelf in shelves)
             {
-                if (cell.IsBusy) 
-                    continue;
-
-                if (Random.value < _spawnProbability)
+                foreach (Cell cell in shelf.Cells)
                 {
-                    Subject randomSubjectPrefab = _prefabSubjects[Random.Range(0, _prefabSubjects.Count)];
+                    if (cell.IsBusy) 
+                        continue;
 
-                    Subject spawnedSubject = Instantiate(randomSubjectPrefab, cell.transform.position, Quaternion.identity);
-                    spawnedSubject.transform.SetParent(cell.transform);
+                    if (Random.value < _spawnProbability)
+                    {
+                        Subject randomSubjectPrefab = _prefabSubjects[Random.Range(0, _prefabSubjects.Count)];
 
-                    cell.GetSubject(spawnedSubject); 
+                        Subject spawnedSubject = Instantiate(randomSubjectPrefab, cell.transform.position, Quaternion.identity);
+                        spawnedSubject.transform.SetParent(cell.transform);
+
+                        cell.GetSubject(spawnedSubject); 
+                    }
                 }
-            }
 
-            shelf.CheckMatches();
+                shelf.CheckMatches();
+            }
         }
     }
 }

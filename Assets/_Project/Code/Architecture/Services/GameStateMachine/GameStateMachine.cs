@@ -1,16 +1,19 @@
 using System;
 using System.Collections.Generic;
-using _Project.Code.Architecture;
+using _Project.Code.Architecture.Configs;
+using _Project.Code.Architecture.Services.CoroutinePerformer;
+using _Project.Code.Architecture.Services.Curtain;
+using _Project.Code.Architecture.Services.SceneLoading;
 using Zenject;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Services.GameStateMachine
 {
     public class GameStateMachine : IStateMachine<GameState>
     {
         private readonly ISceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
         private readonly ICoroutinePerformer _coroutinePerformer;
-        private readonly SceneArgs _args;
+        private readonly SceneArgs.SceneArgs _args;
 
         private readonly Dictionary<GameState, IState> _states;
 
@@ -23,8 +26,8 @@ namespace _Project.Code
             ISceneLoader sceneLoader,
             LoadingCurtain loadingCurtain,
             ICoroutinePerformer coroutinePerformer,
-            ConfigProvider config,
-            SceneArgs args)
+            ConfigProvider.ConfigProvider config,
+            SceneArgs.SceneArgs args)
         {
             _config = config.GameStates;
             _sceneLoader = sceneLoader;

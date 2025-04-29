@@ -11,11 +11,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ad5aad58f284a01bc20b007cbd55609, type: 3}
   m_Name: GameStatesConfig
-  m_EditorClassIdentifier: 
-  _stateScenes:
-  - State: 1
-    SceneName: Entry
-  - State: 2
-    SceneName: Menu
-  - State: 3
-    SceneName: Gameplay
+  m_EditorClassIdentifier: Assembly-CSharp:_Project.Code:GameStatesConfig

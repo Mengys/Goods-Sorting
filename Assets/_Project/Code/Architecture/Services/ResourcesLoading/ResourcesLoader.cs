@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Code.Architecture
+namespace _Project.Code.Architecture.Services.ResourcesLoading
 {
     public class ResourcesLoader
     {

@@ -1,38 +1,42 @@
+using _Project.Code.Shelfs.Cells;
 using UnityEngine;
 
-public class Subject : MonoBehaviour
+namespace _Project.Code.Subjects
 {
-    [SerializeField] private TypeSubject _typeSubject;
-    [SerializeField] private DragAndDrop _dragAndDrop;
-    [SerializeField] private SubjectViev _subjectViev;
-
-    private Cell _currentCell;
-    private int _defaultSiblingIndex;
-    private bool _isActive = true;
-
-    public bool IsActive => _isActive;
-    public Cell CurrentCell => _currentCell;
-    public TypeSubject SubjectType => _typeSubject;
-    public DragAndDrop DragAndDrop => _dragAndDrop;
-    public SubjectViev SubjectViev => _subjectViev;
-
-    public void GetCell(Cell cell)
+    public class Subject : MonoBehaviour
     {
-        _currentCell = cell;
-    }
+        [SerializeField] private TypeSubject _typeSubject;
+        [SerializeField] private DragAndDrop _dragAndDrop;
+        [SerializeField] private SubjectViev _subjectViev;
 
-    public void ToFree()
-    {
-        _currentCell = null;
-    }
+        private Cell _currentCell;
+        private int _defaultSiblingIndex;
+        private bool _isActive = true;
 
-    public void Deactivate()
-    {
-        _isActive = false;
-    }
+        public bool IsActive => _isActive;
+        public Cell CurrentCell => _currentCell;
+        public TypeSubject SubjectType => _typeSubject;
+        public DragAndDrop DragAndDrop => _dragAndDrop;
+        public SubjectViev SubjectViev => _subjectViev;
 
-    public void SetSubjectType(TypeSubject newType)
-    {
-        _typeSubject = newType;
+        public void GetCell(Cell cell)
+        {
+            _currentCell = cell;
+        }
+
+        public void ToFree()
+        {
+            _currentCell = null;
+        }
+
+        public void Deactivate()
+        {
+            _isActive = false;
+        }
+
+        public void SetSubjectType(TypeSubject newType)
+        {
+            _typeSubject = newType;
+        }
     }
 }

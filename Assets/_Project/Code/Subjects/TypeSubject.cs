@@ -1,6 +1,9 @@
-﻿public enum TypeSubject
+﻿namespace _Project.Code.Subjects
 {
-    Triangle,
-    Circle,
-    Square,
+    public enum TypeSubject
+    {
+        Triangle,
+        Circle,
+        Square,
+    }
 }

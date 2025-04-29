@@ -1,10 +1,10 @@
 using Zenject;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Services.SceneArgs
 {
     public class SceneArgs : ISceneInputArgs, ISceneOutputArgs
     {
-        public DiContainer Input { get; set; }
-        public DiContainer Output { get; set; }
+        public DiContainer Input { get; set; } = new();
+        public DiContainer Output { get; set; } = new();
     }
 }

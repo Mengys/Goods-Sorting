@@ -1,7 +1,13 @@
-using _Project.Code.Architecture;
+using _Project.Code.Architecture.Services.ConfigProvider;
+using _Project.Code.Architecture.Services.CoroutinePerformer;
+using _Project.Code.Architecture.Services.Curtain;
+using _Project.Code.Architecture.Services.GameStateMachine;
+using _Project.Code.Architecture.Services.ResourcesLoading;
+using _Project.Code.Architecture.Services.SceneArgs;
+using _Project.Code.Architecture.Services.SceneLoading;
 using Zenject;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Entry
 {
     public class EntryPoint : MonoInstaller
     {
@@ -17,6 +23,7 @@ namespace _Project.Code
             
             Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
 
             Container.Bind<ICoroutinePerformer>()
                 .FromInstance(new CoroutinePerformer(this))
@@ -29,12 +36,6 @@ namespace _Project.Code
             Container.Bind<LoadingCurtain>()
                 .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtainPath)
                 .AsSingle();
-            
-            var sceneArgs = new SceneArgs();
-            
-            Container.Bind<ISceneInputArgs>().FromInstance(sceneArgs);
-            Container.Bind<ISceneOutputArgs>().FromInstance(sceneArgs);
-            Container.Bind<SceneArgs>().FromInstance(sceneArgs);
         }
     }
 }

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Code.Architecture.Services.GameStateMachine;
 using UnityEngine;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Configs
 {
     [CreateAssetMenu(fileName = "GameStatesConfig", menuName = "Configs/GameStatesConfig")]
     public class GameStatesConfig : ScriptableObject

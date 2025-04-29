@@ -1,7 +1,9 @@
 using System.Collections;
-using _Project.Code.Architecture;
+using _Project.Code.Architecture.Services.CoroutinePerformer;
+using _Project.Code.Architecture.Services.Curtain;
+using _Project.Code.Architecture.Services.SceneLoading;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Services.GameStateMachine
 {
     public class SceneState : IState
     {

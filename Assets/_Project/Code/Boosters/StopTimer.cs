@@ -1,29 +1,33 @@
 using System.Collections;
+using _Project.Code.Timers;
 using UnityEngine;
 
-public class StopTimer : MonoBehaviour
+namespace _Project.Code.Boosters
 {
-    [SerializeField] private int _delay = 5;
-    [SerializeField] private int _prise = 3;
-
-    private Timer _timer;
-
-    public int Prise => _prise;
-
-    public void PauseForSeconds()
+    public class StopTimer : MonoBehaviour
     {
-        StartCoroutine(PauseTimer());
-    }
+        [SerializeField] private int _delay = 5;
+        [SerializeField] private int _prise = 3;
 
-    public void InitialuzeTimer(Timer timer)
-    {
-        _timer = timer;
-    }
+        private Timer _timer;
 
-    private IEnumerator PauseTimer()
-    {
-        _timer.StopTimer();
-        yield return new WaitForSeconds(_delay);
-        _timer.StartTimer();
+        public int Prise => _prise;
+
+        public void PauseForSeconds()
+        {
+            StartCoroutine(PauseTimer());
+        }
+
+        public void InitialuzeTimer(Timer timer)
+        {
+            _timer = timer;
+        }
+
+        private IEnumerator PauseTimer()
+        {
+            _timer.StopTimer();
+            yield return new WaitForSeconds(_delay);
+            _timer.StartTimer();
+        }
     }
 }

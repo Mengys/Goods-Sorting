@@ -1,33 +1,36 @@
 using TMPro;
 using UnityEngine;
 
-public class Money : MonoBehaviour
+namespace _Project.Code.Moneys
 {
-    [SerializeField] private TMP_Text _textMoney;
-
-    private int _money = 0;
-
-    public int CyrrentMoney => _money;
-
-    private void Start()
+    public class Money : MonoBehaviour
     {
-        ShoweMoney();
-    }
+        [SerializeField] private TMP_Text _textMoney;
 
-    public void AddMoney(int money)
-    {
-        _money += money;
-        ShoweMoney();
-    }
+        private int _money = 0;
 
-    public void RemoveMoney(int money)
-    {
-        _money -= money;
-        ShoweMoney();
-    }
+        public int CyrrentMoney => _money;
 
-    public void ShoweMoney()
-    {
-        _textMoney.text = $"Money {_money}";
+        private void Start()
+        {
+            ShoweMoney();
+        }
+
+        public void AddMoney(int money)
+        {
+            _money += money;
+            ShoweMoney();
+        }
+
+        public void RemoveMoney(int money)
+        {
+            _money -= money;
+            ShoweMoney();
+        }
+
+        public void ShoweMoney()
+        {
+            _textMoney.text = $"Money {_money}";
+        }
     }
 }

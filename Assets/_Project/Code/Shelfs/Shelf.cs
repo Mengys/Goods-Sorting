@@ -1,62 +1,67 @@
 using System;
 using System.Collections.Generic;
+using _Project.Code.Shelfs.Cells;
+using _Project.Code.Subjects;
 using UnityEngine;
 
-public class Shelf : MonoBehaviour
+namespace _Project.Code.Shelfs
 {
-    private readonly int RewardMatch = 3;
-
-    private List<Cell> _cells;
-
-    public List<Cell> Cells => _cells;
-
-    public event Action<int> Matches;
-
-    private void Awake()
+    public class Shelf : MonoBehaviour
     {
-        _cells = new List<Cell>(GetComponentsInChildren<Cell>());
+        private readonly int RewardMatch = 3;
 
-        foreach (var cell in _cells)
+        private List<Cell> _cells;
+
+        public List<Cell> Cells => _cells;
+
+        public event Action<int> Matches;
+
+        private void Awake()
         {
-            cell.Init(this);
+            _cells = new List<Cell>(GetComponentsInChildren<Cell>());
+
+            foreach (var cell in _cells)
+            {
+                cell.Init(this);
+            }
         }
-    }
 
-    public void UnsubscribeAll()
-    {
-        Matches = null;
-    }
-
-    public void CheckMatches()
-    {
-        if (_cells.Count == 0)
-            return;
-
-        foreach (var cell in _cells)
+        public void UnsubscribeAll()
         {
-            if (!cell.IsBusy)
+            Matches = null;
+        }
+
+        public void CheckMatches()
+        {
+            if (_cells.Count == 0)
                 return;
+
+            foreach (var cell in _cells)
+            {
+                if (!cell.IsBusy)
+                    return;
+            }
+
+            TypeSubject typeToMatch = _cells[0].Subject.SubjectType;
+
+            foreach (var cell in _cells)
+            {
+                if (cell.Subject.SubjectType != typeToMatch)
+                    return;
+            }
+
+            DestroyCells();
+            Matches?.Invoke(RewardMatch);
         }
 
-        TypeSubject typeToMatch = _cells[0].Subject.SubjectType;
-
-        foreach (var cell in _cells)
+        private void DestroyCells()
         {
-            if (cell.Subject.SubjectType != typeToMatch)
-                return;
-        }
-
-        DestroyCells();
-        Matches?.Invoke(RewardMatch);
-    }
-
-    private void DestroyCells()
-    {
-        foreach (var cell in _cells)
-        {
-            cell.Subject.gameObject.SetActive(false);
-            cell.Subject.Deactivate();
-            cell.ToFree();
+            foreach (var cell in _cells)
+            {
+                cell.Subject.gameObject.SetActive(false);
+                cell.Subject.Deactivate();
+                cell.ToFree();
+            }
         }
     }
 }

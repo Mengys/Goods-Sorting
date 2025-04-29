@@ -3,61 +3,64 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace _Project.Code.Timers
 {
-    [SerializeField] private TMP_Text _textTimer;
-    [SerializeField] private int _startSeconds;  
-
-    private Coroutine _timerCoroutine;
-    private bool _isIncluded = false;
-
-    public event Action Ended;
-
-    private void OnEnable()
+    public class Timer : MonoBehaviour
     {
-        GameController.FirstMoveMade += StartTimer;
-    }
+        [SerializeField] private TMP_Text _textTimer;
+        [SerializeField] private int _startSeconds;  
 
-    private void OnDisable()
-    {
-        GameController.FirstMoveMade -= StartTimer;
-    }
+        private Coroutine _timerCoroutine;
+        private bool _isIncluded = false;
 
-    private void Start()
-    {
-        ShowSeconds();
+        public event Action Ended;
 
-        if (_timerCoroutine != null)
-            StopCoroutine(_timerCoroutine);
-
-        _timerCoroutine = StartCoroutine(RunTimer());
-    }
-
-    private IEnumerator RunTimer()
-    {
-        var delay = new WaitForSeconds(1f);
-
-        while (enabled)
+        private void OnEnable()
         {
-            yield return delay;
+            GameController.FirstMoveMade += StartTimer;
+        }
 
-            if (_isIncluded)
+        private void OnDisable()
+        {
+            GameController.FirstMoveMade -= StartTimer;
+        }
+
+        private void Start()
+        {
+            ShowSeconds();
+
+            if (_timerCoroutine != null)
+                StopCoroutine(_timerCoroutine);
+
+            _timerCoroutine = StartCoroutine(RunTimer());
+        }
+
+        private IEnumerator RunTimer()
+        {
+            var delay = new WaitForSeconds(1f);
+
+            while (enabled)
             {
-                _startSeconds--;
-                ShowSeconds();
+                yield return delay;
 
-                if(_startSeconds<= 0)
+                if (_isIncluded)
                 {
-                    StopTimer();
-                    Ended?.Invoke();
+                    _startSeconds--;
+                    ShowSeconds();
+
+                    if(_startSeconds<= 0)
+                    {
+                        StopTimer();
+                        Ended?.Invoke();
+                    }
                 }
             }
         }
+
+        public void StartTimer() => _isIncluded = true;
+
+        public void StopTimer() => _isIncluded = false;
+
+        private void ShowSeconds() => _textTimer.text = _startSeconds.ToString();
     }
-
-    public void StartTimer() => _isIncluded = true;
-
-    public void StopTimer() => _isIncluded = false;
-
-    private void ShowSeconds() => _textTimer.text = _startSeconds.ToString();
 }

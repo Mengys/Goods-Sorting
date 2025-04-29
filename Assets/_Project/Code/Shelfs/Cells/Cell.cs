@@ -1,38 +1,42 @@
+using _Project.Code.Subjects;
 using UnityEngine;
 
-public class Cell : MonoBehaviour
+namespace _Project.Code.Shelfs.Cells
 {
-    private bool _isBusy;
-    private Subject _subject;
-    private Shelf _parentShelf;
-
-    public bool IsBusy => _isBusy;
-    public Subject Subject => _subject;
-
-    public void Init(Shelf shelf)
+    public class Cell : MonoBehaviour
     {
-        _parentShelf = shelf;
-    }
+        private bool _isBusy;
+        private Subject _subject;
+        private Shelf _parentShelf;
 
-    public void GetSubject(Subject subject)
-    {
-        _subject = subject;
-        _isBusy = true;
-        subject.GetCell(this);
+        public bool IsBusy => _isBusy;
+        public Subject Subject => _subject;
 
-        _parentShelf?.CheckMatches();
-    }
-
-    public void ToFree()
-    {
-        if (_subject != null)
+        public void Init(Shelf shelf)
         {
-            _subject.ToFree();
+            _parentShelf = shelf;
         }
 
-        _subject = null;
-        _isBusy = false;
+        public void GetSubject(Subject subject)
+        {
+            _subject = subject;
+            _isBusy = true;
+            subject.GetCell(this);
 
-        _parentShelf?.CheckMatches();
+            _parentShelf?.CheckMatches();
+        }
+
+        public void ToFree()
+        {
+            if (_subject != null)
+            {
+                _subject.ToFree();
+            }
+
+            _subject = null;
+            _isBusy = false;
+
+            _parentShelf?.CheckMatches();
+        }
     }
 }

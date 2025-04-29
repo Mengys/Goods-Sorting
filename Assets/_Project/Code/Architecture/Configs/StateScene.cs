@@ -1,4 +1,6 @@
-namespace _Project.Code
+using _Project.Code.Architecture.Services.GameStateMachine;
+
+namespace _Project.Code.Architecture.Configs
 {
     [System.Serializable]
     public struct StateScene

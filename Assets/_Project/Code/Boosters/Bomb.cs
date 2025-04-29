@@ -1,45 +1,51 @@
 using System.Collections.Generic;
+using _Project.Code.Shelfs;
+using _Project.Code.Shelfs.Cells;
+using _Project.Code.Subjects;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+namespace _Project.Code.Boosters
 {
-    [SerializeField] private int _prise = 3;
-
-    public int Prise => _prise;
-
-    public void Activate(List<Shelf> shelves)
+    public class Bomb : MonoBehaviour
     {
-        List<Subject> allSubjects = new List<Subject>();
+        [SerializeField] private int _prise = 3;
 
-        foreach (Shelf shelf in shelves)
+        public int Prise => _prise;
+
+        public void Activate(List<Shelf> shelves)
         {
-            foreach (Cell cell in shelf.Cells)
+            List<Subject> allSubjects = new List<Subject>();
+
+            foreach (Shelf shelf in shelves)
             {
-                if (cell.Subject != null && cell.Subject.IsActive)
+                foreach (Cell cell in shelf.Cells)
                 {
-                    allSubjects.Add(cell.Subject);
+                    if (cell.Subject != null && cell.Subject.IsActive)
+                    {
+                        allSubjects.Add(cell.Subject);
+                    }
                 }
             }
-        }
 
-        if (allSubjects.Count == 0)
-            return;
+            if (allSubjects.Count == 0)
+                return;
 
-        TypeSubject randomType = allSubjects[Random.Range(0, allSubjects.Count)].SubjectType;
+            TypeSubject randomType = allSubjects[Random.Range(0, allSubjects.Count)].SubjectType;
 
-        foreach (Subject subject in allSubjects)
-        {
-            if (subject.SubjectType == randomType)
+            foreach (Subject subject in allSubjects)
             {
-                Cell currentCell = subject.CurrentCell;
-
-                if (currentCell != null)
+                if (subject.SubjectType == randomType)
                 {
-                    currentCell.ToFree();
-                }
+                    Cell currentCell = subject.CurrentCell;
 
-                subject.Deactivate();
-                subject.gameObject.SetActive(false);
+                    if (currentCell != null)
+                    {
+                        currentCell.ToFree();
+                    }
+
+                    subject.Deactivate();
+                    subject.gameObject.SetActive(false);
+                }
             }
         }
     }

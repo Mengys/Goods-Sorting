@@ -1,8 +1,9 @@
+using _Project.Code.Architecture.Services.GameStateMachine;
 using Zenject;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Entry.Bootstrappers
 {
-    public class GameBootstrapper : MonoInstaller 
+    public class EntryBootstrapper : MonoInstaller 
     {
         [Inject] private IStateMachine<GameState> _stateMachine;
         

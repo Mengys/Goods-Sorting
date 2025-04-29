@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace _Project.Code.Architecture
+namespace _Project.Code.Architecture.Services.SceneLoading
 {
     public class SceneLoader : ISceneLoader
     {

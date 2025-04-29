@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7517422076030979065}
-  - component: {fileID: 6008870688863342930}
+  - component: {fileID: 2926351577658046594}
   m_Layer: 0
   m_Name: LoadingCurtain
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 4224960701357370136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6008870688863342930
+--- !u!114 &2926351577658046594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

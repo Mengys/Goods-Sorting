@@ -1,4 +1,4 @@
-namespace _Project.Code
+namespace _Project.Code.Architecture.Services.GameStateMachine
 {
     public interface IStateMachine<TState> 
     {

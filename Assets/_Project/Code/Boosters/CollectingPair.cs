@@ -1,58 +1,64 @@
 using System.Collections.Generic;
+using _Project.Code.Shelfs;
+using _Project.Code.Shelfs.Cells;
+using _Project.Code.Subjects;
 using UnityEngine;
 
-public class CollectingPair : MonoBehaviour
+namespace _Project.Code.Boosters
 {
-    [SerializeField] private int _prise = 3;
-
-    private bool _isEnough = true;
-
-    public int Prise => _prise;
-    public bool IsEnough => _isEnough;
-
-    public void StartCollectPairs(List<Shelf> shelves)
+    public class CollectingPair : MonoBehaviour
     {
-        _isEnough = false;
+        [SerializeField] private int _prise = 3;
 
-        Dictionary<TypeSubject, List<Subject>> subjectsByType = new Dictionary<TypeSubject, List<Subject>>();
+        private bool _isEnough = true;
 
-        foreach (Shelf shelf in shelves)
+        public int Prise => _prise;
+        public bool IsEnough => _isEnough;
+
+        public void StartCollectPairs(List<Shelf> shelves)
         {
-            foreach (Cell cell in shelf.Cells)
+            _isEnough = false;
+
+            Dictionary<TypeSubject, List<Subject>> subjectsByType = new Dictionary<TypeSubject, List<Subject>>();
+
+            foreach (Shelf shelf in shelves)
             {
-                Subject subject = cell.Subject;
-
-                if (subject != null && subject.IsActive)
+                foreach (Cell cell in shelf.Cells)
                 {
-                    TypeSubject type = subject.SubjectType;
+                    Subject subject = cell.Subject;
 
-                    if (!subjectsByType.ContainsKey(type))
+                    if (subject != null && subject.IsActive)
                     {
-                        subjectsByType[type] = new List<Subject>();
-                    }
+                        TypeSubject type = subject.SubjectType;
 
-                    subjectsByType[type].Add(subject);
+                        if (!subjectsByType.ContainsKey(type))
+                        {
+                            subjectsByType[type] = new List<Subject>();
+                        }
+
+                        subjectsByType[type].Add(subject);
+                    }
                 }
             }
-        }
 
-        foreach (var pair in subjectsByType)
-        {
-            List<Subject> subjects = pair.Value;
-
-            if (subjects.Count >= 3)
+            foreach (var pair in subjectsByType)
             {
-                for (int i = 0; i < 3; i++)
+                List<Subject> subjects = pair.Value;
+
+                if (subjects.Count >= 3)
                 {
-                    Subject subjectToDestroy = subjects[i];
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Subject subjectToDestroy = subjects[i];
 
-                    subjectToDestroy.gameObject.SetActive(false);
-                    subjectToDestroy.Deactivate();
-                    subjectToDestroy.CurrentCell?.ToFree();
+                        subjectToDestroy.gameObject.SetActive(false);
+                        subjectToDestroy.Deactivate();
+                        subjectToDestroy.CurrentCell?.ToFree();
+                    }
+
+                    _isEnough = true; 
+                    break;
                 }
-
-                _isEnough = true; 
-                break;
             }
         }
     }

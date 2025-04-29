@@ -1,7 +1,8 @@
-using System;
+using _Project.Code.Architecture.Services.GameStateMachine;
+using _Project.Code.Architecture.Services.SceneArgs;
 using Zenject;
 
-namespace _Project.Code
+namespace _Project.Code.Architecture.Entry.Bootstrappers
 {
     public class MenuBootstrapper : MonoInstaller
     {
@@ -10,7 +11,7 @@ namespace _Project.Code
 
         private void Awake()
         {
-            _args.Output.Bind<string>().FromInstance("Hi from Menu!");
+            _args.Output.Bind<string>().FromInstance("Hi from Menu!"); 
             _stateMachine.Enter(GameState.Gameplay);            
         }
         

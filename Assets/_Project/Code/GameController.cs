@@ -1,73 +1,81 @@
 using System;
 using System.Collections.Generic;
+using _Project.Code.Boosters;
+using _Project.Code.Moneys;
+using _Project.Code.Shelfs;
+using _Project.Code.Shelfs.Cells;
+using _Project.Code.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+namespace _Project.Code
 {
-    [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
-    [SerializeField] private SpawnerSubjects _spawnerSubjects;
-    [SerializeField] private Money _money;
-    [SerializeField] private Timer _timer;
-    [SerializeField] private Transform _layerDragging;
-    [SerializeField] private Image _gameOver;
-    [SerializeField] private BostersController _bostersController;
-
-    private static bool _hasFirstMoveHappened = false;
-
-    public static event Action FirstMoveMade;
-
-    private void OnEnable()
+    public class GameController : MonoBehaviour
     {
-        _timer.Ended += ShoveGameOver;
-    }
+        [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
+        [SerializeField] private SpawnerSubjects _spawnerSubjects;
+        [SerializeField] private Money _money;
+        [SerializeField] private Timer _timer;
+        [SerializeField] private Transform _layerDragging;
+        [SerializeField] private Image _gameOver;
+        [SerializeField] private BostersController _bostersController;
 
-    private void OnDisable()
-    {
-        _timer.Ended -= ShoveGameOver;
+        private static bool _hasFirstMoveHappened = false;
 
-        foreach (Shelf shelf in _shelves)
+        public static event Action FirstMoveMade;
+
+        private void OnEnable()
         {
-            shelf.Matches -= _money.AddMoney;
+            _timer.Ended += ShoveGameOver;
         }
-    }
 
-    private void Awake()
-    {
-        _gameOver.gameObject.SetActive(false);
-        _bostersController.Initialize(_timer, _money, _shelves);
-    }
-
-    private void Start()
-    {
-        _spawnerSubjects.SpawnSubjects(_shelves);
-
-        foreach (Shelf shelf in _shelves)
+        private void OnDisable()
         {
-            shelf.Matches += _money.AddMoney;
+            _timer.Ended -= ShoveGameOver;
 
-            foreach (Cell cell in shelf.Cells)
+            foreach (Shelf shelf in _shelves)
             {
-                if (cell.Subject != null)
+                shelf.Matches -= _money.AddMoney;
+            }
+        }
+
+        private void Awake()
+        {
+            _gameOver.gameObject.SetActive(false);
+            _bostersController.Initialize(_timer, _money, _shelves);
+        }
+
+        private void Start()
+        {
+            _spawnerSubjects.SpawnSubjects(_shelves);
+
+            foreach (Shelf shelf in _shelves)
+            {
+                shelf.Matches += _money.AddMoney;
+
+                foreach (Cell cell in shelf.Cells)
                 {
-                    cell.Subject.DragAndDrop.InitializeLayerDrage(_layerDragging);
-                    cell.Subject.SubjectViev.SetDisplay();
+                    if (cell.Subject != null)
+                    {
+                        cell.Subject.DragAndDrop.InitializeLayerDrage(_layerDragging);
+                        cell.Subject.SubjectViev.SetDisplay();
+                    }
                 }
             }
         }
-    }
 
-    public static void OnFirstMove()
-    {
-        if (_hasFirstMoveHappened)
-            return;
+        public static void OnFirstMove()
+        {
+            if (_hasFirstMoveHappened)
+                return;
 
-        _hasFirstMoveHappened = true;
-        FirstMoveMade?.Invoke();
-    }
+            _hasFirstMoveHappened = true;
+            FirstMoveMade?.Invoke();
+        }
 
-    private void ShoveGameOver()
-    {
-        _gameOver.gameObject.SetActive(true);
+        private void ShoveGameOver()
+        {
+            _gameOver.gameObject.SetActive(true);
+        }
     }
 }
