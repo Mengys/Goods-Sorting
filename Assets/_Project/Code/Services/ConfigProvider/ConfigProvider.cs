@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ParticlesPlayer;
 using _Project.Code.Configs;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
@@ -12,6 +13,7 @@ namespace _Project.Code.Services.ConfigProvider
     {
         private Dictionary<GameStateId, GameStateConfig> _gameStateConfigs;
         private Dictionary<WindowId, WindowConfig> _windowConfigs;
+        private Dictionary<ParticleId, ParticleConfig> _particleConfigs;
 
         public ConfigProvider(GameConfig config)
         {
@@ -24,12 +26,20 @@ namespace _Project.Code.Services.ConfigProvider
                 .WindowsConfig
                 .Windows
                 .ToDictionary(x => x.Id, x => x);
+
+            _particleConfigs = config
+                .ParticlesConfig
+                .ParticleConfigs
+                .ToDictionary(x => x.Id, x => x);
         }
 
         public WindowConfig? ForWindow(WindowId id) =>
-            _windowConfigs.TryGetValue(id, out var config) ? config : null;
+            _windowConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
 
-        public GameStateConfig? ForState(GameStateId stateId) =>
-            _gameStateConfigs.TryGetValue(stateId, out var config) ? config : null;
+        public GameStateConfig? ForState(GameStateId id) =>
+            _gameStateConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
+
+        public ParticleConfig? ForParticle(ParticleId id) =>
+            _particleConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
     }
 }

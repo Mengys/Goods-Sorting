@@ -1,16 +1,16 @@
-using ParticlesPlayer;
 using _Project.Code.Services.ConfigProvider;
+using ParticlesPlayer;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Code.Architecture.Services.ParticlesPlayer
+namespace _Project.Code.Services.ParticlesPlayer
 {
     public class ParticlesPlayer : IParticlesPlayer
     {
-        private readonly ConfigProvider _configProvider;
+        private readonly IConfigProvider _configProvider;
 
         [Inject]
-        public ParticlesPlayer(ConfigProvider configProvider)
+        public ParticlesPlayer(IConfigProvider configProvider)
         {
             _configProvider = configProvider;
         }

@@ -38,15 +38,12 @@ namespace _Project.Code.Services.UIFactory
 
         public void CreateWindow(WindowId id)
         {
-            WindowConfig? config = _configProvider.ForWindow(id);
+            WindowConfig config = _configProvider.ForWindow(id).Value;
 
-            if (config == null)
-                throw new NullReferenceException($"Config for window {id} is not found");
-            
             if (_container == null)
                 throw new NullReferenceException("Container is not initialized");
             
-            _container.InstantiatePrefab(config.Value.Window, _root);
+            _container.InstantiatePrefab(config.Window, _root);
         }
 
         public void Open(WindowId id) => CreateWindow(id);

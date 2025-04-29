@@ -25,12 +25,9 @@ namespace _Project.Code.Infrastructure.GameStateMachine.Factory
         
         public IState Create(GameStateId id)
         {
-            var config = _configProvider.ForState(id);
+            var config = _configProvider.ForState(id).Value;
             
-            if (config == null)
-                throw new NullReferenceException($"Config for state {id} is not found");
-                
-            return new GameState(_coroutinePerformer, _sceneLoader, _loadingCurtain, config.Value.SceneName);
+            return new GameState(_coroutinePerformer, _sceneLoader, _loadingCurtain, config.SceneName);
         }
     }
 }
