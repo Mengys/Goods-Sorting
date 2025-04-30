@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Code.Configs;
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigProviders;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
 using _Project.Code.Services.ParticlesPlayer.Config;
@@ -51,5 +52,7 @@ namespace _Project.Code.Services.ConfigProvider
 
         public SoundConfig? ForSound(SoundId id) => 
             _soundConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
+
+        public AbilityConfigProvider AbilityConfigProvider { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigProviders;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
 using _Project.Code.Services.ParticlesPlayer.Config;
@@ -13,5 +14,6 @@ namespace _Project.Code.Services.ConfigProvider
         GameStateConfig? ForState(GameStateId id);
         ParticleConfig? ForParticle(ParticleId id);
         SoundConfig? ForSound(SoundId id);
+        AbilityConfigProvider AbilityConfigProvider { get; set; }
     }
 }

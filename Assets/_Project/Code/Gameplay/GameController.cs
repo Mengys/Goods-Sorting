@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using _Project.Code.Gameplay.Boosters;
-using _Project.Code.Gameplay.Moneys;
 using _Project.Code.Gameplay.Shelfs;
 using _Project.Code.Gameplay.Shelfs.Cells;
-using _Project.Code.Gameplay.Timers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _Project.Code.Gameplay
 {
@@ -14,36 +10,11 @@ namespace _Project.Code.Gameplay
     {
         [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
         [SerializeField] private SpawnerSubjects _spawnerSubjects;
-        [SerializeField] private Money _money;
-        [SerializeField] private Timer _timer;
         [SerializeField] private Transform _layerDragging;
-        [SerializeField] private Image _gameOver;
-        [SerializeField] private BostersController _bostersController;
 
         private static bool _hasFirstMoveHappened = false;
 
         public static event Action FirstMoveMade;
-
-        private void OnEnable()
-        {
-            _timer.Ended += ShoveGameOver;
-        }
-
-        private void OnDisable()
-        {
-            _timer.Ended -= ShoveGameOver;
-
-            foreach (Shelf shelf in _shelves)
-            {
-                shelf.Matches -= _money.AddMoney;
-            }
-        }
-
-        private void Awake()
-        {
-            _gameOver.gameObject.SetActive(false);
-            _bostersController.Initialize(_timer, _money, _shelves);
-        }
 
         private void Start()
         {
@@ -51,8 +22,6 @@ namespace _Project.Code.Gameplay
 
             foreach (Shelf shelf in _shelves)
             {
-                shelf.Matches += _money.AddMoney;
-
                 foreach (Cell cell in shelf.Cells)
                 {
                     if (cell.Subject != null)
@@ -71,11 +40,6 @@ namespace _Project.Code.Gameplay
 
             _hasFirstMoveHappened = true;
             FirstMoveMade?.Invoke();
-        }
-
-        private void ShoveGameOver()
-        {
-            _gameOver.gameObject.SetActive(true);
         }
     }
 }

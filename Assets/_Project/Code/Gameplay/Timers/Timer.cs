@@ -1,54 +1,56 @@
 using System;
 using System.Collections;
-using TMPro;
+using _Project.Code.Services.CoroutinePerformer;
 using UnityEngine;
 
 namespace _Project.Code.Gameplay.Timers
 {
-    public class Timer : MonoBehaviour
+    public class Timer
     {
-        [SerializeField] private TMP_Text _textTimer;
-        [SerializeField] private int _startSeconds;  
+        private float _seconds;
+        private Coroutine _coroutine;
+        private bool _isEnabled = false;
+        private ICoroutinePerformer _coroutinePerformer;
 
-        private Coroutine _timerCoroutine;
-        private bool _isIncluded = false;
-
+        public float Seconds => _seconds;
         public event Action Ended;
 
-        private void OnEnable()
+        public event Action<float> Changed;
+
+        public Timer(ICoroutinePerformer coroutinePerformer, float seconds)
         {
-            GameController.FirstMoveMade += StartTimer;
+            _coroutinePerformer = coroutinePerformer;
+            _seconds = seconds;
         }
 
-        private void OnDisable()
+        public void StartTimer()
         {
-            GameController.FirstMoveMade -= StartTimer;
+            _isEnabled = true;
+
+            if (_coroutine == null)
+            {
+                _coroutine = _coroutinePerformer.Start(RunTimer());
+            }
         }
 
-        private void Start()
-        {
-            ShowSeconds();
-
-            if (_timerCoroutine != null)
-                StopCoroutine(_timerCoroutine);
-
-            _timerCoroutine = StartCoroutine(RunTimer());
-        }
+        public void StopTimer() => _isEnabled = false;
 
         private IEnumerator RunTimer()
         {
-            var delay = new WaitForSeconds(1f);
+            float delayTime = 0.1f;
+            var delay = new WaitForSeconds(delayTime);
 
-            while (enabled)
+            while (true)
             {
                 yield return delay;
 
-                if (_isIncluded)
+                if (_isEnabled)
                 {
-                    _startSeconds--;
-                    ShowSeconds();
+                    _seconds -= delayTime;
 
-                    if(_startSeconds<= 0)
+                    Changed?.Invoke(_seconds);
+
+                    if (_seconds <= 0)
                     {
                         StopTimer();
                         Ended?.Invoke();
@@ -56,11 +58,5 @@ namespace _Project.Code.Gameplay.Timers
                 }
             }
         }
-
-        public void StartTimer() => _isIncluded = true;
-
-        public void StopTimer() => _isIncluded = false;
-
-        private void ShowSeconds() => _textTimer.text = _startSeconds.ToString();
     }
 }
