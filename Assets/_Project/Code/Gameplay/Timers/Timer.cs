@@ -1,66 +1,59 @@
 using System;
 using System.Collections;
-using TMPro;
+using _Project.Code.Services.CoroutinePerformer;
 using UnityEngine;
 
-namespace _Project.Code.Gameplay.Timers
+public class Timer
 {
-    public class Timer : MonoBehaviour
+    private float _seconds;
+    private Coroutine _coroutine;
+    private bool _isEnabled = false;
+    private ICoroutinePerformer _coroutinePerformer;
+
+    public float Seconds => _seconds;
+    public event Action Ended;
+
+    public event Action<float> Changed;
+
+    public Timer(ICoroutinePerformer coroutinePerformer, float seconds)
     {
-        [SerializeField] private TMP_Text _textTimer;
-        [SerializeField] private int _startSeconds;  
+        _coroutinePerformer = coroutinePerformer;
+        _seconds = seconds;
+    }
 
-        private Coroutine _timerCoroutine;
-        private bool _isIncluded = false;
+    public void StartTimer()
+    {
+        _isEnabled = true;
 
-        public event Action Ended;
-
-        private void OnEnable()
+        if (_coroutine == null)
         {
-            GameController.FirstMoveMade += StartTimer;
+            _coroutine = _coroutinePerformer.Start(RunTimer());
         }
+    }
 
-        private void OnDisable()
+    public void StopTimer() => _isEnabled = false;
+
+    private IEnumerator RunTimer()
+    {
+        float delayTime = 0.1f;
+        var delay = new WaitForSeconds(delayTime);
+
+        while (true)
         {
-            GameController.FirstMoveMade -= StartTimer;
-        }
+            yield return delay;
 
-        private void Start()
-        {
-            ShowSeconds();
-
-            if (_timerCoroutine != null)
-                StopCoroutine(_timerCoroutine);
-
-            _timerCoroutine = StartCoroutine(RunTimer());
-        }
-
-        private IEnumerator RunTimer()
-        {
-            var delay = new WaitForSeconds(1f);
-
-            while (enabled)
+            if (_isEnabled)
             {
-                yield return delay;
+                _seconds -= delayTime;
 
-                if (_isIncluded)
+                Changed?.Invoke(_seconds);
+
+                if (_seconds <= 0)
                 {
-                    _startSeconds--;
-                    ShowSeconds();
-
-                    if(_startSeconds<= 0)
-                    {
-                        StopTimer();
-                        Ended?.Invoke();
-                    }
+                    StopTimer();
+                    Ended?.Invoke();
                 }
             }
         }
-
-        public void StartTimer() => _isIncluded = true;
-
-        public void StopTimer() => _isIncluded = false;
-
-        private void ShowSeconds() => _textTimer.text = _startSeconds.ToString();
     }
 }
