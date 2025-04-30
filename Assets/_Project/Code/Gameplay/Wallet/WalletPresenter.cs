@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WalletPresenter 
+namespace _Project.Code.Gameplay.Wallet
 {
-    private Wallet _wallet;
-    private WalletView _walletView;
-
-    public WalletPresenter(Wallet wallet, WalletView waletView)
+    public class WalletPresenter 
     {
-        _wallet = wallet;
-        _walletView = waletView;
+        private Wallet _wallet;
+        private WalletView _walletView;
 
-        _wallet.Changed += _walletView.UpdateVievMoney;
+        public WalletPresenter(Wallet wallet, WalletView waletView)
+        {
+            _wallet = wallet;
+            _walletView = waletView;
+
+            _wallet.Changed += _walletView.UpdateVievMoney;
+        }
     }
 }

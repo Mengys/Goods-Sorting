@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Boosters.Boosters;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShuffleAbility", menuName = "Configs/Abilities/ ShuffleAbility")]
-public class ShuffleAbilityConfig : AbilityConfig
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
 {
-    public override IAbility GetAbility()
+    [CreateAssetMenu(fileName = "ShuffleAbility", menuName = "Configs/Abilities/ ShuffleAbility")]
+    public class ShuffleAbilityConfig : AbilityConfig
     {
-        Shuffle shuffle = new Shuffle();
+        public override IAbility GetAbility()
+        {
+            Shuffle shuffle = new Shuffle();
 
-        return shuffle;
+            return shuffle;
+        }
     }
 }

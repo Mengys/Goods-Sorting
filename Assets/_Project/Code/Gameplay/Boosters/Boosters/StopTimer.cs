@@ -1,39 +1,44 @@
 using System.Collections;
+using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Timers;
 using _Project.Code.Services.CoroutinePerformer;
 using UnityEngine;
 using Zenject;
 
-public class StopTimer : IAbility
+namespace _Project.Code.Gameplay.Boosters.Boosters
 {
-    private int _delay;
-    private ICoroutinePerformer _coroutinePerformer;
-    private Timer _timer;
-
-    public StopTimer(int delay)
+    public class StopTimer : IAbility
     {
-        _delay = delay;
-    }
+        private int _delay;
+        private ICoroutinePerformer _coroutinePerformer;
+        private Timer _timer;
 
-    public void PauseForSeconds()
-    {
-        _coroutinePerformer.Start(PauseTimer());
-    }
+        public StopTimer(int delay)
+        {
+            _delay = delay;
+        }
 
-    public void Initialize(DiContainer container)
-    {
-        _timer = container.Resolve<Timer>();
-        _coroutinePerformer = container.Resolve<ICoroutinePerformer>();
-    }
+        public void PauseForSeconds()
+        {
+            _coroutinePerformer.Start(PauseTimer());
+        }
 
-    public void Use()
-    {
-        PauseForSeconds();
-    }
+        public void Initialize(DiContainer container)
+        {
+            _timer = container.Resolve<Timer>();
+            _coroutinePerformer = container.Resolve<ICoroutinePerformer>();
+        }
 
-    private IEnumerator PauseTimer()
-    {
-        _timer.StopTimer();
-        yield return new WaitForSeconds(_delay);
-        _timer.StartTimer();
+        public void Use()
+        {
+            PauseForSeconds();
+        }
+
+        private IEnumerator PauseTimer()
+        {
+            _timer.StopTimer();
+            yield return new WaitForSeconds(_delay);
+            _timer.StartTimer();
+        }
     }
 }

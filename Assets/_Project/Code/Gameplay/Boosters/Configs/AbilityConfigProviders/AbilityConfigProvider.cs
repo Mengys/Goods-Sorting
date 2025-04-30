@@ -1,21 +1,25 @@
 using System.Collections.Generic;
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilityConfigProvider", menuName = "Configs/AbilityConfigProvider")]
-public class AbilityConfigProvider : ScriptableObject
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigProviders
 {
-    [SerializeField] private List<AbilityConfig> _abilities = new List<AbilityConfig>();
-
-    public AbilityConfig GetAbilityConfig<T>() where T : AbilityConfig
+    [CreateAssetMenu(fileName = "AbilityConfigProvider", menuName = "Configs/AbilityConfigProvider")]
+    public class AbilityConfigProvider : ScriptableObject
     {
-        foreach (var ability in _abilities)
-        {
-            if (ability is T typedAbility)
-            {
-                return typedAbility;
-            }
-        }
+        [SerializeField] private List<AbilityConfig> _abilities = new List<AbilityConfig>();
 
-        return null;
+        public AbilityConfig GetAbilityConfig<T>() where T : AbilityConfig
+        {
+            foreach (var ability in _abilities)
+            {
+                if (ability is T typedAbility)
+                {
+                    return typedAbility;
+                }
+            }
+
+            return null;
+        }
     }
 }

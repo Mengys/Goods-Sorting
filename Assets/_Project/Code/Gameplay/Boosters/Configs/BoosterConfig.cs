@@ -1,10 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BoosterConfig", menuName = "Game/BoosterConfig")]
-public class BoosterConfig : ScriptableObject
+namespace _Project.Code.Gameplay.Boosters.Configs
 {
-    public string _boosterId;
-    public string _boosterName;
-    public string _description;
-    public int _price;
+    [CreateAssetMenu(fileName = "BoosterConfig", menuName = "Game/BoosterConfig")]
+    public class BoosterConfig : ScriptableObject
+    {
+        public string _boosterId;
+        public string _boosterName;
+        public string _description;
+        public int _price;
+    }
 }

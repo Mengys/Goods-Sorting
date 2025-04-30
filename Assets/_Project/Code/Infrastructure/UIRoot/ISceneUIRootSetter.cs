@@ -1,4 +1,4 @@
-namespace _Project.Code.UI.UIRoot
+namespace _Project.Code.Infrastructure.UIRoot
 {
     public interface ISceneUIRootSetter
     {

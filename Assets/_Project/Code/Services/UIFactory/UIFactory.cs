@@ -1,12 +1,10 @@
 using System;
+using _Project.Code.Infrastructure.UIRoot;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.UIFactory.Config;
 using _Project.Code.Services.UIFactory.WindowFactory;
 using _Project.Code.Services.UIFactory.WindowOpener;
-using _Project.Code.UI.UIRoot;
 using _Project.Code.UI.Window;
-using UnityEngine;
-using Zenject;
 
 namespace _Project.Code.Services.UIFactory
 {

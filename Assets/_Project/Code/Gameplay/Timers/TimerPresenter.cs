@@ -1,20 +1,23 @@
 ﻿using System;
 
-public class TimerPresenter : IDisposable
+namespace _Project.Code.Gameplay.Timers
 {
-    private Timer _timer;
-    private TimerView _timerView;
-
-    public TimerPresenter(Timer timer, TimerView timerView)
+    public class TimerPresenter : IDisposable
     {
-        _timer = timer;
-        _timerView = timerView;
+        private Timer _timer;
+        private TimerView _timerView;
 
-        _timer.Changed += _timerView.ShowSeconds;
-    }
+        public TimerPresenter(Timer timer, TimerView timerView)
+        {
+            _timer = timer;
+            _timerView = timerView;
 
-    public void Dispose()
-    {
-        _timer.Changed -= _timerView.ShowSeconds;
+            _timer.Changed += _timerView.ShowSeconds;
+        }
+
+        public void Dispose()
+        {
+            _timer.Changed -= _timerView.ShowSeconds;
+        }
     }
 }

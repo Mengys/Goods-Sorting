@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using _Project.Code.Gameplay.Boosters.Ability;
+using UnityEngine;
 
-public abstract class AbilityConfig : ScriptableObject
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
 {
-    public abstract IAbility GetAbility();
+    public abstract class AbilityConfig : ScriptableObject
+    {
+        public abstract IAbility GetAbility();
+    }
 }

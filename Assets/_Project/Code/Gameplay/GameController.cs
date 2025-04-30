@@ -1,43 +1,45 @@
 using System;
 using System.Collections.Generic;
-using _Project.Code.Gameplay;
 using _Project.Code.Gameplay.Shelfs;
 using _Project.Code.Gameplay.Shelfs.Cells;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+namespace _Project.Code.Gameplay
 {
-    [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
-    [SerializeField] private SpawnerSubjects _spawnerSubjects;
-    [SerializeField] private Transform _layerDragging;
-
-    private static bool _hasFirstMoveHappened = false;
-
-    public static event Action FirstMoveMade;
-
-    private void Start()
+    public class GameController : MonoBehaviour
     {
-        _spawnerSubjects.SpawnSubjects(_shelves);
+        [SerializeField] private List<Shelf> _shelves = new List<Shelf>();
+        [SerializeField] private SpawnerSubjects _spawnerSubjects;
+        [SerializeField] private Transform _layerDragging;
 
-        foreach (Shelf shelf in _shelves)
+        private static bool _hasFirstMoveHappened = false;
+
+        public static event Action FirstMoveMade;
+
+        private void Start()
         {
-            foreach (Cell cell in shelf.Cells)
+            _spawnerSubjects.SpawnSubjects(_shelves);
+
+            foreach (Shelf shelf in _shelves)
             {
-                if (cell.Subject != null)
+                foreach (Cell cell in shelf.Cells)
                 {
-                    cell.Subject.DragAndDrop.InitializeLayerDrage(_layerDragging);
-                    cell.Subject.SubjectViev.SetDisplay();
+                    if (cell.Subject != null)
+                    {
+                        cell.Subject.DragAndDrop.InitializeLayerDrage(_layerDragging);
+                        cell.Subject.SubjectViev.SetDisplay();
+                    }
                 }
             }
         }
-    }
 
-    public static void OnFirstMove()
-    {
-        if (_hasFirstMoveHappened)
-            return;
+        public static void OnFirstMove()
+        {
+            if (_hasFirstMoveHappened)
+                return;
 
-        _hasFirstMoveHappened = true;
-        FirstMoveMade?.Invoke();
+            _hasFirstMoveHappened = true;
+            FirstMoveMade?.Invoke();
+        }
     }
 }

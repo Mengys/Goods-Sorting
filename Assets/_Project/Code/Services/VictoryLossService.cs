@@ -1,19 +1,24 @@
-public class VictoryLossService
+using _Project.Code.Gameplay.Timers;
+
+namespace _Project.Code.Services
 {
-    private Timer _timer;
-    private WindowService _windowService;
-
-    public VictoryLossService(Timer timer, WindowService windowService)
+    public class VictoryLossService
     {
-        _timer = timer;
-        _windowService = windowService;
-    }
+        private Timer _timer;
+        private WindowService _windowService;
 
-    public void Update()
-    {
-        if (_timer.Seconds <= 0)
+        public VictoryLossService(Timer timer, WindowService windowService)
         {
-            _windowService.ShowLossWindow();
+            _timer = timer;
+            _windowService = windowService;
+        }
+
+        public void Update()
+        {
+            if (_timer.Seconds <= 0)
+            {
+                _windowService.ShowLossWindow();
+            }
         }
     }
 }

@@ -1,59 +1,64 @@
+using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs;
 using _Project.Code.Services.ConfigProvider;
 using Zenject;
 
-public class BoostActivator
+namespace _Project.Code.Gameplay.Boosters.Boosters
 {
-    private IConfigProvider _configProvider;
-    private DiContainer _container;
-
-    public BoostActivator(IConfigProvider configProvider, DiContainer container)
+    public class BoostActivator
     {
-        _configProvider = configProvider;
-        _container = container;
-    }
+        private IConfigProvider _configProvider;
+        private DiContainer _container;
 
-    public void ActivateTimerStopAbility()
-    {
-        var stopTimerAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<TimeStopAbilityConfig>();
+        public BoostActivator(IConfigProvider configProvider, DiContainer container)
+        {
+            _configProvider = configProvider;
+            _container = container;
+        }
 
-        IAbility stopTimer = stopTimerAbility.GetAbility();
-        stopTimer.Initialize(_container);
-        stopTimer.Use();
-    }
+        public void ActivateTimerStopAbility()
+        {
+            var stopTimerAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<TimeStopAbilityConfig>();
 
-    public void ActivateComboBreaker()
-    {
-        var comboBreakerAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ComboBreakerAbilityConfig>();
+            IAbility stopTimer = stopTimerAbility.GetAbility();
+            stopTimer.Initialize(_container);
+            stopTimer.Use();
+        }
 
-        IAbility comboBreaker = comboBreakerAbility.GetAbility();
-        comboBreaker.Initialize(_container);
-        comboBreaker.Use();
-    }
+        public void ActivateComboBreaker()
+        {
+            var comboBreakerAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ComboBreakerAbilityConfig>();
 
-    public void ActivateReplaceObjects()
-    {
-        var replaceObjectsAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ReplaceObjectsAbilityConfig>();
+            IAbility comboBreaker = comboBreakerAbility.GetAbility();
+            comboBreaker.Initialize(_container);
+            comboBreaker.Use();
+        }
 
-        IAbility replaceObjects = replaceObjectsAbility.GetAbility();
-        replaceObjects.Initialize(_container);
-        replaceObjects.Use();
-    }
+        public void ActivateReplaceObjects()
+        {
+            var replaceObjectsAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ReplaceObjectsAbilityConfig>();
 
-    public void ActivateShuffle()
-    {
-        var shuffleAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ShuffleAbilityConfig>();
+            IAbility replaceObjects = replaceObjectsAbility.GetAbility();
+            replaceObjects.Initialize(_container);
+            replaceObjects.Use();
+        }
 
-        IAbility shuffle = shuffleAbility.GetAbility();
-        shuffle.Initialize(_container);
-        shuffle.Use();
-    }
+        public void ActivateShuffle()
+        {
+            var shuffleAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<ShuffleAbilityConfig>();
 
-    public void ActivateBomb()
-    {
-        var bombAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<BombAbilityConfig>();
+            IAbility shuffle = shuffleAbility.GetAbility();
+            shuffle.Initialize(_container);
+            shuffle.Use();
+        }
 
-        IAbility bomb = bombAbility.GetAbility();
-        bomb.Initialize(_container);
-        bomb.Use();
+        public void ActivateBomb()
+        {
+            var bombAbility = _configProvider.AbilityConfigProvider.GetAbilityConfig<BombAbilityConfig>();
+
+            IAbility bomb = bombAbility.GetAbility();
+            bomb.Initialize(_container);
+            bomb.Use();
+        }
     }
 }

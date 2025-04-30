@@ -1,16 +1,22 @@
-public class BoostPurchaseService
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs;
+using _Project.Code.Gameplay.Wallet;
+
+namespace _Project.Code.Services.Boosters
 {
-    private Wallet _wallet;
-    private BoostInventory _inventory;
-
-    public BoostPurchaseService(Wallet wallet, BoostInventory inventory)
+    public class BoostPurchaseService
     {
-        _wallet = wallet;
-        _inventory = inventory;
-    }
+        private Wallet _wallet;
+        private BoostInventory _inventory;
 
-    public void TryPurchaseBoost<T>() where T : AbilityConfig
-    {
+        public BoostPurchaseService(Wallet wallet, BoostInventory inventory)
+        {
+            _wallet = wallet;
+            _inventory = inventory;
+        }
 
+        public void TryPurchaseBoost<T>() where T : AbilityConfig
+        {
+
+        }
     }
 }

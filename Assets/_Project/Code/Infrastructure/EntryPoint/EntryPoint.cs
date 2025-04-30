@@ -3,6 +3,7 @@ using _Project.Code.Configs;
 using _Project.Code.Infrastructure.GameStateMachine;
 using _Project.Code.Infrastructure.GameStateMachine.Factory;
 using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Infrastructure.UIRoot;
 using _Project.Code.Services.AssetsLoading;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.CoroutinePerformer;
@@ -12,12 +13,10 @@ using _Project.Code.Services.SceneArgs;
 using _Project.Code.Services.SceneLoading;
 using _Project.Code.Services.SoundPlayer;
 using _Project.Code.Services.UIFactory;
-using _Project.Code.UI.UIRoot;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-namespace _Project.Code.Infrastructure.Entry
+namespace _Project.Code.Infrastructure.EntryPoint
 {
     public class EntryPoint : MonoInstaller
     {

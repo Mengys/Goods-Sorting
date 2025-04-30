@@ -1,12 +1,15 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreView : MonoBehaviour
+namespace _Project.Code.Gameplay.Scores
 {
-    [SerializeField] private TMP_Text _textScore;
-
-    public void UpdateView(int score)
+    public class ScoreView : MonoBehaviour
     {
-        _textScore.text = score.ToString();
+        [SerializeField] private TMP_Text _textScore;
+
+        public void UpdateView(int score)
+        {
+            _textScore.text = score.ToString();
+        }
     }
 }

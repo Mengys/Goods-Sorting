@@ -1,7 +1,10 @@
 ﻿using Zenject;
 
-public interface IAbility
+namespace _Project.Code.Gameplay.Boosters.Ability
 {
-    void Use();
-    void Initialize(DiContainer container);
+    public interface IAbility
+    {
+        void Use();
+        void Initialize(DiContainer container);
+    }
 }

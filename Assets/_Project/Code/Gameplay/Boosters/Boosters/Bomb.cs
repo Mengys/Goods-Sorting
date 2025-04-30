@@ -1,57 +1,61 @@
 using System.Collections.Generic;
+using _Project.Code.Gameplay.Boosters.Ability;
 using _Project.Code.Gameplay.Shelfs;
 using _Project.Code.Gameplay.Shelfs.Cells;
 using _Project.Code.Gameplay.Subjects;
 using UnityEngine;
 using Zenject;
 
-public class Bomb : IAbility
+namespace _Project.Code.Gameplay.Boosters.Boosters
 {
-    private List<Shelf> _shelves;
-
-    public void Initialize(DiContainer container)
+    public class Bomb : IAbility
     {
-        _shelves = container.Resolve<List<Shelf>>();
-    }
+        private List<Shelf> _shelves;
 
-    public void Use()
-    {
-        Activate(_shelves);
-    }
-
-    public void Activate(List<Shelf> shelves)
-    {
-        List<Subject> allSubjects = new List<Subject>();
-
-        foreach (Shelf shelf in shelves)
+        public void Initialize(DiContainer container)
         {
-            foreach (Cell cell in shelf.Cells)
-            {
-                if (cell.Subject != null && cell.Subject.IsActive)
-                {
-                    allSubjects.Add(cell.Subject);
-                }
-            }
+            _shelves = container.Resolve<List<Shelf>>();
         }
 
-        if (allSubjects.Count == 0)
-            return;
-
-        TypeSubject randomType = allSubjects[Random.Range(0, allSubjects.Count)].SubjectType;
-
-        foreach (Subject subject in allSubjects)
+        public void Use()
         {
-            if (subject.SubjectType == randomType)
+            Activate(_shelves);
+        }
+
+        public void Activate(List<Shelf> shelves)
+        {
+            List<Subject> allSubjects = new List<Subject>();
+
+            foreach (Shelf shelf in shelves)
             {
-                Cell currentCell = subject.CurrentCell;
-
-                if (currentCell != null)
+                foreach (Cell cell in shelf.Cells)
                 {
-                    currentCell.ToFree();
+                    if (cell.Subject != null && cell.Subject.IsActive)
+                    {
+                        allSubjects.Add(cell.Subject);
+                    }
                 }
+            }
 
-                subject.Deactivate();
-                subject.gameObject.SetActive(false);
+            if (allSubjects.Count == 0)
+                return;
+
+            TypeSubject randomType = allSubjects[Random.Range(0, allSubjects.Count)].SubjectType;
+
+            foreach (Subject subject in allSubjects)
+            {
+                if (subject.SubjectType == randomType)
+                {
+                    Cell currentCell = subject.CurrentCell;
+
+                    if (currentCell != null)
+                    {
+                        currentCell.ToFree();
+                    }
+
+                    subject.Deactivate();
+                    subject.gameObject.SetActive(false);
+                }
             }
         }
     }

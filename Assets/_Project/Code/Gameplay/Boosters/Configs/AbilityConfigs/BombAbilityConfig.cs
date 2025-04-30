@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Boosters.Boosters;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "BombAbility", menuName = "Configs/Abilities/BombAbility")]
-public class BombAbilityConfig : AbilityConfig
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
 {
-    public override IAbility GetAbility()
+    [CreateAssetMenu(fileName = "BombAbility", menuName = "Configs/Abilities/BombAbility")]
+    public class BombAbilityConfig : AbilityConfig
     {
-        Bomb bomb = new Bomb();
+        public override IAbility GetAbility()
+        {
+            Bomb bomb = new Bomb();
 
-        return bomb;
+            return bomb;
+        }
     }
 }

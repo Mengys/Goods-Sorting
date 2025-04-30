@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WindowService : MonoBehaviour
+namespace _Project.Code.Services
 {
-    [SerializeField] private Image _lossWindow;
-
-    private void Awake()
+    public class WindowService : MonoBehaviour
     {
-        RemoveLossWindow();
-    }
+        [SerializeField] private Image _lossWindow;
 
-    public void ShowLossWindow()
-    {
-        _lossWindow.gameObject.SetActive(true);
-    } 
+        private void Awake()
+        {
+            RemoveLossWindow();
+        }
+
+        public void ShowLossWindow()
+        {
+            _lossWindow.gameObject.SetActive(true);
+        } 
     
-    public void RemoveLossWindow()
-    {
-        _lossWindow.gameObject.SetActive(false);
+        public void RemoveLossWindow()
+        {
+            _lossWindow.gameObject.SetActive(false);
+        }
     }
 }

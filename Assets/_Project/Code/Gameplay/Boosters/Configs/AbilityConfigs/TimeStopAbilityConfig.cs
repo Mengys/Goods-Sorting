@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Boosters.Boosters;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "TimeStopAbility", menuName = "Configs/Abilities/ TimeStopAbility")]
-public class TimeStopAbilityConfig : AbilityConfig
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
 {
-    int _delay = 5;
-
-    public override IAbility GetAbility()
+    [CreateAssetMenu(fileName = "TimeStopAbility", menuName = "Configs/Abilities/ TimeStopAbility")]
+    public class TimeStopAbilityConfig : AbilityConfig
     {
-        StopTimer stopTimer = new StopTimer(_delay);
+        int _delay = 5;
 
-        return stopTimer;
+        public override IAbility GetAbility()
+        {
+            StopTimer stopTimer = new StopTimer(_delay);
+
+            return stopTimer;
+        }
     }
 }

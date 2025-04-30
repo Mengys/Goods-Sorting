@@ -1,3 +1,4 @@
+using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigProviders;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
 using _Project.Code.Services.ParticlesPlayer.Config;

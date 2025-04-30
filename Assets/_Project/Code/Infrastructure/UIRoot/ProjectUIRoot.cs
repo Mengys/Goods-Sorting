@@ -2,7 +2,7 @@ using _Project.Code.Services.Curtain;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Code.UI.UIRoot
+namespace _Project.Code.Infrastructure.UIRoot
 {
     public class ProjectUIRoot : MonoInstaller, IUIRoot, ISceneUIRootSetter
     {

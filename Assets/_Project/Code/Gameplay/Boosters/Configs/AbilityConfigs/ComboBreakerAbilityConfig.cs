@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
+using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Gameplay.Boosters.Boosters;
 using _Project.Code.Gameplay.Shelfs;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ComboBreakerAbility", menuName = "Configs/Abilities/ComboBreakerAbility")]
-public class ComboBreakerAbilityConfig : AbilityConfig
+namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
 {
-    private readonly List<Shelf> Shelves;
-
-    private int _numberObjectsSameType = 3;
-
-    public override IAbility GetAbility()
+    [CreateAssetMenu(fileName = "ComboBreakerAbility", menuName = "Configs/Abilities/ComboBreakerAbility")]
+    public class ComboBreakerAbilityConfig : AbilityConfig
     {
-        ComboBreaker comboBreaker = new ComboBreaker(Shelves, _numberObjectsSameType);
+        private readonly List<Shelf> Shelves;
 
-        return comboBreaker;
+        private int _numberObjectsSameType = 3;
+
+        public override IAbility GetAbility()
+        {
+            ComboBreaker comboBreaker = new ComboBreaker(Shelves, _numberObjectsSameType);
+
+            return comboBreaker;
+        }
     }
 }

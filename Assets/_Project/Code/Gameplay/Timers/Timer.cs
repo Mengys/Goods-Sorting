@@ -3,55 +3,58 @@ using System.Collections;
 using _Project.Code.Services.CoroutinePerformer;
 using UnityEngine;
 
-public class Timer
+namespace _Project.Code.Gameplay.Timers
 {
-    private float _seconds;
-    private Coroutine _coroutine;
-    private bool _isEnabled = false;
-    private ICoroutinePerformer _coroutinePerformer;
-
-    public float Seconds => _seconds;
-    public event Action Ended;
-
-    public event Action<float> Changed;
-
-    public Timer(ICoroutinePerformer coroutinePerformer, float seconds)
+    public class Timer
     {
-        _coroutinePerformer = coroutinePerformer;
-        _seconds = seconds;
-    }
+        private float _seconds;
+        private Coroutine _coroutine;
+        private bool _isEnabled = false;
+        private ICoroutinePerformer _coroutinePerformer;
 
-    public void StartTimer()
-    {
-        _isEnabled = true;
+        public float Seconds => _seconds;
+        public event Action Ended;
 
-        if (_coroutine == null)
+        public event Action<float> Changed;
+
+        public Timer(ICoroutinePerformer coroutinePerformer, float seconds)
         {
-            _coroutine = _coroutinePerformer.Start(RunTimer());
+            _coroutinePerformer = coroutinePerformer;
+            _seconds = seconds;
         }
-    }
 
-    public void StopTimer() => _isEnabled = false;
-
-    private IEnumerator RunTimer()
-    {
-        float delayTime = 0.1f;
-        var delay = new WaitForSeconds(delayTime);
-
-        while (true)
+        public void StartTimer()
         {
-            yield return delay;
+            _isEnabled = true;
 
-            if (_isEnabled)
+            if (_coroutine == null)
             {
-                _seconds -= delayTime;
+                _coroutine = _coroutinePerformer.Start(RunTimer());
+            }
+        }
 
-                Changed?.Invoke(_seconds);
+        public void StopTimer() => _isEnabled = false;
 
-                if (_seconds <= 0)
+        private IEnumerator RunTimer()
+        {
+            float delayTime = 0.1f;
+            var delay = new WaitForSeconds(delayTime);
+
+            while (true)
+            {
+                yield return delay;
+
+                if (_isEnabled)
                 {
-                    StopTimer();
-                    Ended?.Invoke();
+                    _seconds -= delayTime;
+
+                    Changed?.Invoke(_seconds);
+
+                    if (_seconds <= 0)
+                    {
+                        StopTimer();
+                        Ended?.Invoke();
+                    }
                 }
             }
         }

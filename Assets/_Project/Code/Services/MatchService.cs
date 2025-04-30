@@ -1,28 +1,32 @@
 using System;
 using System.Collections.Generic;
+using _Project.Code.Gameplay.Scores;
 using _Project.Code.Gameplay.Shelfs;
 
-public class MatchService : IDisposable
+namespace _Project.Code.Services
 {
-    private Score _wallet;
-    private List<Shelf> _shelves = new List<Shelf>();
-
-    public MatchService(Score wallet, List<Shelf> shelves)
+    public class MatchService : IDisposable
     {
-        _wallet = wallet;
-        _shelves = shelves;
+        private Score _wallet;
+        private List<Shelf> _shelves = new List<Shelf>();
 
-        foreach (var shelf in _shelves)
+        public MatchService(Score wallet, List<Shelf> shelves)
         {
-            shelf.Matched += _wallet.AddScore;
+            _wallet = wallet;
+            _shelves = shelves;
+
+            foreach (var shelf in _shelves)
+            {
+                shelf.Matched += _wallet.AddScore;
+            }
         }
-    }
 
-    public void Dispose()
-    {
-        foreach (var shelf in _shelves)
+        public void Dispose()
         {
-            shelf.Matched -= _wallet.AddScore;
+            foreach (var shelf in _shelves)
+            {
+                shelf.Matched -= _wallet.AddScore;
+            }
         }
     }
 }

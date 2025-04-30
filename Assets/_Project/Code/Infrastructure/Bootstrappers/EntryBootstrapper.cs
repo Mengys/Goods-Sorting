@@ -2,7 +2,7 @@ using _Project.Code.Infrastructure.GameStateMachine;
 using _Project.Code.Infrastructure.GameStateMachine.State;
 using Zenject;
 
-namespace _Project.Code.Infrastructure.Entry.Bootstrappers
+namespace _Project.Code.Infrastructure.Bootstrappers
 {
     public class EntryBootstrapper : MonoInstaller 
     {

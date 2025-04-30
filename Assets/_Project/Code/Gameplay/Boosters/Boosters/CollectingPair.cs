@@ -4,7 +4,7 @@ using _Project.Code.Gameplay.Shelfs.Cells;
 using _Project.Code.Gameplay.Subjects;
 using UnityEngine;
 
-namespace _Project.Code.Gameplay.Boosters
+namespace _Project.Code.Gameplay.Boosters.Boosters
 {
     public class CollectingPair : MonoBehaviour
     {
