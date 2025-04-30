@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BoostInventory
 {
-    private Dictionary<Type, int> _boosts = new Dictionary<Type, int>();
+    private Dictionary<Type, int> _boosts = new();
 
     public event Action<Type, int> OnBoostCountChanged;
 

@@ -14,7 +14,7 @@ namespace _Project.Code.Gameplay.Shelfs
 
         public List<Cell> Cells => _cells;
 
-        public event Action<int> Matches;
+        public event Action<int> Matched;
 
         private void Awake()
         {
@@ -28,7 +28,7 @@ namespace _Project.Code.Gameplay.Shelfs
 
         public void UnsubscribeAll()
         {
-            Matches = null;
+            Matched = null;
         }
 
         public void CheckMatches()
@@ -51,7 +51,7 @@ namespace _Project.Code.Gameplay.Shelfs
             }
 
             DestroyCells();
-            Matches?.Invoke(RewardMatch);
+            Matched?.Invoke(RewardMatch);
         }
 
         private void DestroyCells()

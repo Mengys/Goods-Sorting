@@ -51,5 +51,7 @@ namespace _Project.Code.Services.ConfigProvider
 
         public SoundConfig? ForSound(SoundId id) => 
             _soundConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
+
+        public AbilityConfigProvider AbilityConfigProvider { get; set; }
     }
 }

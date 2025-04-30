@@ -13,5 +13,6 @@ namespace _Project.Code.Services.ConfigProvider
         GameStateConfig? ForState(GameStateId id);
         ParticleConfig? ForParticle(ParticleId id);
         SoundConfig? ForSound(SoundId id);
+        AbilityConfigProvider AbilityConfigProvider { get; set; }
     }
 }

@@ -12,6 +12,12 @@ namespace _Project.Code.Infrastructure.Entry.Bootstrappers
     public class GameplayBootstrapper : MonoInstaller
     {
         [Inject] private ISceneInputArgs _inputArgs;
+        
+    }
+    
+    public class GameplayBoostersBootstrapper : MonoInstaller
+    {
+        [Inject] private ISceneInputArgs _inputArgs;
         [Inject] private ICoroutinePerformer _coroutinePerformer;
         [Inject] private IConfigProvider _configProvider;
 

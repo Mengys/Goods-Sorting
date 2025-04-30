@@ -12,12 +12,17 @@ using _Project.Code.Services.SceneArgs;
 using _Project.Code.Services.SceneLoading;
 using _Project.Code.Services.SoundPlayer;
 using _Project.Code.Services.UIFactory;
+using _Project.Code.UI.UIRoot;
+using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Entry
 {
     public class EntryPoint : MonoInstaller
     {
+        [SerializeField] private ProjectUIRoot _uiRoot;
+
         private void Awake()
         {
             Container
@@ -29,17 +34,23 @@ namespace _Project.Code.Infrastructure.Entry
         {
             BindGameStateMachine();
             BindCoroutinePerformer();
-            BindLoadingCurtain();
             BindConfigProvider();
+            
+            BindProjectUIRoot();
+            BindLoadingCurtain();
 
             Container.BindInterfacesAndSelfTo<AssetLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
+            
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<SoundPlayer>().AsSingle();
             Container.BindInterfacesAndSelfTo<ParticlesPlayer>().AsSingle();
         }
+
+        private void BindProjectUIRoot() => 
+            Container.BindInterfacesAndSelfTo<ProjectUIRoot>().FromInstance(_uiRoot).AsSingle();
 
         private void BindGameStateMachine()
         {
@@ -54,12 +65,8 @@ namespace _Project.Code.Infrastructure.Entry
                 .AsSingle();
         }
 
-        private void BindLoadingCurtain()
-        {
-            Container.Bind<LoadingCurtain>()
-                .FromComponentInNewPrefabResource(ResourcesPaths.LoadingCurtain)
-                .AsSingle();
-        }
+        private void BindLoadingCurtain() => 
+            Container.Bind<LoadingCurtain>().FromInstance(_uiRoot.LoadingCurtain).AsSingle();
 
         private void BindConfigProvider()
         {
@@ -70,7 +77,7 @@ namespace _Project.Code.Infrastructure.Entry
                     var gameConfig = loader.Load<GameConfig>(ResourcesPaths.GameConfig);
 
                     if (gameConfig is null)
-                        throw new NullReferenceException("Game config is not found");
+                        throw new NullReferenceException("Game config is null");
 
                     return new ConfigProvider(gameConfig);
                 })
