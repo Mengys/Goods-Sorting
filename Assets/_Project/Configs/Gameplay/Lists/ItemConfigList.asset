@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf7d1672c564b4db2b973559e2ea6d3, type: 3}
+  m_Name: ItemConfigList
+  m_EditorClassIdentifier: 
+  <ItemPrefab>k__BackingField: {fileID: 6528173271458289393, guid: 60fd6164e3571cf4fb5288dde6d3acc8, type: 3}
+  <Configs>k__BackingField:
+  - StrId: Cola
+    Sprite: {fileID: 21300000, guid: 8872c594c1b94084ba102cb661ccdaa6, type: 3}
+  - StrId: Shrimp
+    Sprite: {fileID: 21300000, guid: 4255af3f18c105a43a9c12465cdcfaef, type: 3}
+  - StrId: Macarons
+    Sprite: {fileID: 21300000, guid: 5ea982fcb02d6d1458406ac3205073b3, type: 3}
+  - StrId: Smoothie
+    Sprite: {fileID: 21300000, guid: d90dc9b565dcdba4babdcbcce8b33752, type: 3}
+  - StrId: Milk
+    Sprite: {fileID: 21300000, guid: ff1514ccaa42b9643bc433bf709e7211, type: 3}
+  - StrId: Popcorn
+    Sprite: {fileID: 21300000, guid: 6e46a9658cbbd4946841022408f3e56b, type: 3}
+  - StrId: Icycle
+    Sprite: {fileID: 21300000, guid: 8b712677f03f9084885f9da40c130727, type: 3}
+  - StrId: Icecream
+    Sprite: {fileID: 21300000, guid: 7440c74adbd0cb24e9c6bd3c3782b203, type: 3}

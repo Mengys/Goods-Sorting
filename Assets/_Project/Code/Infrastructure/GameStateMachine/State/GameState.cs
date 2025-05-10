@@ -38,12 +38,8 @@ namespace _Project.Code.Infrastructure.GameStateMachine.State
 
         private IEnumerator LoadScene()
         {
-            yield return _loadingCurtain.Show();
-
             if (!IsLoaded(_sceneName))
                 yield return _sceneLoader.LoadAsync(_sceneName);
-
-            yield return _loadingCurtain.Hide();
         }
     }
 }

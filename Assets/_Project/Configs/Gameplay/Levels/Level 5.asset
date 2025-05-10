@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b314dae87d48769cefba6bba627d7c, type: 3}
+  m_Name: Level 5
+  m_EditorClassIdentifier: 
+  Difficulty: 2
+  Grid:
+    Shelves:
+    - Id: Default
+      Position: {x: -164.52728, y: 253.43549}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - Cola
+        - 
+        - Icecream
+        - Popcorn
+        - Milk
+        - Popcorn
+    - Id: Default
+      Position: {x: -160.01462, y: -69.58923}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Icecream
+        - Milk
+        - Popcorn
+        - 
+        - 
+    - Id: Default
+      Position: {x: -162.14172, y: 95.42627}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - Icycle
+        - Shrimp
+        - 
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 123.18854, y: 92.86719}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Macarons
+        - Macarons
+        - Icycle
+        - 
+        - 
+    - Id: Default
+      Position: {x: 120.67914, y: 254.8338}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Macarons
+        - Macarons
+        - Icycle
+        - 
+        - 
+    - Id: Default
+      Position: {x: 125.23422, y: -69.748535}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Milk
+        - Milk
+        - Icycle
+        - 
+        - 
+    - Id: Default
+      Position: {x: 125.23422, y: -231.71573}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Milk
+        - Milk
+        - Icycle
+        - 
+        - 
+    - Id: Default
+      Position: {x: -162.16602, y: -238.21976}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Macarons
+        - Macarons
+        - Icycle
+        - 
+        - 

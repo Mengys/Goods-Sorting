@@ -1,22 +1,39 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Project.Code.Configs;
-using _Project.Code.Gameplay.Boosters.Configs.AbilityConfigProviders;
+using _Project.Code.Gameplay.Grid.Config;
+using _Project.Code.Gameplay.Items;
+using _Project.Code.Gameplay.Items.Configs;
+using _Project.Code.Gameplay.Levels.Configs;
+using _Project.Code.Gameplay.Shelves;
+using _Project.Code.Gameplay.Shelves.Configs;
+using _Project.Code.Infrastructure.Configs;
 using _Project.Code.Infrastructure.GameStateMachine.Config;
 using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Services.AssetsLoading;
+using _Project.Code.Services.Factories.UI.Config;
 using _Project.Code.Services.ParticlesPlayer.Config;
 using _Project.Code.Services.SoundPlayer.Config;
-using _Project.Code.Services.UIFactory.Config;
-using _Project.Code.UI.Window;
+using _Project.Code.UI.Windows;
+using UnityEngine;
 
 namespace _Project.Code.Services.ConfigProvider
 {
     public class ConfigProvider : IConfigProvider
     {
-        private Dictionary<GameStateId, GameStateConfig> _gameStateConfigs;
-        private Dictionary<WindowId, WindowConfig> _windowConfigs;
-        private Dictionary<ParticleId, ParticleConfig> _particleConfigs;
-        private Dictionary<SoundId, SoundConfig> _soundConfigs;
+        private readonly Dictionary<GameStateId, GameStateConfig> _gameStateConfigs;
+        private readonly Dictionary<WindowId, WindowConfig> _windowConfigs;
+
+        private readonly Dictionary<ParticleId, ParticleConfig> _particleConfigs;
+        private readonly Dictionary<SoundId, SoundConfig> _soundConfigs;
+
+        private readonly Dictionary<int, LevelConfig> _levelConfigs;
+        private readonly Dictionary<ShelfId, ShelfPrefabConfig> _shelfConfigs;
+        private readonly Dictionary<ItemId, ItemConfig> _itemConfigs;
+
+        private readonly ItemView _itemPrefab;
+
+        public static ConfigProvider NewInstance =>
+            new(Resources.Load<GameConfig>(ResourcesPaths.GameConfig));
 
         public ConfigProvider(GameConfig config)
         {
@@ -26,7 +43,7 @@ namespace _Project.Code.Services.ConfigProvider
                 .ToDictionary(x => x.Id, x => x);
 
             _windowConfigs = config
-                .WindowsConfig
+                .WindowConfigList
                 .Windows
                 .ToDictionary(x => x.Id, x => x);
 
@@ -34,15 +51,34 @@ namespace _Project.Code.Services.ConfigProvider
                 .ParticlesConfig
                 .ParticleConfigs
                 .ToDictionary(x => x.Id, x => x);
-            
+
             _soundConfigs = config
                 .SoundsConfig
                 .Sounds
                 .ToDictionary(x => x.Id, x => x);
+
+            _shelfConfigs = config
+                .ShelfPrefabConfigList
+                .Shelves
+                .ToDictionary(x => x.Id, x => x);
+
+            _itemConfigs = config
+                .ItemConfigList
+                .Configs
+                .ToDictionary(x => x.Id, x => x);
+
+            _levelConfigs = config
+                .LevelConfigList
+                .Configs
+                .Select(ConfigAdapter.AsLevelConfig)
+                .Select((item, index) => new { item, index })
+                .ToDictionary(x => x.index, x => x.item);
+
+            _itemPrefab = config.ItemConfigList.ItemPrefab;
         }
 
         public WindowConfig? ForWindow(WindowId id) =>
-            _windowConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
+            _windowConfigs.TryGetValue(id, out var config) ? config : null;
 
         public GameStateConfig? ForState(GameStateId id) =>
             _gameStateConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
@@ -50,9 +86,54 @@ namespace _Project.Code.Services.ConfigProvider
         public ParticleConfig? ForParticle(ParticleId id) =>
             _particleConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
 
-        public SoundConfig? ForSound(SoundId id) => 
+        public SoundConfig? ForSound(SoundId id) =>
             _soundConfigs.TryGetValue(id, out var config) ? config : throw new KeyNotFoundException(id.ToString());
 
-        public AbilityConfigProvider AbilityConfigProvider { get; set; }
+        public LevelConfig? ForLevel(int id) =>
+            _levelConfigs.TryGetValue(id, out var config) ? config :
+                null;
+
+        public ShelfPrefabConfig? ForShelf(ShelfId shelfId) =>
+            _shelfConfigs.TryGetValue(shelfId, out var config)
+                ? config
+                : null;
+
+        public ItemConfig? ForItem(ItemId itemId) =>
+            _itemConfigs.TryGetValue(itemId, out var config)
+                ? config
+                : null;
+
+        public ItemView PrefabForItem(ItemId itemId) =>
+            _itemPrefab;
+
+        public ItemView PreviewPrefabForItem(ItemId id) =>
+            _itemPrefab;
+
+        // public AbilityConfigProvider AbilityConfigProvider { get; private set; }
+
+        public void ValidateIds(GridConfig config)
+        {
+            for (int i = 0; i < config.ShelvesCount; i++)
+            {
+                var id = config.GetShelfId(i);
+
+                var shelfPrefabConfig = ForShelf(id);
+
+                if (shelfPrefabConfig.HasValue == false)
+                    throw new KeyNotFoundException($"Config for shelf Id \"{id}\" not found");
+
+                var itemGrid = config.GetItemGrid(i);
+
+                foreach (var itemId in itemGrid.Items)
+                {
+                    if (itemId == null) continue;
+
+                    var itemConfig = ForItem(itemId.Value);
+
+                    if (itemConfig.HasValue == false)
+                        throw new KeyNotFoundException($"Config for item Id \"{itemId.Value}\" not found");
+                }
+            }
+        }
     }
 }

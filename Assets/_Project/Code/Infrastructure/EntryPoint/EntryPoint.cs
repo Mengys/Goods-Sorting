@@ -1,5 +1,7 @@
 using System;
-using _Project.Code.Configs;
+using System.Threading.Tasks;
+using _Project.Code.Gameplay.Wallet.Infrastructure.Bootstrappers;
+using _Project.Code.Infrastructure.Configs;
 using _Project.Code.Infrastructure.GameStateMachine;
 using _Project.Code.Infrastructure.GameStateMachine.Factory;
 using _Project.Code.Infrastructure.GameStateMachine.State;
@@ -8,11 +10,11 @@ using _Project.Code.Services.AssetsLoading;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.CoroutinePerformer;
 using _Project.Code.Services.Curtain;
+using _Project.Code.Services.Factories.UI;
 using _Project.Code.Services.ParticlesPlayer;
 using _Project.Code.Services.SceneArgs;
 using _Project.Code.Services.SceneLoading;
 using _Project.Code.Services.SoundPlayer;
-using _Project.Code.Services.UIFactory;
 using UnityEngine;
 using Zenject;
 
@@ -22,11 +24,35 @@ namespace _Project.Code.Infrastructure.EntryPoint
     {
         [SerializeField] private ProjectUIRoot _uiRoot;
 
-        private void Awake()
+        private async void Awake()
         {
+            await LoadPlayerProgressAsync();
+            
             Container
                 .Resolve<IStateMachine<GameStateId>>()
                 .Enter(GameStateId.Entry);
+        }
+
+        private async Task LoadPlayerProgressAsync()
+        {
+            var playerProgress = Container.Resolve<PlayerProgress>();
+            var dataService = Container.Resolve<IDataPersistenceService<PlayerProgress>>();
+
+            var data = await dataService.LoadAsync();
+           
+            if (data != null)
+            {
+                playerProgress.Coins = data.Coins;
+                playerProgress.Level = data.Level;
+            }
+        }
+
+        private async void OnApplicationQuit()
+        {
+            var dataService = Container.Resolve<IDataPersistenceService<PlayerProgress>>();
+            var playerProgress = Container.Resolve<PlayerProgress>();
+
+            await dataService.SaveAsync(playerProgress);
         }
 
         public override void InstallBindings()
@@ -37,15 +63,28 @@ namespace _Project.Code.Infrastructure.EntryPoint
             
             BindProjectUIRoot();
             BindLoadingCurtain();
+            BindDataPersistenceService();
+
+            Container.BindInterfacesAndSelfTo<PlayerProgress>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<AssetLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
-            
+
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
-            
+
             Container.BindInterfacesAndSelfTo<SoundPlayer>().AsSingle();
             Container.BindInterfacesAndSelfTo<ParticlesPlayer>().AsSingle();
+        }
+
+        private void BindDataPersistenceService()
+        {
+            var dataService =
+                new JsonDataPersistenceService<PlayerProgress>("player_progress.json");
+
+            Container.BindInterfacesAndSelfTo<IDataPersistenceService<PlayerProgress>>()
+                .FromInstance(dataService)
+                .AsSingle();
         }
 
         private void BindProjectUIRoot() => 
@@ -73,6 +112,7 @@ namespace _Project.Code.Infrastructure.EntryPoint
                 .FromMethod(ctx =>
                 {
                     var loader = ctx.Container.Resolve<IAssetsLoader>();
+                    
                     var gameConfig = loader.Load<GameConfig>(ResourcesPaths.GameConfig);
 
                     if (gameConfig is null)

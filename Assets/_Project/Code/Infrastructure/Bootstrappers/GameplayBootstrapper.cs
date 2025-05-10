@@ -1,18 +1,23 @@
 using System;
+using _Project.Code.Gameplay.Levels.Configs;
+using _Project.Code.Gameplay.Timer;
+using _Project.Code.Infrastructure.UIRoot;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.CoroutinePerformer;
+using _Project.Code.Services.Curtain;
+using _Project.Code.Services.Factories.Level;
 using _Project.Code.Services.SceneArgs;
+using _Project.Code.UI.Windows.Implementations.LevelInfo;
+using R3;
 using Zenject;
 
-namespace _Project.Code.Infrastructure.Bootstrappers
+namespace _Project.Code.Gameplay.Wallet.Infrastructure.Bootstrappers
 {
-    public struct BoosterId
+    [Serializable]
+    public class PlayerProgress
     {
-    }
-
-    public struct LevelStartData
-    {
-        public BoosterId? InitialBoosterId;
+        public int Coins;
+        public LevelInfo Level = LevelInfo.Default;
     }
 
     public class GameplayBootstrapper : MonoInstaller
@@ -20,51 +25,75 @@ namespace _Project.Code.Infrastructure.Bootstrappers
         [Inject] private ISceneInputArgs _inputArgs;
         [Inject] private ICoroutinePerformer _coroutinePerformer;
         [Inject] private IConfigProvider _configProvider;
-        
-        private LevelStartData _levelStartData;
 
-        public override void InstallBindings()
-        {
-            /*
-            var walletView = FindObjectOfType<ScoreView>();
-            var shelfs = FindObjectsOfType<Shelf>();
-            _shelves = shelfs.ToList();
-            var timerView = FindObjectOfType<TimerView>();
+        private void Awake() => LoadLevel();
 
-            _timer = new Timer(_coroutinePerformer, 30);
-            _timerPresenter = new TimerPresenter(_timer, timerView);
-            _victoryLossService = new VictoryLossService(_timer, windowService);
-            Score wallet = new Score();
-            _walletPresenter = new ScorePresenter(wallet, walletView);
-            _matchService = new MatchService(wallet, _shelves);
-            _boostActivator = new BoostActivator(_configProvider, Container);
+        private void Start() => ApplyInitialBooster();
 
-            Container.Bind<Timer>().FromInstance(_timer);
-            Container.Bind<List<Shelf>>().FromInstance(_shelves);
-            Container.Bind<BoostActivator>().FromInstance(_boostActivator);
-            */
-        }
-
-        private void Awake()
-        {
-            if (!_inputArgs.Input.HasBinding<LevelStartData>())
-                throw new ArgumentNullException();
-
-            _levelStartData = _inputArgs.Input.Resolve<LevelStartData>();
-        }
-
-        private void Start()
-        {
-            LoadLevel();
-            ApplyInitialBooster();
-        }
-        
         private void LoadLevel()
         {
+            var timer = Container.Resolve<Timer.Timer>();
+            timer.Initialize(60);
+
+            var playerProgress = Container.Resolve<PlayerProgress>();
+
+            var levelGenerator = Container.Resolve<ILevelFactory>();
+
+            var level = levelGenerator.Generate(playerProgress.Level.Id);
+
+            Container.Bind<Level>().FromInstance(level);
+
+            var score = Container.Resolve<Score.Score>();
+
+            level.MatchHandled.Subscribe(count => score.AddScore(count));
+
+            level.FirstMoveMade.Subscribe(_ => { StartLevel(level); });
+
+            Container.Resolve<LoadingCurtain>().Hide();
+        }
+
+        private void StartLevel(Level level)
+        {
+            var timer = Container.Resolve<Timer.Timer>();
+
+            var lost = timer.Elapsed;
+            var won = level.AllMatchesCollected;
+
+            won.Subscribe(_ =>
+            {
+                var configProvider = Container.Resolve<IConfigProvider>();
+                var playerProgress = Container.Resolve<PlayerProgress>();
+
+                var nextId = playerProgress.Level.Id + 1;
+
+                LevelConfig? nextLevel = configProvider.ForLevel(nextId);
+
+                if (nextLevel != null)
+                {
+                    playerProgress.Level = new LevelInfo
+                    {
+                        Number = nextId + 1,
+                        Difficulty = nextLevel.Value.Difficulty
+                    };
+                }
+                
+                timer.Stop();
+            });
+
+            level.Initialize(won, lost);
+
+            timer.Start();
         }
 
         private void ApplyInitialBooster()
         {
+        }
+
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<Score.Score>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Timer.Timer>().AsSingle();
         }
     }
 }

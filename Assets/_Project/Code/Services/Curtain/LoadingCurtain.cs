@@ -1,35 +1,33 @@
 using System.Collections;
+using _Project.Code.Services.CoroutinePerformer;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Code.Services.Curtain
 {
     public class LoadingCurtain : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private float _animationDuration = 1.5f;
+        [SerializeField] private float _animationDuration = 0.1f;
+
+        [Inject] ICoroutinePerformer _coroutinePerformer;
 
         private bool IsVisible => _canvasGroup.gameObject.activeSelf;
-    
-        public IEnumerator Show()
-        {
-            if (IsVisible) yield break;
 
-            _canvasGroup.alpha = 0;
-        
+        private Coroutine _coroutine;
+
+        public void Show()
+        {
+            _canvasGroup.alpha = 1;
+            _canvasGroup.blocksRaycasts = true;
             _canvasGroup.gameObject.SetActive(true);
-        
-            yield return _canvasGroup.DOFade(1, _animationDuration).WaitForCompletion();
         }
 
-        public IEnumerator Hide()
+        public void Hide()
         {
-            if (!IsVisible) yield break;
-
-            _canvasGroup.alpha = 1;
-        
-            yield return _canvasGroup.DOFade(0, _animationDuration).WaitForCompletion();
-        
+            _canvasGroup.alpha = 0;
+            _canvasGroup.blocksRaycasts = false;
             _canvasGroup.gameObject.SetActive(false);
         }
     }

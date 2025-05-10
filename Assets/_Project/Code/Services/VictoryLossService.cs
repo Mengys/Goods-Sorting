@@ -1,4 +1,4 @@
-using _Project.Code.Gameplay.Timers;
+using _Project.Code.Gameplay.Timer;
 
 namespace _Project.Code.Services
 {
@@ -15,7 +15,7 @@ namespace _Project.Code.Services
 
         public void Update()
         {
-            if (_timer.Seconds <= 0)
+            if (_timer.SecondsLeft <= 0)
             {
                 _windowService.ShowLossWindow();
             }

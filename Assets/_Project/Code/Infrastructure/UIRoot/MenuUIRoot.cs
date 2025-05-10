@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Project.Code.Services.UIFactory.WindowOpener;
 using _Project.Code.UI.CounterView;
-using _Project.Code.UI.Window;
 using UnityEngine;
 using Zenject;
 
@@ -22,6 +20,6 @@ namespace _Project.Code.Infrastructure.UIRoot
             _sceneUIRootSetter.Set(this);
         
         private void OnDestroy() =>
-            _sceneUIRootSetter.Cleanup();
+            _sceneUIRootSetter?.Cleanup();
     }
 }

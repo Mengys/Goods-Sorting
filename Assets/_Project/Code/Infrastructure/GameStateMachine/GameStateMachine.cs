@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Services.Curtain;
 using _Project.Code.Services.SceneArgs;
 using Zenject;
 
@@ -12,9 +13,11 @@ namespace _Project.Code.Infrastructure.GameStateMachine
         
         private readonly Dictionary<GameStateId, IState> _states;
         private readonly SceneArgs _args;
+        private LoadingCurtain _loadingCurtain;
 
-        public GameStateMachine(IFactory<GameStateId, IState> factory, SceneArgs args)
+        public GameStateMachine(IFactory<GameStateId, IState> factory, LoadingCurtain loadingCurtain,  SceneArgs args)
         {
+            _loadingCurtain = loadingCurtain;
             _args = args;
 
             _states = new Dictionary<GameStateId, IState>
@@ -47,7 +50,9 @@ namespace _Project.Code.Infrastructure.GameStateMachine
 
             _args.Input = _args.Output;
             _args.Output = new DiContainer();
-
+            
+            _loadingCurtain.Show();
+            
             _stateId = to;
             _states[_stateId].Enter();
         }
