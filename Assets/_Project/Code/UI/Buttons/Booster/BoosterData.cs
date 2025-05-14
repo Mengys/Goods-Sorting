@@ -1,6 +1,6 @@
-using _Project.Code.UI.Windows.Implementations.LevelInfo;
+using _Project.Code.Data.Static.Booster;
 
-namespace _Project.Code.UI.Buttons
+namespace _Project.Code.UI.Buttons.Booster
 {
     public struct BoosterData
     {

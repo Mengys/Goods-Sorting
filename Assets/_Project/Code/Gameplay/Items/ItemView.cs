@@ -1,5 +1,5 @@
+using _Project.Code.Data.Static.Item;
 using _Project.Code.Gameplay.DragAndDrop;
-using _Project.Code.Gameplay.Items.Configs;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,4 +1,4 @@
-using _Project.Code.Services.ParticlesPlayer.Config;
+using _Project.Code.Data.Static.Particles;
 using UnityEngine;
 
 namespace _Project.Code.Services.ParticlesPlayer

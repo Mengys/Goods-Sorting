@@ -1387,6 +1387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4983a3a8ed964aa8bc820987136de586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _level: {fileID: 8072432923777891975}
   _score: {fileID: 3162471345227231233}
   _continueIncome: {fileID: 7539842052581474820}
   _multiplyIncome: {fileID: 7948014950979532291}

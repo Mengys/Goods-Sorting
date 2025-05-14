@@ -1,5 +1,5 @@
+using _Project.Code.Data.Static.Sound;
 using _Project.Code.Services.ConfigProvider;
-using _Project.Code.Services.SoundPlayer.Config;
 using UnityEngine;
 
 namespace _Project.Code.Services.SoundPlayer

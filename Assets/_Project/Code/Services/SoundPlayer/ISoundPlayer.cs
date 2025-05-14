@@ -1,4 +1,4 @@
-using _Project.Code.Services.SoundPlayer.Config;
+using _Project.Code.Data.Static.Sound;
 
 namespace _Project.Code.Services.SoundPlayer
 {

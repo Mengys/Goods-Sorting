@@ -1,9 +1,9 @@
 using System;
+using _Project.Code.Data.Static.Windows;
 using _Project.Code.Infrastructure.UIRoot;
 using _Project.Code.Services.ConfigProvider;
-using _Project.Code.Services.Factories.UI.Config;
-using _Project.Code.Services.Factories.UI.WindowFactory;
 using _Project.Code.UI.Windows;
+using _Project.Code.UI.Windows.Base;
 
 namespace _Project.Code.Services.Factories.UI
 {

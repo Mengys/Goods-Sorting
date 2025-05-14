@@ -16,7 +16,7 @@ MonoBehaviour:
   Grid:
     Shelves:
     - Id: Default
-      Position: {x: -147.37823, y: 184.96344}
+      Position: {x: -168.51541, y: 184.96347}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -28,7 +28,7 @@ MonoBehaviour:
         - Cola
         - Icycle
     - Id: Default
-      Position: {x: 120.71759, y: 184.94537}
+      Position: {x: 161.48218, y: 184.9454}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
         - Milk
         - Popcorn
     - Id: Default
-      Position: {x: 112.09305, y: -216.21832}
+      Position: {x: 169.46542, y: -216.21835}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -52,7 +52,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: -147.29416, y: -216.84534}
+      Position: {x: -171.4509, y: -216.84534}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: -145.60632, y: -46.523438}
+      Position: {x: -169.76315, y: -46.523438}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -76,7 +76,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: 119.32001, y: -47.148315}
+      Position: {x: 172.16306, y: -47.148277}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -88,7 +88,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: -12.960266, y: 333.547}
+      Position: {x: -12.960287, y: 365.25287}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3

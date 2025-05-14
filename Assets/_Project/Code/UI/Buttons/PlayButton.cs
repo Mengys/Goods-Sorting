@@ -1,5 +1,5 @@
-using _Project.Code.Infrastructure.GameStateMachine;
-using _Project.Code.Infrastructure.GameStateMachine.State;
+using _Project.Code.Data.Static.GameState;
+using _Project.Code.Services.StateMachine;
 using Zenject;
 
 namespace _Project.Code.UI.Buttons

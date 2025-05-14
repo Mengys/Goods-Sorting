@@ -1,5 +1,5 @@
+using _Project.Code.Data.Static.Particles;
 using _Project.Code.Services.ConfigProvider;
-using _Project.Code.Services.ParticlesPlayer.Config;
 using UnityEngine;
 using Zenject;
 

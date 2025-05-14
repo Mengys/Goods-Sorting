@@ -52,7 +52,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: 123.18854, y: 92.86719}
+      Position: {x: 157.09904, y: 92.86719}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: 120.67914, y: 254.8338}
+      Position: {x: 157.53838, y: 254.83383}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -76,7 +76,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: 125.23422, y: -69.748535}
+      Position: {x: 160.61902, y: -69.748535}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -88,7 +88,7 @@ MonoBehaviour:
         - 
         - 
     - Id: Default
-      Position: {x: 125.23422, y: -231.71573}
+      Position: {x: 162.09348, y: -242.0363}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3

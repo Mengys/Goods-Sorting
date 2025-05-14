@@ -1,25 +1,18 @@
 using System;
 using System.Collections;
 using _Project.Code.Services.CoroutinePerformer;
+using _Project.Code.Services.PauseHandler;
 using R3;
 using UnityEngine;
 
 namespace _Project.Code.Gameplay.Timer
 {
-    public class Timer
+    public class Timer : ITimer, IPausable, IDisposable
     {
-        private event Action ElapsedEvent;
-        
-        public Observable<Unit> Elapsed => Observable
-            .FromEvent(
-                a => ElapsedEvent += a,
-                a => ElapsedEvent -= a);
-        
-        public event Action<float> Updated;
-        
-        private float _secondsLeft;
         private Coroutine _coroutine;
-        private bool _isEnabled;
+        private bool _enabled;
+
+        private readonly ReactiveProperty<float> _remainingSeconds = new(0);
 
         private readonly ICoroutinePerformer _coroutinePerformer;
 
@@ -28,41 +21,55 @@ namespace _Project.Code.Gameplay.Timer
             _coroutinePerformer = coroutinePerformer;
         }
 
-        public float SecondsLeft => _secondsLeft;
+        public ReadOnlyReactiveProperty<float> RemainingSeconds =>
+            _remainingSeconds;
 
-        public void Initialize(float seconds) =>
-            _secondsLeft = seconds;
+        public Observable<Unit> Elapsed =>
+            _remainingSeconds
+                .Skip(1)
+                .Where(_ => _remainingSeconds.Value <= 0)
+                .AsUnitObservable();
+
+        public void Dispose()
+        {
+            if (_coroutine != null)
+                _coroutinePerformer.Stop(_coroutine);
+        }
+
+        public void Pause() => Stop();
+
+        public void Resume() => Start();
+
+        public void Setup(float seconds) =>
+            _remainingSeconds.Value = seconds;
 
         public void Start()
         {
-            _isEnabled = true;
-
-            _coroutine ??= _coroutinePerformer.Start(RunTimer());
+            _enabled = true;
+            _coroutine ??= _coroutinePerformer.Start(Routine());
         }
 
-        public void Stop() => _isEnabled = false;
+        public void Stop()
+        {
+            _enabled = false;
+        }
 
-        private IEnumerator RunTimer()
+        private IEnumerator Routine()
         {
             float delayTime = 0.1f;
-            
+
             var delay = new WaitForSeconds(delayTime);
 
             while (true)
             {
                 yield return delay;
 
-                if (!_isEnabled) continue;
-                
-                _secondsLeft -= delayTime;
+                if (!_enabled) continue;
 
-                Updated?.Invoke(_secondsLeft);
+                _remainingSeconds.Value -= delayTime;
 
-                if (_secondsLeft <= 0)
-                {
+                if (_remainingSeconds.Value <= 0)
                     Stop();
-                    ElapsedEvent?.Invoke();
-                }
             }
         }
     }

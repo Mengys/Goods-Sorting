@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Code.UI.Buttons
+namespace _Project.Code.UI.Buttons.Booster
 {
     public class BoosterButton : MonoBehaviour
     {

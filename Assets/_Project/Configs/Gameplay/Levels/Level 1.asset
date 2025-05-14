@@ -28,7 +28,7 @@ MonoBehaviour:
         - Milk
         - Popcorn
     - Id: Default
-      Position: {x: -17.80423, y: 16.912354}
+      Position: {x: -17.804241, y: 5.206299}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
         - Milk
         - Popcorn
     - Id: Default
-      Position: {x: -16.90216, y: -141.49329}
+      Position: {x: -16.902182, y: -164.90556}
       ItemGridAssetConfig:
         Rows: 2
         Columns: 3

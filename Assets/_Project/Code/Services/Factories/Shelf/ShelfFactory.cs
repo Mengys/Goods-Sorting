@@ -1,3 +1,4 @@
+using _Project.Code.Data.Static.Shelf;
 using _Project.Code.Gameplay.Shelves;
 using _Project.Code.Services.ConfigProvider;
 using UnityEngine;

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using _Project.Code.Gameplay.Grid;
-using _Project.Code.Gameplay.Grid.Cells;
-using _Project.Code.Gameplay.Grid.Config;
+using _Project.Code.Data.Dynamic;
+using _Project.Code.Data.Static.Grid;
 using _Project.Code.Gameplay.Items;
 using _Project.Code.Gameplay.Shelves;
 using _Project.Code.Infrastructure.UIRoot;
@@ -22,24 +21,29 @@ namespace _Project.Code.Services.Factories.Grid
         private readonly ItemFactory _itemFactory;
         private readonly ShelfFactory _shelfFactory;
 
-        public GridFactory(IConfigProvider configProvider, IUIRoot uiRoot, DiContainer container)
+        public GridFactory(
+            IConfigProvider configProvider,
+            IUIRoot uiRoot, 
+            DiContainer container,
+            ShelfFactory shelfFactory,
+            ItemFactory itemFactory)
         {
             _configProvider = configProvider;
             _uiRoot = uiRoot;
             _container = container;
 
-            _itemFactory = new ItemFactory(configProvider, container);
-            _shelfFactory = new ShelfFactory(configProvider, container);
+            _itemFactory = itemFactory;
+            _shelfFactory = shelfFactory;
         }
 
-        public GridPresenter Create(GridConfig config)
+        public Gameplay.GridFeature.ItemGrid Create(GridConfig config)
         {
             _configProvider.ValidateIds(config);
 
             List<ShelfPresenter> shelfPresenters = CreateShelves(config);
             Dictionary<CellGridPosition, ItemPresenter> mappedItems = CreateItems(config);
 
-            return new GridPresenter(shelfPresenters, mappedItems, _uiRoot);
+            return new Gameplay.GridFeature.ItemGrid(shelfPresenters, mappedItems, _uiRoot, _itemFactory);
         }
 
         private Dictionary<CellGridPosition, ItemPresenter> CreateItems(GridConfig config)

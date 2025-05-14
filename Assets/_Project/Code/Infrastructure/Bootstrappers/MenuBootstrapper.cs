@@ -1,7 +1,7 @@
-using _Project.Code.Gameplay.Levels;
+using _Project.Code.Data.Static.Level;
 using _Project.Code.Services.Curtain;
 using _Project.Code.Services.SceneArgs;
-using _Project.Code.UI.Windows.Implementations.LevelInfo;
+using _Project.Code.UI.Windows.Implementations;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Bootstrappers
@@ -18,9 +18,6 @@ namespace _Project.Code.Infrastructure.Bootstrappers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<LevelInfo>()
-                .FromInstance(new LevelInfo { Number = 1, Difficulty = DifficultyType.Easy }).AsSingle();
-
             Container.BindInterfacesAndSelfTo<LevelInfoBoosterProvider>().AsSingle();
         }
 

@@ -13,9 +13,9 @@ namespace _Project.Code.Services.CoroutinePerformer
         }
         
         public Coroutine Start(IEnumerator routine)
-            => _monoBehaviour.StartCoroutine(routine);
+            => _monoBehaviour?.StartCoroutine(routine);
 
         public void Stop(Coroutine routine)
-            => _monoBehaviour.StopCoroutine(routine);
+            => _monoBehaviour?.StopCoroutine(routine);
     }
 }

@@ -15,18 +15,18 @@ MonoBehaviour:
   <ItemPrefab>k__BackingField: {fileID: 6528173271458289393, guid: 60fd6164e3571cf4fb5288dde6d3acc8, type: 3}
   <Configs>k__BackingField:
   - StrId: Cola
-    Sprite: {fileID: 21300000, guid: 8872c594c1b94084ba102cb661ccdaa6, type: 3}
+    Sprite: {fileID: 21300000, guid: 02dc5a22c4d69bf489268bc843ebd464, type: 3}
   - StrId: Shrimp
-    Sprite: {fileID: 21300000, guid: 4255af3f18c105a43a9c12465cdcfaef, type: 3}
+    Sprite: {fileID: 21300000, guid: da44daf4f4fb6e64fa55f4550f22d0b2, type: 3}
   - StrId: Macarons
-    Sprite: {fileID: 21300000, guid: 5ea982fcb02d6d1458406ac3205073b3, type: 3}
+    Sprite: {fileID: 21300000, guid: bbf9bdc959f7eff45b43f5ae7f5f7ff1, type: 3}
   - StrId: Smoothie
-    Sprite: {fileID: 21300000, guid: d90dc9b565dcdba4babdcbcce8b33752, type: 3}
+    Sprite: {fileID: 21300000, guid: 520b39601deae1042a7a299abc67064e, type: 3}
   - StrId: Milk
-    Sprite: {fileID: 21300000, guid: ff1514ccaa42b9643bc433bf709e7211, type: 3}
+    Sprite: {fileID: 21300000, guid: ad10f0242b9516445ac6ac01b94a7a0a, type: 3}
   - StrId: Popcorn
-    Sprite: {fileID: 21300000, guid: 6e46a9658cbbd4946841022408f3e56b, type: 3}
+    Sprite: {fileID: 21300000, guid: d42afd99054925c4e82df64907778a8a, type: 3}
   - StrId: Icycle
-    Sprite: {fileID: 21300000, guid: 8b712677f03f9084885f9da40c130727, type: 3}
+    Sprite: {fileID: 21300000, guid: af456fee61c162840b7dc3e9b4edac6c, type: 3}
   - StrId: Icecream
-    Sprite: {fileID: 21300000, guid: 7440c74adbd0cb24e9c6bd3c3782b203, type: 3}
+    Sprite: {fileID: 21300000, guid: b9c2a0e449f53c24dab88a41bbb775b1, type: 3}

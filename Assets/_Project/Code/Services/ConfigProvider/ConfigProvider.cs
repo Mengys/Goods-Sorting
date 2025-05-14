@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Project.Code.Gameplay.Grid.Config;
+using _Project.Code.Data.Services;
+using _Project.Code.Data.Static.Booster;
+using _Project.Code.Data.Static.Game;
+using _Project.Code.Data.Static.GameState;
+using _Project.Code.Data.Static.Grid;
+using _Project.Code.Data.Static.Item;
+using _Project.Code.Data.Static.Level;
+using _Project.Code.Data.Static.Particles;
+using _Project.Code.Data.Static.Shelf;
+using _Project.Code.Data.Static.Sound;
+using _Project.Code.Data.Static.Windows;
+using _Project.Code.Gameplay.Boosters.Configs;
 using _Project.Code.Gameplay.Items;
-using _Project.Code.Gameplay.Items.Configs;
-using _Project.Code.Gameplay.Levels.Configs;
 using _Project.Code.Gameplay.Shelves;
-using _Project.Code.Gameplay.Shelves.Configs;
-using _Project.Code.Infrastructure.Configs;
-using _Project.Code.Infrastructure.GameStateMachine.Config;
-using _Project.Code.Infrastructure.GameStateMachine.State;
 using _Project.Code.Services.AssetsLoading;
-using _Project.Code.Services.Factories.UI.Config;
-using _Project.Code.Services.ParticlesPlayer.Config;
-using _Project.Code.Services.SoundPlayer.Config;
 using _Project.Code.UI.Windows;
+using _Project.Code.UI.Windows.Base;
 using UnityEngine;
 
 namespace _Project.Code.Services.ConfigProvider
@@ -29,6 +32,8 @@ namespace _Project.Code.Services.ConfigProvider
         private readonly Dictionary<int, LevelConfig> _levelConfigs;
         private readonly Dictionary<ShelfId, ShelfPrefabConfig> _shelfConfigs;
         private readonly Dictionary<ItemId, ItemConfig> _itemConfigs;
+        
+        private readonly Dictionary<BoosterId, BoosterConfig> _boosterConfigs;
 
         private readonly ItemView _itemPrefab;
 
@@ -38,7 +43,7 @@ namespace _Project.Code.Services.ConfigProvider
         public ConfigProvider(GameConfig config)
         {
             _gameStateConfigs = config
-                .GameStatesConfig
+                .GameStateListConfig
                 .States
                 .ToDictionary(x => x.Id, x => x);
 
@@ -53,7 +58,7 @@ namespace _Project.Code.Services.ConfigProvider
                 .ToDictionary(x => x.Id, x => x);
 
             _soundConfigs = config
-                .SoundsConfig
+                .SoundListConfig
                 .Sounds
                 .ToDictionary(x => x.Id, x => x);
 
@@ -70,9 +75,14 @@ namespace _Project.Code.Services.ConfigProvider
             _levelConfigs = config
                 .LevelConfigList
                 .Configs
-                .Select(ConfigAdapter.AsLevelConfig)
+                .Select(AssetDataFormatter.AsLevelConfig)
                 .Select((item, index) => new { item, index })
                 .ToDictionary(x => x.index, x => x.item);
+
+            _boosterConfigs = config
+                .BoosterConfigList
+                .Configs
+                .ToDictionary(x => x.Id, x => x);
 
             _itemPrefab = config.ItemConfigList.ItemPrefab;
         }
@@ -109,7 +119,10 @@ namespace _Project.Code.Services.ConfigProvider
         public ItemView PreviewPrefabForItem(ItemId id) =>
             _itemPrefab;
 
-        // public AbilityConfigProvider AbilityConfigProvider { get; private set; }
+        public BoosterConfig? ForBooster(BoosterId id) =>
+            _boosterConfigs.TryGetValue(id, out var config)
+                ? config
+                : null;
 
         public void ValidateIds(GridConfig config)
         {
@@ -135,5 +148,7 @@ namespace _Project.Code.Services.ConfigProvider
                 }
             }
         }
+
+        public int WinAdCoinsMultiplier => 5;
     }
 }
