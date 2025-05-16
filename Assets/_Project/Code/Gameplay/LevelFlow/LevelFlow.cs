@@ -3,6 +3,7 @@ using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Timer;
 using _Project.Code.Infrastructure.Bootstrappers;
 using _Project.Code.Services.PauseHandler;
+using _Project.Code.Services.ProgressProvider;
 using _Project.Code.UI.Buttons.Window;
 using R3;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace _Project.Code.Gameplay.LevelFlow
 
         private IItemCollectHandler _itemCollectHandler;
         private IComboHandler _comboHandler;
+        private IProgressProvider _progressProvider;
 
         public LevelFlow(
             IGrid grid,
@@ -27,8 +29,10 @@ namespace _Project.Code.Gameplay.LevelFlow
             IPauseHandler pauseHandler,
             GameOverHandler gameOverHandler,
             IItemCollectHandler itemCollectHandler,
-            IComboHandler comboHandler)
+            IComboHandler comboHandler,
+            IProgressProvider progressProvider)
         {
+            _progressProvider = progressProvider;
             _comboHandler = comboHandler;
             _itemCollectHandler = itemCollectHandler;
             _gameOverHandler = gameOverHandler;
@@ -62,7 +66,18 @@ namespace _Project.Code.Gameplay.LevelFlow
             _timer.Setup(60);
         }
 
-        public void Start() => _timer.Start();
+        public void Start()
+        {
+            int levelNumber = _progressProvider.PlayerProgress.Level.Number;
+            
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(
+                    Firebase.Analytics.FirebaseAnalytics.EventLevelStart,
+                    Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
+                    levelNumber);
+            
+            _timer.Start();
+        }
 
         public void Pause()
         {
