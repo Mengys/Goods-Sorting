@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270383563414",
+    "project_id": "goods-sorting-77df8",
+    "storage_bucket": "goods-sorting-77df8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270383563414:android:c50bbaf5eab4654a9eb8b7",
+        "android_client_info": {
+          "package_name": "com.ton3m.GoodsSorting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHdhtMARDSHfPvGVqNBPUvzP80hGOxlcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
