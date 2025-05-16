@@ -30,6 +30,8 @@ namespace _Project.Code.Gameplay.Timer
                 .Where(_ => _remainingSeconds.Value <= 0)
                 .AsUnitObservable();
 
+        public bool IsRunning => _enabled; 
+
         public void Dispose()
         {
             if (_coroutine != null)
@@ -56,17 +58,13 @@ namespace _Project.Code.Gameplay.Timer
 
         private IEnumerator Routine()
         {
-            float delayTime = 0.1f;
-
-            var delay = new WaitForSeconds(delayTime);
-
             while (true)
             {
-                yield return delay;
+                yield return null;
 
                 if (!_enabled) continue;
 
-                _remainingSeconds.Value -= delayTime;
+                _remainingSeconds.Value -= Time.deltaTime;
 
                 if (_remainingSeconds.Value <= 0)
                     Stop();

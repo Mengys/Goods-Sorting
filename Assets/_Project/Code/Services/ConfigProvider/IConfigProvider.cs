@@ -4,6 +4,7 @@ using _Project.Code.Data.Static.Grid;
 using _Project.Code.Data.Static.Item;
 using _Project.Code.Data.Static.Level;
 using _Project.Code.Data.Static.Particles;
+using _Project.Code.Data.Static.ScoreIncome;
 using _Project.Code.Data.Static.Shelf;
 using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
@@ -30,5 +31,6 @@ namespace _Project.Code.Services.ConfigProvider
         ItemView PreviewPrefabForItem(ItemId id);
         void ValidateIds(GridConfig config);
         int WinAdCoinsMultiplier { get; }
+        ScoreIncomeConfig? ScoreIncomeConfig { get; }
     }
 }

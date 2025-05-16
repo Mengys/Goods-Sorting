@@ -4,6 +4,11 @@ using UnityEngine.UI;
 
 namespace _Project.Code.UI.Buttons
 {
+    public class PauseButton : MonoBehaviour
+    {
+        
+    }
+    
     public class ButtonClickHandler : MonoBehaviour
     {
         [SerializeField] private Button _button;
@@ -11,10 +16,10 @@ namespace _Project.Code.UI.Buttons
         public event Action Clicked;
 
         private void OnEnable() =>
-            GetComponent<Button>().onClick.AddListener(OnClicked);
+            _button.onClick.AddListener(OnClicked);
         
         private void OnDisable() =>
-            GetComponent<Button>().onClick.RemoveListener(OnClicked);
+            _button.onClick.RemoveListener(OnClicked);
 
         protected virtual void OnClicked() => 
             Clicked?.Invoke();

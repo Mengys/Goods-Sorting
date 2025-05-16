@@ -8,6 +8,7 @@ using _Project.Code.Services.Factories.Level;
 using _Project.Code.Services.PauseHandler;
 using _Project.Code.Services.SceneArgs;
 using _Project.Code.UI.Buttons.Booster;
+using _Project.Code.UI.Buttons.Window;
 using _Project.Code.UI.Windows.Implementations;
 using Zenject;
 
@@ -39,9 +40,16 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             Container.BindInterfacesAndSelfTo<PauseHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<WinIncomeHandler>().AsSingle();
 
+            Container.BindInterfacesAndSelfTo<ComboHandler>().AsSingle();
+           //     .OnInstantiated<ComboHandler>((ctx, instance) => 
+              //      instance.Initialize(ctx.Container.Resolve<ItemCollectHandler>()));
+            
+            Container.BindInterfacesAndSelfTo<ItemCollectHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreIncomeHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Counter<Score>>().AsSingle();
+            
             Container.BindInterfacesAndSelfTo<BoosterInventory>().AsSingle();
             Container.BindInterfacesAndSelfTo<Timer>().AsSingle();
-            Container.BindInterfacesAndSelfTo<Counter<Score>>().AsSingle();
             Container.BindInterfacesAndSelfTo<BoosterUser>().AsSingle();
         }
     }

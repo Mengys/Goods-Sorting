@@ -2,10 +2,12 @@ using _Project.Code.Data.Static.GameState;
 using _Project.Code.Data.Static.Item;
 using _Project.Code.Data.Static.Level;
 using _Project.Code.Data.Static.Particles;
+using _Project.Code.Data.Static.ScoreIncome;
 using _Project.Code.Data.Static.Shelf;
 using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
 using _Project.Code.Gameplay.Boosters.Configs;
+using _Project.Code.Services.ConfigProvider;
 using UnityEngine;
 
 namespace _Project.Code.Data.Static.Game
@@ -27,5 +29,6 @@ namespace _Project.Code.Data.Static.Game
         [field: SerializeField] public ShelfPrefabConfigList ShelfPrefabConfigList { get; private set; }
         [field: SerializeField] public ItemConfigList ItemConfigList { get; private set; }
         [field: SerializeField] public BoosterConfigList BoosterConfigList { get; private set; }
+        [field: SerializeField] public ScoreIncomeConfigAsset ScoreIncomeConfig { get; private set; }
     }
 }

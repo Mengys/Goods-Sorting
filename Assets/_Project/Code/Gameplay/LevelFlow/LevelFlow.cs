@@ -1,9 +1,9 @@
 using System;
-using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Timer;
 using _Project.Code.Infrastructure.Bootstrappers;
 using _Project.Code.Services.PauseHandler;
+using _Project.Code.UI.Buttons.Window;
 using R3;
 using UnityEngine;
 
@@ -17,16 +17,20 @@ namespace _Project.Code.Gameplay.LevelFlow
         private readonly IGrid _grid;
         private readonly IPauseHandler _pauseHandler;
         private readonly GameOverHandler _gameOverHandler;
-        private readonly ICounter<Score> _scoreCounter;
+
+        private IItemCollectHandler _itemCollectHandler;
+        private IComboHandler _comboHandler;
 
         public LevelFlow(
             IGrid grid,
             ITimer timer,
             IPauseHandler pauseHandler,
             GameOverHandler gameOverHandler,
-            ICounter<Score> scoreCounter)
+            IItemCollectHandler itemCollectHandler,
+            IComboHandler comboHandler)
         {
-            _scoreCounter = scoreCounter;
+            _comboHandler = comboHandler;
+            _itemCollectHandler = itemCollectHandler;
             _gameOverHandler = gameOverHandler;
             _pauseHandler = pauseHandler;
             _grid = grid;
@@ -42,13 +46,18 @@ namespace _Project.Code.Gameplay.LevelFlow
         public void Initialize()
         {
             _pauseHandler.Register(this).AddTo(_disposable);
+            
+            if (_comboHandler is IPausable pausable)
+                _pauseHandler.Register(pausable);
 
             FirstMoveMade.Subscribe(_ => Start());
             TimerElapsed.Subscribe(_ => _gameOverHandler.HandleTimeLose()).AddTo(_disposable);
             FirstLayerFilled.Subscribe(_ => _gameOverHandler.HandleOutOfFreeCellsLose()).AddTo(_disposable);
-            MatchCollected.Subscribe(_ => _scoreCounter.Add(5)).AddTo(_disposable);
+            MatchCollected.Subscribe(_ => _itemCollectHandler.Handle(3)).AddTo(_disposable);
             AllMatchesCollected.Subscribe(_ => { _gameOverHandler.HandleWin(); }).AddTo(_disposable);
 
+            _comboHandler.Initialize(_itemCollectHandler);
+            
             _grid.Initialize();
             _timer.Setup(60);
         }

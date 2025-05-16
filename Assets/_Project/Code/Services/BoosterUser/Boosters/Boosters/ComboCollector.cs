@@ -5,6 +5,7 @@ using _Project.Code.Gameplay.Boosters.Ability;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Items;
+using _Project.Code.UI.Buttons.Window;
 using Zenject;
 
 namespace _Project.Code.Gameplay.Boosters.Boosters
@@ -13,11 +14,11 @@ namespace _Project.Code.Gameplay.Boosters.Boosters
     {
         private IGrid _grid;
         private readonly int _numberObjectsSameType;
-        private ICounter<Score> _counter;
+        private IItemCollectHandler _itemCollectHandler;
 
         public void Initialize(DiContainer container)
         {
-            _counter = container.Resolve<ICounter<Score>>();
+            _itemCollectHandler = container.Resolve<IItemCollectHandler>();
             _grid = container.Resolve<IGrid>();
         }
 
@@ -43,7 +44,7 @@ namespace _Project.Code.Gameplay.Boosters.Boosters
         private void Collect(List<CellGridPosition> cells)
         {
             cells.ForEach(_grid.ItemInventory.Clear);
-            _counter.Add(cells.Count * 3);
+            _itemCollectHandler.Handle(cells.Count);
         }
     }
 }

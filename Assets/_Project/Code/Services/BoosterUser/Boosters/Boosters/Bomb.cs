@@ -5,6 +5,7 @@ using _Project.Code.Gameplay.Boosters.Ability;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Items;
+using _Project.Code.UI.Buttons.Window;
 using UnityEngine;
 using Zenject;
 
@@ -13,12 +14,12 @@ namespace _Project.Code.Gameplay.Boosters.Boosters
     public class Bomb : IAbility
     {
         private IGrid _grid;
-        private ICounter<Score> _counter;
+        private IItemCollectHandler _itemCollectHandler;
 
         public void Initialize(DiContainer container)
         {
+            _itemCollectHandler = container.Resolve<IItemCollectHandler>();
             _grid = container.Resolve<IGrid>();
-            _counter = container.Resolve<ICounter<Score>>();
         }
 
         public void Use()
@@ -56,7 +57,7 @@ namespace _Project.Code.Gameplay.Boosters.Boosters
         private void Collect(List<CellGridPosition> positions)
         {
             positions.ForEach(_grid.ItemInventory.Clear);
-            _counter.Add(positions.Count * 3);
+            _itemCollectHandler.Handle(positions.Count);
         }
     }
 }

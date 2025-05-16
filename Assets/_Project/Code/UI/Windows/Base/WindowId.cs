@@ -6,6 +6,7 @@ namespace _Project.Code.UI.Windows.Base
         LevelInfo = 1,
         TimeLose,
         FreeCellsLose,
-        Win
+        Win,
+        Pause
     }
 }

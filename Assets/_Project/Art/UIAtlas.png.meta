@@ -132,7 +132,7 @@ TextureImporter:
         height: 335
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 609, y: 160, z: 623, w: 0}
+      border: {x: 400, y: 163, z: 393, w: 73}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIAtlas_5
+      name: sound
       rect:
         serializedVersion: 2
         x: 2880
@@ -312,7 +312,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIAtlas_9
+      name: vibrating
       rect:
         serializedVersion: 2
         x: 2594
@@ -333,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIAtlas_10
+      name: music
       rect:
         serializedVersion: 2
         x: 2880
@@ -358,12 +358,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3249
-        y: 3345
+        y: 3338
         width: 576
         height: 225
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 49, y: 71, z: 70, w: 57}
+      border: {x: 48, y: 59, z: 50, w: 40}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -421,9 +421,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3248
-        y: 3113
+        y: 3105
         width: 577
-        height: 224
+        height: 225
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 66, y: 76, z: 63, w: 80}
@@ -447,7 +447,7 @@ TextureImporter:
         height: 248
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 84, y: 77, z: 79, w: 77}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -618,7 +618,6 @@ TextureImporter:
     nameFileIdTable:
       UIAtlas_0: -1625327403
       UIAtlas_1: 192742776
-      UIAtlas_10: 598632331
       UIAtlas_11: -2090155577
       UIAtlas_12: 948429123
       UIAtlas_13: -813063160
@@ -634,11 +633,12 @@ TextureImporter:
       UIAtlas_22: -1335564671
       UIAtlas_3: -959616865
       UIAtlas_4: 1123506656
-      UIAtlas_5: 755863864
       UIAtlas_6: 38104435
       UIAtlas_7: 31183985
       UIAtlas_8: 432374361
-      UIAtlas_9: -1317768034
+      music: 598632331
+      sound: 755863864
+      vibrating: -1317768034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

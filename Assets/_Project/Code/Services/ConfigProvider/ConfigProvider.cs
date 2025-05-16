@@ -8,6 +8,7 @@ using _Project.Code.Data.Static.Grid;
 using _Project.Code.Data.Static.Item;
 using _Project.Code.Data.Static.Level;
 using _Project.Code.Data.Static.Particles;
+using _Project.Code.Data.Static.ScoreIncome;
 using _Project.Code.Data.Static.Shelf;
 using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
@@ -85,6 +86,8 @@ namespace _Project.Code.Services.ConfigProvider
                 .ToDictionary(x => x.Id, x => x);
 
             _itemPrefab = config.ItemConfigList.ItemPrefab;
+            
+            ScoreIncomeConfig = config.ScoreIncomeConfig.Config;
         }
 
         public WindowConfig? ForWindow(WindowId id) =>
@@ -150,5 +153,6 @@ namespace _Project.Code.Services.ConfigProvider
         }
 
         public int WinAdCoinsMultiplier => 5;
+        public ScoreIncomeConfig? ScoreIncomeConfig { get; }
     }
 }

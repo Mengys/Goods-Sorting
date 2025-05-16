@@ -1,7 +1,6 @@
 using _Project.Code.Data.Services;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.Timer;
-using _Project.Code.Services.PauseHandler;
 using _Project.Code.Services.ProgressProvider;
 using R3;
 using TMPro;
@@ -16,11 +15,9 @@ namespace _Project.Code.UI.Elements
         [field: SerializeField] private TMP_Text _timerText;
         [field: SerializeField] private TMP_Text _levelText;
         [field: SerializeField] private TMP_Text _scoreText;
-        [field: SerializeField] private Button _pause;
 
         private ICounter<Score> _scoreCounter;
         private ITimer _timer;
-        private IPauseHandler _pauseHandler;
         private IProgressProvider _progressProvider;
 
         private readonly CompositeDisposable _disposable = new();
@@ -28,12 +25,10 @@ namespace _Project.Code.UI.Elements
         [Inject]
         public void Construct(
             ITimer timer,
-            IPauseHandler pauseHandler,
             IProgressProvider progressProvider,
             ICounter<Score> scoreCounter)
         {
             _progressProvider = progressProvider;
-            _pauseHandler = pauseHandler;
             _timer = timer;
             _scoreCounter = scoreCounter;
         }
@@ -48,16 +43,6 @@ namespace _Project.Code.UI.Elements
 
             _timer.RemainingSeconds
                 .Subscribe(v => _timerText.text = DataTextFormatter.Timer(v))
-                .AddTo(_disposable);
-
-            _pause.OnClickAsObservable()
-                .Subscribe(_ =>
-                {
-                    if (_pauseHandler.IsPaused)
-                        _pauseHandler.Resume();
-                    else
-                        _pauseHandler.Pause();
-                })
                 .AddTo(_disposable);
         }
 
