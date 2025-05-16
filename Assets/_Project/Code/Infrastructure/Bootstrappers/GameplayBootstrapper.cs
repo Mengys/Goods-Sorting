@@ -43,7 +43,7 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             Debug.Log("Creating banner view");
 
             // Create a 320x50 banner at top of the screen
-            AdSize adSize = AdSize.;
+            var adSize = AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
             _bannerView = new BannerView(_adUnitId, adSize, AdPosition.Bottom);
         }
 
