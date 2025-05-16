@@ -6,7 +6,9 @@ using _Project.Code.Services.DataPersistence;
 using _Project.Code.Services.PauseHandler;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
+using GoogleMobileAds.Api;
 using R3;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Bootstrappers
@@ -28,6 +30,12 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             _progressProvider.PlayerProgress.Value = 
                 await _dataPersistence.LoadAsync() ?? new PlayerProgress();
 
+            MobileAds.Initialize(OnMobileAdsInitialized);
+        }
+
+        private void OnMobileAdsInitialized(InitializationStatus initializationStatus)
+        {
+            Debug.Log("Mobile ads initialized");
             _stateMachine.Enter(GameStateId.Menu);
         }
     }
