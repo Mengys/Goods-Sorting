@@ -18,5 +18,11 @@ namespace _Project.Code.Data.Static.Booster
             Id?.GetHashCode() ?? 0;
 
         public override string ToString() => Id;
+        
+        public static bool operator ==(BoosterId left, BoosterId right) => 
+            left.Equals(right);
+
+        public static bool operator !=(BoosterId left, BoosterId right) => 
+            !left.Equals(right);
     }
 }
