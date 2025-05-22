@@ -12,6 +12,8 @@ using _Project.Code.Services.SceneArgs;
 using _Project.Code.UI.Buttons.Booster;
 using _Project.Code.UI.Buttons.Window;
 using _Project.Code.UI.Windows.Implementations;
+using GoogleMobileAds.Api;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Code.Infrastructure.Bootstrappers
@@ -19,15 +21,40 @@ namespace _Project.Code.Infrastructure.Bootstrappers
     public class GameplayBootstrapper : MonoInstaller
     {
         [Inject] private ISceneInputArgs _inputArgs;
+        private BannerView _bannerView;
 
         private void Awake()
         {
             var initialBoosterId = _inputArgs.Input.Resolve<LevelInitialBooster>().Value;
             Container.Resolve<ILevelFlow>().Initialize(initialBoosterId);
+#if UNITY_ANDROID
+        private string _adUnitId = "ca-app-pub-3940256099942544/6300978111";
+#elif UNITY_IPHONE
+  private string _adUnitId = "ca-app-pub-3940256099942544/2934735716";
+#else
+  private string _adUnitId = "unused";
+#endif
+        
+        private void Start()
+        {
+            Container.Resolve<ILevelFlow>().Initialize();
+            Container.Resolve<LoadingCurtain>().Hide();
+            
+            CreateBannerView();   
+            _bannerView.LoadAd(new AdRequest());
+
+            Container.Resolve<LoadingCurtain>().Hide();
+        }
+        
+        public void CreateBannerView()
+        {
+            Debug.Log("Creating banner view");
+
+            // Create a 320x50 banner at top of the screen
+            var adSize = AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+            _bannerView = new BannerView(_adUnitId, adSize, AdPosition.Bottom);
         }
             
-        private void Start() => 
-            Container.Resolve<LoadingCurtain>().Hide();
 
         public override void InstallBindings()
         {

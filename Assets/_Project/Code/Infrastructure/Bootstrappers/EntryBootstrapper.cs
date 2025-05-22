@@ -7,6 +7,7 @@ using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
 using Firebase;
 using Firebase.Extensions;
+using GoogleMobileAds.Api;
 using R3;
 using UnityEngine;
 using Zenject;
@@ -30,10 +31,15 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             
             await FirebaseApp.CheckDependenciesAsync()
                 .ContinueWithOnMainThread(OnDependencyStatusReceived);
+            
+            MobileAds.Initialize(OnMobileAdsInitialized);
         }
 
-        private void Start() => 
+        private void OnMobileAdsInitialized(InitializationStatus initializationStatus)
+        {
+            Debug.Log("Mobile ads initialized");
             _stateMachine.Enter(GameStateId.Menu);
+        }
 
         private void OnDependencyStatusReceived(Task<DependencyStatus> task)
         {
