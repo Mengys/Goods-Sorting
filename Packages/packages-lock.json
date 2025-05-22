@@ -9,6 +9,28 @@
       },
       "hash": "6af3cc5c1941fe21bfe0fe3472f2c2dfaa881469"
     },
+    "com.google.external-dependency-manager": {
+      "version": "file:../Assets/Packages/Firebase/com.google.external-dependency-manager-1.2.185 (1).tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
+    "com.google.firebase.analytics": {
+      "version": "file:../Assets/Packages/Firebase/com.google.firebase.analytics-12.8.0.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.firebase.app": "12.8.0"
+      }
+    },
+    "com.google.firebase.app": {
+      "version": "file:../Assets/Packages/Firebase/com.google.firebase.app-12.8.0 (1).tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.185"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "9.1.2",
       "depth": 1,
