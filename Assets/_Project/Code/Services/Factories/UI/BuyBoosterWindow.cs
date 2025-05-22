@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using _Project.Code.Data.Static.Booster;
 using _Project.Code.Services.ConfigProvider;
@@ -13,21 +12,6 @@ using Zenject;
 
 namespace _Project.Code.Services.Factories.UI
 {
-    public interface IAdShower
-    {
-        void ShowRewarded(Action onFinished = null, Action onFailed = null);
-    }
-
-    public class AdShower : IAdShower
-    {
-        public async void ShowRewarded(Action onFinished = null, Action onFailed = null)
-        {
-            Debug.Log("Show rewarded ad");
-            await System.Threading.Tasks.Task.Delay(2000);
-            onFinished?.Invoke();
-        }
-    }
-    
     public class BuyBoosterWindow : Window
     {
         [SerializeField] private Image _icon;

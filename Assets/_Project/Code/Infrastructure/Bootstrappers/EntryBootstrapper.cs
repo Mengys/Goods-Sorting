@@ -6,7 +6,6 @@ using _Project.Code.Services.DataPersistence;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
 using Firebase;
-using Firebase.Extensions;
 using GoogleMobileAds.Api;
 using R3;
 using UnityEngine;
@@ -20,45 +19,65 @@ namespace _Project.Code.Infrastructure.Bootstrappers
         [Inject] private IProgressProvider _progressProvider;
         [Inject] private IDataPersistence<PlayerProgress> _dataPersistence;
 
-        public override void InstallBindings()
-        {
-        }
+        public override void InstallBindings() { }
 
         private async void Awake()
         {
-            _progressProvider.PlayerProgress.Value = 
-                await _dataPersistence.LoadAsync() ?? ProgressProvider.DefaultPlayerProgress;
-            
-            await FirebaseApp.CheckDependenciesAsync()
-                .ContinueWithOnMainThread(OnDependencyStatusReceived);
-            
-            MobileAds.Initialize(OnMobileAdsInitialized);
-        }
+            await InitializeFirebaseAsync();
+            await InitializeMobileAdsAsync();
+            await InitializeProgressAsync();
 
-        private void OnMobileAdsInitialized(InitializationStatus initializationStatus)
-        {
-            Debug.Log("Mobile ads initialized");
             _stateMachine.Enter(GameStateId.Menu);
         }
 
-        private void OnDependencyStatusReceived(Task<DependencyStatus> task)
+        private async Task InitializeProgressAsync()
+        {
+            var progress = await _dataPersistence.LoadAsync();
+            _progressProvider.PlayerProgress.Value = progress ?? ProgressProvider.DefaultPlayerProgress;
+        }
+
+        private async Task InitializeFirebaseAsync()
         {
             try
             {
-                if (!task.IsCompletedSuccessfully)
-                    throw new Exception("Firebase dependency check failed", task.Exception);
-                
-                var status = task.Result;
-
+                var status = await FirebaseApp.CheckDependenciesAsync();
                 if (status != DependencyStatus.Available)
-                    throw new Exception("Firebase dependency check failed: " + status);
-                
+                    throw new InvalidOperationException($"Firebase dependency check failed: {status}");
+
                 Debug.Log("Firebase initialized successfully!");
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
             }
+        }
+
+        private async Task InitializeMobileAdsAsync()
+        {
+            try
+            {
+                await MobileAdsInitializeAsync();
+                Debug.Log("Mobile ads initialized");
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }
+
+        private Task MobileAdsInitializeAsync()
+        {
+            var tcs = new TaskCompletionSource<InitializationStatus>();
+
+            MobileAds.Initialize(initStatus =>
+            {
+                if (initStatus != null)
+                    tcs.SetResult(initStatus);
+                else
+                    tcs.SetException(new Exception("MobileAds initialization failed: status is null"));
+            });
+
+            return tcs.Task;
         }
     }
 }
