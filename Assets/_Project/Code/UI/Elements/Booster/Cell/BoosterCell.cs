@@ -3,7 +3,7 @@ using _Project.Code.Services.ConfigProvider;
 using R3;
 using UnityEngine;
 
-namespace _Project.Code.UI.Elements.Booster
+namespace _Project.Code.UI.Elements.Booster.Cell
 {
     public class BoosterCell
     {

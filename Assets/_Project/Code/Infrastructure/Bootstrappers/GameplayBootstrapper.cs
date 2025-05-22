@@ -1,8 +1,10 @@
+using _Project.Code.Gameplay;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.LevelFlow;
 using _Project.Code.Gameplay.Timer;
 using _Project.Code.Gameplay.WinIncome;
+using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.Curtain;
 using _Project.Code.Services.Factories.Level;
 using _Project.Code.Services.PauseHandler;
@@ -18,11 +20,14 @@ namespace _Project.Code.Infrastructure.Bootstrappers
     {
         [Inject] private ISceneInputArgs _inputArgs;
 
-        private void Start()
+        private void Awake()
         {
-            Container.Resolve<ILevelFlow>().Initialize();
-            Container.Resolve<LoadingCurtain>().Hide();
+            var initialBoosterId = _inputArgs.Input.Resolve<LevelInitialBooster>().Value;
+            Container.Resolve<ILevelFlow>().Initialize(initialBoosterId);
         }
+            
+        private void Start() => 
+            Container.Resolve<LoadingCurtain>().Hide();
 
         public override void InstallBindings()
         {
@@ -48,7 +53,6 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             Container.BindInterfacesAndSelfTo<ScoreIncomeHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<Counter<Score>>().AsSingle();
             
-            Container.BindInterfacesAndSelfTo<BoosterInventory>().AsSingle();
             Container.BindInterfacesAndSelfTo<Timer>().AsSingle();
             Container.BindInterfacesAndSelfTo<BoosterUser>().AsSingle();
         }

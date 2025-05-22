@@ -15,4 +15,4 @@ MonoBehaviour:
   Ability: {fileID: 11400000, guid: 204a07431db9b67489de58a4c773a90d, type: 2}
   Icon: {fileID: 844859768, guid: 8b676fc69dce1a84f9529f873f0a2bac, type: 3}
   Name: Bomb
-  Price: 0
+  Price: 50

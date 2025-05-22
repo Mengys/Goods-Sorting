@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Code.UI.Elements.Booster
+namespace _Project.Code.UI.Elements.Booster.Cell
 {
     public class BoosterCellView : MonoBehaviour
     {
@@ -11,9 +11,10 @@ namespace _Project.Code.UI.Elements.Booster
         [SerializeField] private TMP_Text _count;
 
         [SerializeField] private Button _button;
-        [SerializeField] private Selectable _selectable;
+        [SerializeField] private Selectable.Selectable _selectable;
 
         [SerializeField] private GameObject _block;
+        [SerializeField] private GameObject _countPanel;
 
         public Observable<Unit> Clicked =>
             _button.OnClickAsObservable();
@@ -28,6 +29,7 @@ namespace _Project.Code.UI.Elements.Booster
         {
             _button.interactable = !isBlocked;
             _block.SetActive(isBlocked);
+            _countPanel.SetActive(!isBlocked);
         }
 
         public void SetSelected(bool isSelected)

@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace _Project.Code.Gameplay.Boosters.Ability
+namespace _Project.Code.Services.BoosterUser.Boosters.Ability
 {
     public interface IAbility
     {

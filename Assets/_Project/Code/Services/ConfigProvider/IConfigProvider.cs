@@ -8,10 +8,11 @@ using _Project.Code.Data.Static.ScoreIncome;
 using _Project.Code.Data.Static.Shelf;
 using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
-using _Project.Code.Gameplay.Boosters.Configs;
 using _Project.Code.Gameplay.Items;
 using _Project.Code.UI.Elements;
 using _Project.Code.UI.Elements.Booster;
+using _Project.Code.UI.Elements.Booster.BoosterInventoryConfig;
+using _Project.Code.UI.Elements.Booster.Cell;
 using _Project.Code.UI.Windows.Base;
 
 namespace _Project.Code.Services.ConfigProvider

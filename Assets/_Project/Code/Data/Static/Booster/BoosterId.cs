@@ -1,7 +1,9 @@
+using System;
 using _Project.Code.Gameplay.Items;
 
 namespace _Project.Code.Data.Static.Booster
 {
+    [Serializable]
     public struct BoosterId
     {
         public string Id;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Code.UI.Elements
+namespace _Project.Code.UI.Elements.Booster.Selectable
 {
     public class ImageSelectable : Selectable
     {

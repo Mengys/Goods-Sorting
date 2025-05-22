@@ -1,5 +1,6 @@
 using System;
 using _Project.Code.Data.Static.Booster;
+using _Project.Code.Services.BoosterUser;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;

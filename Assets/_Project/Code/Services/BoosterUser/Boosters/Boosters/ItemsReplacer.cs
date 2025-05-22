@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Project.Code.Gameplay.Boosters.Ability;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Items;
+using _Project.Code.Services.BoosterUser.Boosters.Ability;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Code.Gameplay.Boosters.Boosters
+namespace _Project.Code.Services.BoosterUser.Boosters.Boosters
 {
     public class ItemsReplacer : IAbility
     {

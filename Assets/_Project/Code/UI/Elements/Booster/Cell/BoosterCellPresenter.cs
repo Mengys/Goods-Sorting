@@ -1,7 +1,6 @@
 using R3;
-using UnityEngine;
 
-namespace _Project.Code.UI.Elements.Booster
+namespace _Project.Code.UI.Elements.Booster.Cell
 {
     public class SelectionHandler
     {

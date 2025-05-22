@@ -15,7 +15,7 @@ namespace _Project.Code.Services.DataPersistence
 
         public async Task SaveAsync(T data)
         {
-            Debug.Log($"[DataPersistence] Saving data to {Path.GetFileName(_filePath)}");
+            Debug.Log($"[DataPersistence] Saving data to {_filePath}");
             
             var json = JsonUtility.ToJson(data, true);
             await using var writer = new StreamWriter(_filePath, false);
@@ -24,7 +24,7 @@ namespace _Project.Code.Services.DataPersistence
 
         public async Task<T> LoadAsync()
         {
-            Debug.Log($"[DataPersistence] Loading data from {Path.GetFileName(_filePath)}");
+            Debug.Log($"[DataPersistence] Loading data from {_filePath}");
 
             if (!File.Exists(_filePath))
                 return default;

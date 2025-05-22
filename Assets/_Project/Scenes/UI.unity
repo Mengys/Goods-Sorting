@@ -571,6 +571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3691832252990741603, guid: 573a1c61d7d8f7846ba1ac1f890efa4b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -416.2788
+      objectReference: {fileID: 0}
     - target: {fileID: 4407152070658564232, guid: 573a1c61d7d8f7846ba1ac1f890efa4b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -687,11 +691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2370508469745327269, guid: d28fe7c99067a6545b7e516bd07f1a2e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3732
+      value: 3717
       objectReference: {fileID: 0}
     - target: {fileID: 2370508469745327269, guid: d28fe7c99067a6545b7e516bd07f1a2e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12.000977
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2370508469745327269, guid: d28fe7c99067a6545b7e516bd07f1a2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -727,6 +731,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2087935609}
     m_Modifications:
+    - target: {fileID: 562696739949205449, guid: 07bc37e99ece1154e945da3b9f4b715c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 310.8251
+      objectReference: {fileID: 0}
     - target: {fileID: 2489931078151998949, guid: 07bc37e99ece1154e945da3b9f4b715c, type: 3}
       propertyPath: m_Name
       value: CellsLoseWindow
@@ -1229,6 +1237,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3931805628919649490, guid: 9341e00d72aa1aa4198ef48b840a2890, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -437.2471
+      objectReference: {fileID: 0}
     - target: {fileID: 4072882206841759801, guid: 9341e00d72aa1aa4198ef48b840a2890, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1358,9 +1370,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2888130544177696203, guid: 9b8f57a24a8fbd34aa3ae6b57ae18828, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9998779
+      objectReference: {fileID: 0}
     - target: {fileID: 3914450310573278326, guid: 9b8f57a24a8fbd34aa3ae6b57ae18828, type: 3}
       propertyPath: m_Name
       value: GameplayUIRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817500012038390551, guid: 9b8f57a24a8fbd34aa3ae6b57ae18828, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9998779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

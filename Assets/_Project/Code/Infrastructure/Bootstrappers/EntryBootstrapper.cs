@@ -26,7 +26,7 @@ namespace _Project.Code.Infrastructure.Bootstrappers
         private async void Awake()
         {
             _progressProvider.PlayerProgress.Value = 
-                await _dataPersistence.LoadAsync() ?? new PlayerProgress();
+                await _dataPersistence.LoadAsync() ?? ProgressProvider.DefaultPlayerProgress;
 
             _stateMachine.Enter(GameStateId.Menu);
         }

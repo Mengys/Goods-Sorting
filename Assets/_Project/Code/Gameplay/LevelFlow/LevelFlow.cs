@@ -1,8 +1,11 @@
 using System;
+using _Project.Code.Data.Static.Booster;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Timer;
 using _Project.Code.Infrastructure.Bootstrappers;
+using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.PauseHandler;
+using _Project.Code.UI.Buttons.Booster;
 using _Project.Code.UI.Buttons.Window;
 using R3;
 using UnityEngine;
@@ -18,8 +21,10 @@ namespace _Project.Code.Gameplay.LevelFlow
         private readonly IPauseHandler _pauseHandler;
         private readonly GameOverHandler _gameOverHandler;
 
-        private IItemCollectHandler _itemCollectHandler;
-        private IComboHandler _comboHandler;
+        private readonly IItemCollectHandler _itemCollectHandler;
+        private readonly IComboHandler _comboHandler;
+        private readonly IBoosterUser _boosterUser;
+        private BoosterId? _initialBoosterId;
 
         public LevelFlow(
             IGrid grid,
@@ -27,9 +32,11 @@ namespace _Project.Code.Gameplay.LevelFlow
             IPauseHandler pauseHandler,
             GameOverHandler gameOverHandler,
             IItemCollectHandler itemCollectHandler,
-            IComboHandler comboHandler)
+            IComboHandler comboHandler,
+            IBoosterUser boosterUser)
         {
             _comboHandler = comboHandler;
+            _boosterUser = boosterUser;
             _itemCollectHandler = itemCollectHandler;
             _gameOverHandler = gameOverHandler;
             _pauseHandler = pauseHandler;
@@ -43,10 +50,12 @@ namespace _Project.Code.Gameplay.LevelFlow
         private Observable<Unit> AllMatchesCollected => _grid.AllMatchesCollected;
         private Observable<Unit> FirstLayerFilled => _grid.FirstLayerFilled;
 
-        public void Initialize()
+        public void Initialize(BoosterId? initialBoosterId)
         {
+            _initialBoosterId = initialBoosterId;
+
             _pauseHandler.Register(this).AddTo(_disposable);
-            
+
             if (_comboHandler is IPausable pausable)
                 _pauseHandler.Register(pausable);
 
@@ -57,12 +66,21 @@ namespace _Project.Code.Gameplay.LevelFlow
             AllMatchesCollected.Subscribe(_ => { _gameOverHandler.HandleWin(); }).AddTo(_disposable);
 
             _comboHandler.Initialize(_itemCollectHandler);
-            
+
             _grid.Initialize();
             _timer.Setup(60);
+            
+            if (_initialBoosterId.HasValue)
+            {
+                Debug.Log($"Using initial booster {_initialBoosterId.Value}");
+                _boosterUser.Use(_initialBoosterId.Value);
+            }
         }
 
-        public void Start() => _timer.Start();
+        private void Start()
+        {
+            _timer.Start();
+        }
 
         public void Pause()
         {

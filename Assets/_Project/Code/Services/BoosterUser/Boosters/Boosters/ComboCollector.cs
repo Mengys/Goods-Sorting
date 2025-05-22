@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Code.Data.Dynamic;
-using _Project.Code.Gameplay.Boosters.Ability;
-using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
 using _Project.Code.Gameplay.Items;
+using _Project.Code.Services.BoosterUser.Boosters.Ability;
 using _Project.Code.UI.Buttons.Window;
 using Zenject;
 
-namespace _Project.Code.Gameplay.Boosters.Boosters
+namespace _Project.Code.Services.BoosterUser.Boosters.Boosters
 {
     public class ComboCollector : IAbility
     {

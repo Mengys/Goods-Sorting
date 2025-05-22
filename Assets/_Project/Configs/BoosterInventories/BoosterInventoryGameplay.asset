@@ -9,6 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: b5dfe85c1c3840a3afd1ba8657173c7f, type: 3}
   m_Name: BoosterInventoryGameplay
-  m_EditorClassIdentifier: Assembly-CSharp:_Project.Code.UI.Elements:BoosterInventoryConfigAsset
+  m_EditorClassIdentifier: 
+  Config:
+    Cells: 0100000002000000030000000400000005000000
+    Blocks:
+    - CellIndex: 1
+      UnblockLevelIndex: 0
+    - CellIndex: 2
+      UnblockLevelIndex: 1
+    - CellIndex: 3
+      UnblockLevelIndex: 2
+    - CellIndex: 4
+      UnblockLevelIndex: 3

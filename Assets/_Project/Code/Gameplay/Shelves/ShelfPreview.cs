@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Code.Editor.ShelfGrid
+namespace _Project.Code.Gameplay.Shelves
 {
     public class ShelfPreview : MonoBehaviour
     {

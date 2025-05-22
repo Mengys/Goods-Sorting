@@ -1,9 +1,9 @@
 using _Project.Code.Data.Static.Booster;
-using _Project.Code.Gameplay.Boosters.Ability;
+using _Project.Code.Services.BoosterUser.Boosters.Ability;
 using _Project.Code.Services.ConfigProvider;
 using Zenject;
 
-namespace _Project.Code.UI.Buttons.Booster
+namespace _Project.Code.Services.BoosterUser
 {
     public interface IBoosterUser
     {

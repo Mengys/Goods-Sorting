@@ -1,7 +1,7 @@
-﻿using _Project.Code.Gameplay.Boosters.Ability;
+﻿using _Project.Code.Services.BoosterUser.Boosters.Ability;
 using UnityEngine;
 
-namespace _Project.Code.Gameplay.Boosters.Configs.AbilityConfigs
+namespace _Project.Code.Data.Static.Booster.Ability
 {
     public abstract class AbilityConfig : ScriptableObject
     {

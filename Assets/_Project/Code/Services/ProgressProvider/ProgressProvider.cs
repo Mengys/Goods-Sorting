@@ -8,7 +8,7 @@ namespace _Project.Code.Services.ProgressProvider
 {
     public class ProgressProvider : IProgressProvider, IDisposable
     {
-        private IConfigProvider _configProvider;
+        private readonly IConfigProvider _configProvider;
 
         public ProgressProvider(IConfigProvider configProvider)
         {
@@ -16,6 +16,9 @@ namespace _Project.Code.Services.ProgressProvider
         }
         
         public ReactivePlayerProgress PlayerProgress { get; } = new();
+
+        public static PlayerProgress DefaultPlayerProgress => 
+            ReactivePlayerProgress.Default;
 
         public void IncrementPassedLevel()
         {

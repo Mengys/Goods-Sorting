@@ -18,11 +18,9 @@ namespace _Project.Code.Infrastructure.Bootstrappers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<LevelInfoBoosterProvider>().AsSingle();
         }
 
         private void InitializeOutputArgs() =>
-            _args.Output.Bind<LevelStartData>()
-                .FromInstance(new LevelStartData { InitialBoosterId = null });
+            _args.Output.Bind<LevelInitialBooster>().AsSingle();
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections;
-using _Project.Code.Gameplay.Boosters.Ability;
 using _Project.Code.Gameplay.Timer;
+using _Project.Code.Services.BoosterUser.Boosters.Ability;
 using _Project.Code.Services.CoroutinePerformer;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Code.Gameplay.Boosters.Boosters
+namespace _Project.Code.Services.BoosterUser.Boosters.Boosters
 {
     public class TimerStopper : IAbility
     {

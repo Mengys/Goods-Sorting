@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Code.UI.Elements
+namespace _Project.Code.UI.Buttons
 {
     public class PlayLevelButtonView : MonoBehaviour
     {

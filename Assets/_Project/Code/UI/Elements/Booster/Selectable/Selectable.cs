@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Code.UI.Elements
+namespace _Project.Code.UI.Elements.Booster.Selectable
 {
     public abstract class Selectable : MonoBehaviour
     {

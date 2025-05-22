@@ -373,6 +373,7 @@ MonoBehaviour:
   _button: {fileID: 2912311113817357699}
   _selectable: {fileID: 6120675458050954326}
   _block: {fileID: 8981256828409762152}
+  _countPanel: {fileID: 8860507358470366996}
 --- !u!114 &2912311113817357699
 MonoBehaviour:
   m_ObjectHideFlags: 0

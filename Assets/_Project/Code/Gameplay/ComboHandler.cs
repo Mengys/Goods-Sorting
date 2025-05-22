@@ -2,9 +2,10 @@ using System;
 using _Project.Code.Gameplay.Timer;
 using _Project.Code.Services.CoroutinePerformer;
 using _Project.Code.Services.PauseHandler;
+using _Project.Code.UI.Buttons.Window;
 using R3;
 
-namespace _Project.Code.UI.Buttons.Window
+namespace _Project.Code.Gameplay
 {
     public class  ComboHandler : IComboHandler, IDisposable, IPausable
     {
@@ -21,7 +22,7 @@ namespace _Project.Code.UI.Buttons.Window
 
         public ComboHandler(ICoroutinePerformer coroutinePerformer)
         {
-            _timer = new Timer(coroutinePerformer);
+            _timer = new Timer.Timer(coroutinePerformer);
             _levelDuration = _firstLevelDuration = 20f;
         }
 

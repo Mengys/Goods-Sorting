@@ -58,7 +58,6 @@ namespace _Project.Code.Gameplay.GridFeature
             _itemInventory.ChangedObservable
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Changed");
                     _matchCollectedHandler.Handle();
                     _layersActivationHandler.Handle();
                     _firstLayerFilledObserver.Observe();

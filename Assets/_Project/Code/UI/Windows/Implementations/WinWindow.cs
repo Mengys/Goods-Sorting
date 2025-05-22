@@ -2,6 +2,7 @@ using _Project.Code.Data.Services;
 using _Project.Code.Data.Static.GameState;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.WinIncome;
+using _Project.Code.Services.Factories.UI;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
 using _Project.Code.UI.Windows.Base;
@@ -29,18 +30,21 @@ namespace _Project.Code.UI.Windows.Implementations
         
         private readonly CompositeDisposable _disposer = new();
         private IProgressProvider _progressProvider;
+        private IAdShower _adShower;
 
         [Inject]
         private void Construct(
             ICounter<Score> scoreCounter,
             IWinIncomeHandler winIncomeHandler,
             IStateMachine<GameStateId> stateMachine,
-            IProgressProvider progressProvider)
+            IProgressProvider progressProvider,
+            IAdShower adShower)
         {
             _progressProvider = progressProvider;
             _stateMachine = stateMachine;
             _winIncomeHandler = winIncomeHandler;
             _scoreCounter = scoreCounter;
+            _adShower = adShower;
         }
 
         public override void Initialize()
@@ -63,8 +67,11 @@ namespace _Project.Code.UI.Windows.Implementations
             _multiply.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    _winIncomeHandler.HandleRewarded();
-                    _stateMachine.Enter(GameStateId.Menu);
+                    _adShower.ShowRewarded(() =>
+                    {
+                        _winIncomeHandler.HandleRewarded();
+                        _stateMachine.Enter(GameStateId.Menu);
+                    });
                 })
                 .AddTo(_disposer);
         }

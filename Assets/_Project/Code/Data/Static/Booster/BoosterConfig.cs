@@ -1,7 +1,6 @@
 using System;
-using _Project.Code.Data.Static.Booster;
 
-namespace _Project.Code.Gameplay.Boosters.Configs
+namespace _Project.Code.Data.Static.Booster
 {
     [Serializable]
     public struct BoosterConfig

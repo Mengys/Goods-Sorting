@@ -3,7 +3,9 @@ using _Project.Code.Data.Static.Booster;
 using _Project.Code.Data.Static.Windows;
 using _Project.Code.Infrastructure.UIRoot;
 using _Project.Code.Services.ConfigProvider;
+using _Project.Code.UI.Elements.Booster.Inventory;
 using _Project.Code.UI.Windows.Base;
+using _Project.Code.UI.Windows.Implementations;
 
 namespace _Project.Code.Services.Factories.UI
 {
@@ -27,14 +29,14 @@ namespace _Project.Code.Services.Factories.UI
             return window;
         }
 
-        public Window CreateBuyBooster(BoosterId id)
+        public Window CreateBuyBooster(BoosterId id, IBoosterInventory inventory)
         {
             var window = InstantiateWindow(WindowId.BuyBooster);
 
             if (window is not BuyBoosterWindow buyBoosterWindow)
                 throw new InvalidCastException("Window is not BuyBoosterWindow");
 
-            buyBoosterWindow.Initialize(id);
+            buyBoosterWindow.Initialize(id, inventory);
 
             return buyBoosterWindow;
         }

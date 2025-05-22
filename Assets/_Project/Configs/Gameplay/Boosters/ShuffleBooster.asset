@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90583f683e2e48be8127877c90388ae2, type: 3}
-  m_Name: TimeStopAbility
+  m_Name: ShuffleBooster
   m_EditorClassIdentifier: 
-  Ability: {fileID: 11400000, guid: f92a4dd8dcc9df645877730b1d1a480f, type: 2}
-  Icon: {fileID: 2104043779, guid: 8b676fc69dce1a84f9529f873f0a2bac, type: 3}
-  Name: Time Freeze
-  Price: 0
+  Ability: {fileID: 11400000, guid: 2d032e75605122c44ab62c8bac43d248, type: 2}
+  Icon: {fileID: 43818661, guid: 8b676fc69dce1a84f9529f873f0a2bac, type: 3}
+  Name: Shuffle
+  Price: 50

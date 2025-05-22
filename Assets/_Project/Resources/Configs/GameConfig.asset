@@ -21,6 +21,6 @@ MonoBehaviour:
   <ItemConfigList>k__BackingField: {fileID: 11400000, guid: 8976e3a3cc450224d9c238d8da4419a3, type: 2}
   <BoosterConfigList>k__BackingField: {fileID: 11400000, guid: 35f32403fecd67e4fa69be592a8ba65f, type: 2}
   <ScoreIncomeConfig>k__BackingField: {fileID: 11400000, guid: 12dc7533a4207104c99c7a401b6739a1, type: 2}
-  <MenuBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: 1c79e2e935ce0ae4c8eb75e3816b3fc6, type: 2}
-  <GameplayBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: a9004039f317edc4099823f773f061c4, type: 2}
+  <MenuBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: c88e1f5747c82874481b476196a5f0c8, type: 2}
+  <GameplayBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: 6bdce5fe0f2b47b46b2caa95b938c807, type: 2}
   <BoosterCellPrefab>k__BackingField: {fileID: 5610539557055436510, guid: 023e4e393e1004043bb90525aa802801, type: 3}

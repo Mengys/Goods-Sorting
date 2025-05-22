@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace _Project.Code.Gameplay.GridFeature.Services
 {
-    using System.Linq;
-    using R3;
-    using UnityEngine;
-
     namespace _Project.Code.Gameplay.GridFeature.Services
     {
     }
