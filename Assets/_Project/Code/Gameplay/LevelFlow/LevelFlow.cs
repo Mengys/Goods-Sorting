@@ -5,6 +5,7 @@ using _Project.Code.Gameplay.Timer;
 using _Project.Code.Infrastructure.Bootstrappers;
 using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.PauseHandler;
+using _Project.Code.Services.ProgressProvider;
 using _Project.Code.UI.Buttons.Booster;
 using _Project.Code.UI.Buttons.Window;
 using R3;
@@ -24,8 +25,10 @@ namespace _Project.Code.Gameplay.LevelFlow
         private readonly IItemCollectHandler _itemCollectHandler;
         private readonly IComboHandler _comboHandler;
         private readonly IBoosterUser _boosterUser;
+        private readonly IProgressProvider _progressProvider;
+        
         private BoosterId? _initialBoosterId;
-
+            
         public LevelFlow(
             IGrid grid,
             ITimer timer,
@@ -33,8 +36,10 @@ namespace _Project.Code.Gameplay.LevelFlow
             GameOverHandler gameOverHandler,
             IItemCollectHandler itemCollectHandler,
             IComboHandler comboHandler,
-            IBoosterUser boosterUser)
+            IBoosterUser boosterUser,
+            IProgressProvider progressProvider)
         {
+            _progressProvider = progressProvider;
             _comboHandler = comboHandler;
             _boosterUser = boosterUser;
             _itemCollectHandler = itemCollectHandler;
@@ -50,6 +55,8 @@ namespace _Project.Code.Gameplay.LevelFlow
         private Observable<Unit> AllMatchesCollected => _grid.AllMatchesCollected;
         private Observable<Unit> FirstLayerFilled => _grid.FirstLayerFilled;
 
+        private int LevelId => _progressProvider.PlayerProgress.Level.Id;
+
         public void Initialize(BoosterId? initialBoosterId)
         {
             _initialBoosterId = initialBoosterId;
@@ -60,10 +67,26 @@ namespace _Project.Code.Gameplay.LevelFlow
                 _pauseHandler.Register(pausable);
 
             FirstMoveMade.Subscribe(_ => Start());
-            TimerElapsed.Subscribe(_ => _gameOverHandler.HandleTimeLose()).AddTo(_disposable);
-            FirstLayerFilled.Subscribe(_ => _gameOverHandler.HandleOutOfFreeCellsLose()).AddTo(_disposable);
+            
+            TimerElapsed.Subscribe(_ =>
+            {
+                _gameOverHandler.HandleTimeLose();
+                HandleLevelLoseAnalytics();
+            }).AddTo(_disposable);
+            
+            FirstLayerFilled.Subscribe(_ =>
+            {
+                _gameOverHandler.HandleOutOfFreeCellsLose();
+                HandleLevelLoseAnalytics();
+            }).AddTo(_disposable);
+            
+            AllMatchesCollected.Subscribe(_ =>
+            {
+                _gameOverHandler.HandleWin();
+                HandleLevelWinAnalytics();
+            }).AddTo(_disposable);
+            
             MatchCollected.Subscribe(_ => _itemCollectHandler.Handle(3)).AddTo(_disposable);
-            AllMatchesCollected.Subscribe(_ => { _gameOverHandler.HandleWin(); }).AddTo(_disposable);
 
             _comboHandler.Initialize(_itemCollectHandler);
 
@@ -77,9 +100,37 @@ namespace _Project.Code.Gameplay.LevelFlow
             }
         }
 
+        private void HandleLevelLoseAnalytics()
+        {
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(
+                    "level_lose",
+                    Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
+                    LevelId);
+        }
+        
+        private void HandleLevelWinAnalytics()
+        {
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(
+                    "level_win",
+                    Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
+                    LevelId);
+        }
+
+        private void HandleLevelStartAnalytics()
+        {
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(
+                    Firebase.Analytics.FirebaseAnalytics.EventLevelStart,
+                    Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
+                    LevelId);    
+        }
+        
         private void Start()
         {
             _timer.Start();
+            HandleLevelStartAnalytics();
         }
 
         public void Pause()
