@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
 using _Project.Code.Data.Static.Booster;
+using _Project.Code.UI.Elements.Booster;
 
 namespace _Project.Code.UI.Elements
 {
-    public class BoosterCells : IBoosterCells
+    public class BoosterCellsPresenter
+    {
+        
+    }
+
+    public class BoosterCells
     {
         public List<BoosterCell> Cells { get; } = new();
 
@@ -24,7 +30,8 @@ namespace _Project.Code.UI.Elements
         
         public BoosterCell? GetCellBy(BoosterId id)
         {
-            var index = Cells.ToList().FindIndex(cell => cell.Id == id);
+            var index = 0;
+            //Cells.FindIndex(cell => cell.Id == id);
 
             return index == -1 ? null : Cells[index];
         }
@@ -35,19 +42,8 @@ namespace _Project.Code.UI.Elements
                 throw new Exception("Index out of range");
 
             var cell = Cells[index];
-            cell.IsLocked = value;
+           // cell.IsBlocked = value;
             Cells[index] = cell;
         }
-    }
-
-    public interface IBoosterCells
-    {
-        ObservableList<BoosterCell> Cells { get; }
-        
-        void Set(List<BoosterCell> cells);
-        void LockCell(int index);
-        void UnlockCell(int index);
-        
-        BoosterCell? GetCellBy(BoosterId id);
     }
 }

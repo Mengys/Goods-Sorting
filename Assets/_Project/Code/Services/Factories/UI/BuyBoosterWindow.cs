@@ -3,9 +3,10 @@ using _Project.Code.UI.Windows.Base;
 
 namespace _Project.Code.Services.Factories.UI
 {
-    public interface IWindowFactory
+    public class BuyBoosterWindow : Window
     {
-        Window Create(WindowId id);
-        Window CreateBuyBooster(BoosterId id);
+        public void Initialize(BoosterId id)
+        {
+        }
     }
 }

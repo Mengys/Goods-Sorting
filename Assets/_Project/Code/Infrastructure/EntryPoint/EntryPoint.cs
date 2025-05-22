@@ -22,6 +22,7 @@ using _Project.Code.Services.SceneLoader;
 using _Project.Code.Services.SoundPlayer;
 using _Project.Code.Services.StateMachine;
 using _Project.Code.Services.StateMachine.Game;
+using _Project.Code.UI.Elements;
 using _Project.Code.Utils;
 using R3;
 using UnityEngine;
@@ -39,6 +40,8 @@ namespace _Project.Code.Infrastructure.EntryPoint
 
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<BoosterInventoryFactory>().AsSingle();
+            
             BindCoroutinePerformer();
             BindAssetLoader();
             BindSceneLoader();

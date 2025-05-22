@@ -10,6 +10,8 @@ using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
 using _Project.Code.Gameplay.Boosters.Configs;
 using _Project.Code.Gameplay.Items;
+using _Project.Code.UI.Elements;
+using _Project.Code.UI.Elements.Booster;
 using _Project.Code.UI.Windows.Base;
 
 namespace _Project.Code.Services.ConfigProvider
@@ -32,5 +34,9 @@ namespace _Project.Code.Services.ConfigProvider
         void ValidateIds(GridConfig config);
         int WinAdCoinsMultiplier { get; }
         ScoreIncomeConfig? ScoreIncomeConfig { get; }
+        
+        BoosterInventoryConfig? MenuBoosterInventoryConfig { get; }
+        BoosterInventoryConfig? GameplayBoosterInventoryConfig { get; }
+        BoosterCellView BoosterCellPrefab { get; }
     }
 }

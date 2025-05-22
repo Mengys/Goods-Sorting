@@ -16,6 +16,8 @@ using _Project.Code.Gameplay.Boosters.Configs;
 using _Project.Code.Gameplay.Items;
 using _Project.Code.Gameplay.Shelves;
 using _Project.Code.Services.AssetsLoading;
+using _Project.Code.UI.Elements;
+using _Project.Code.UI.Elements.Booster;
 using _Project.Code.UI.Windows;
 using _Project.Code.UI.Windows.Base;
 using UnityEngine;
@@ -43,6 +45,10 @@ namespace _Project.Code.Services.ConfigProvider
 
         public ConfigProvider(GameConfig config)
         {
+            BoosterCellPrefab = config.BoosterCellPrefab;
+            MenuBoosterInventoryConfig = config.MenuBoosterInventoryConfig.Config;
+            GameplayBoosterInventoryConfig = config.GameplayBoosterInventoryConfig.Config;
+            
             _gameStateConfigs = config
                 .GameStateListConfig
                 .States
@@ -154,5 +160,8 @@ namespace _Project.Code.Services.ConfigProvider
 
         public int WinAdCoinsMultiplier => 5;
         public ScoreIncomeConfig? ScoreIncomeConfig { get; }
+        public BoosterInventoryConfig? MenuBoosterInventoryConfig { get; }
+        public BoosterInventoryConfig? GameplayBoosterInventoryConfig { get; }
+        public BoosterCellView BoosterCellPrefab { get; }
     }
 }

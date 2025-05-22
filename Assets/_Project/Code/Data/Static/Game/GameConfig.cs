@@ -8,6 +8,8 @@ using _Project.Code.Data.Static.Sound;
 using _Project.Code.Data.Static.Windows;
 using _Project.Code.Gameplay.Boosters.Configs;
 using _Project.Code.Services.ConfigProvider;
+using _Project.Code.UI.Elements;
+using _Project.Code.UI.Elements.Booster;
 using UnityEngine;
 
 namespace _Project.Code.Data.Static.Game
@@ -30,5 +32,10 @@ namespace _Project.Code.Data.Static.Game
         [field: SerializeField] public ItemConfigList ItemConfigList { get; private set; }
         [field: SerializeField] public BoosterConfigList BoosterConfigList { get; private set; }
         [field: SerializeField] public ScoreIncomeConfigAsset ScoreIncomeConfig { get; private set; }
+        
+        [field: Header("Inventory")]
+        [field: SerializeField] public BoosterInventoryConfigAsset MenuBoosterInventoryConfig { get; private set; }
+        [field: SerializeField] public BoosterInventoryConfigAsset GameplayBoosterInventoryConfig { get; private set; }
+        [field: SerializeField] public BoosterCellView BoosterCellPrefab { get; private set; }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Code.Data.Static.Booster;
+using _Project.Code.UI.Elements.Booster;
 using R3;
 
 namespace _Project.Code.UI.Elements

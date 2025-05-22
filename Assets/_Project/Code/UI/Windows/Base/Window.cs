@@ -1,3 +1,4 @@
+using _Project.Code.Data.Static.Booster;
 using UnityEngine;
 
 namespace _Project.Code.UI.Windows.Base
