@@ -1,4 +1,5 @@
 using _Project.Code.Data.Static.Booster;
+using _Project.Code.Data.Static.BoosterInventory;
 using _Project.Code.Data.Static.GameState;
 using _Project.Code.Data.Static.Item;
 using _Project.Code.Data.Static.Level;
@@ -10,7 +11,6 @@ using _Project.Code.Data.Static.Windows;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.UI.Elements;
 using _Project.Code.UI.Elements.Booster;
-using _Project.Code.UI.Elements.Booster.BoosterInventoryConfig;
 using _Project.Code.UI.Elements.Booster.Cell;
 using UnityEngine;
 

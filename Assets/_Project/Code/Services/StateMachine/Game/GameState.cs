@@ -1,6 +1,5 @@
 using System.Collections;
 using _Project.Code.Services.CoroutinePerformer;
-using _Project.Code.Services.Curtain;
 using _Project.Code.Services.SceneLoader;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ namespace _Project.Code.Services.StateMachine.Game
     public class GameState : IState
     {
         private readonly ISceneLoader _sceneLoader;
-        private readonly LoadingCurtain _loadingCurtain;
         private readonly ICoroutinePerformer _coroutinePerformer;
 
         private readonly string _sceneName;
@@ -17,13 +15,10 @@ namespace _Project.Code.Services.StateMachine.Game
         public GameState(
             ICoroutinePerformer coroutinePerformer, 
             ISceneLoader sceneLoader,
-            LoadingCurtain loadingCurtain,
             string sceneName)
         {
-            
             _coroutinePerformer = coroutinePerformer;
             _sceneLoader = sceneLoader;
-            _loadingCurtain = loadingCurtain;
             _sceneName = sceneName;
         }
 
@@ -37,8 +32,6 @@ namespace _Project.Code.Services.StateMachine.Game
 
         public void Exit()
         {
-            //_coroutinePerformer.Start(_sceneLoader.UnloadAsync(_sceneName));
-            //_coroutinePerformer.Start(_sceneLoader.LoadAsync("Empty"));
         }
 
         private IEnumerator LoadScene()

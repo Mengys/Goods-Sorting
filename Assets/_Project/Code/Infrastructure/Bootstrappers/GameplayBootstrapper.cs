@@ -1,9 +1,12 @@
 using _Project.Code.Gameplay;
+using _Project.Code.Gameplay.Combo;
 using _Project.Code.Gameplay.Counter;
 using _Project.Code.Gameplay.GridFeature;
+using _Project.Code.Gameplay.IncomeHandling.ScoreIncome;
+using _Project.Code.Gameplay.IncomeHandling.WinIncome;
 using _Project.Code.Gameplay.LevelFlow;
 using _Project.Code.Gameplay.Timer;
-using _Project.Code.Gameplay.WinIncome;
+using _Project.Code.Services.AdShower;
 using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.Curtain;
 using _Project.Code.Services.Factories.Level;
@@ -51,10 +54,8 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             Container.BindInterfacesAndSelfTo<WinIncomeHandler>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComboHandler>().AsSingle();
-           //     .OnInstantiated<ComboHandler>((ctx, instance) => 
-              //      instance.Initialize(ctx.Container.Resolve<ItemCollectHandler>()));
             
-            Container.BindInterfacesAndSelfTo<ItemCollectHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollectedItemsHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreIncomeHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<Counter<Score>>().AsSingle();
             

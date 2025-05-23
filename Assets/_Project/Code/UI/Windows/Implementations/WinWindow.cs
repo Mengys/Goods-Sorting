@@ -1,7 +1,8 @@
 using _Project.Code.Data.Services;
 using _Project.Code.Data.Static.GameState;
 using _Project.Code.Gameplay.Counter;
-using _Project.Code.Gameplay.WinIncome;
+using _Project.Code.Gameplay.IncomeHandling.WinIncome;
+using _Project.Code.Services.AdShower;
 using _Project.Code.Services.Factories.UI;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;

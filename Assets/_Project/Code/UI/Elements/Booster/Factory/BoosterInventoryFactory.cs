@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Code.Data.Static.Booster;
+using _Project.Code.Data.Static.BoosterInventory;
 using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.Factories.UI;
@@ -69,7 +70,7 @@ namespace _Project.Code.UI.Elements.Booster.Factory
         }
         
         private List<BoosterCell> CreateCells(
-            BoosterInventoryConfig.BoosterInventoryConfig? config,
+            BoosterInventoryConfig? config,
             BoosterCellView prefab,
             Transform parent)
         {
@@ -98,7 +99,7 @@ namespace _Project.Code.UI.Elements.Booster.Factory
             return models;
         }
 
-        private bool IsBlocked(BoosterInventoryConfig.BoosterInventoryConfig config, int cellIndex)
+        private bool IsBlocked(BoosterInventoryConfig config, int cellIndex)
         {
             var passedLevelIndex = _progress.PlayerProgress.Level.Id - 1;
 

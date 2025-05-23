@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using _Project.Code.Data.Dynamic;
 using _Project.Code.Data.Static.Booster;
 using _Project.Code.Data.Static.GameState;
-using _Project.Code.Services.ConfigProvider;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.SceneArgs;
 using _Project.Code.Services.StateMachine;
-using _Project.Code.UI.Buttons.Booster;
-using _Project.Code.UI.Elements;
 using _Project.Code.UI.Elements.Booster.Installers;
 using _Project.Code.UI.Windows.Base;
 using R3;
@@ -15,7 +11,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace _Project.Code.UI.Windows.Implementations
 {
@@ -31,7 +26,6 @@ namespace _Project.Code.UI.Windows.Implementations
         [SerializeField] private TMP_Text _level;
         [SerializeField] private TMP_Text _difficulty;
         [SerializeField] private Button _play;
-        [SerializeField] private List<BoosterButton> _boosterButtons;
 
         private LevelInfo _levelInfo;
         private IStateMachine<GameStateId> _stateMachine;

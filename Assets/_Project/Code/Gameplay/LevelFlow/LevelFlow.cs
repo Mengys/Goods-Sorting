@@ -6,7 +6,6 @@ using _Project.Code.Infrastructure.Bootstrappers;
 using _Project.Code.Services.BoosterUser;
 using _Project.Code.Services.PauseHandler;
 using _Project.Code.Services.ProgressProvider;
-using _Project.Code.UI.Buttons.Booster;
 using _Project.Code.UI.Buttons.Window;
 using R3;
 using UnityEngine;

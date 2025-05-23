@@ -12,7 +12,7 @@ namespace _Project.Code.Services.StateMachine.Game
         
         private readonly Dictionary<GameStateId, IState> _states;
         private readonly SceneArgs.SceneArgs _args;
-        private LoadingCurtain _loadingCurtain;
+        private readonly LoadingCurtain _loadingCurtain;
 
         public GameStateMachine(IFactory<GameStateId, IState> factory, LoadingCurtain loadingCurtain,  SceneArgs.SceneArgs args)
         {

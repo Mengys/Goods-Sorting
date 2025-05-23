@@ -34,7 +34,7 @@ namespace _Project.Code.Gameplay.Timer
 
         public void Dispose()
         {
-            if (_coroutine != null)
+            if (_coroutine != null && _coroutinePerformer != null)
                 _coroutinePerformer.Stop(_coroutine);
         }
 

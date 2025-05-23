@@ -28,7 +28,7 @@ namespace _Project.Code.Services.Factories.GameStates
         {
             var config = _configProvider.ForState(id).Value;
             
-            return new GameState(_coroutinePerformer, _sceneLoader, _loadingCurtain, config.SceneName);
+            return new GameState(_coroutinePerformer, _sceneLoader, config.SceneName);
         }
     }
 }

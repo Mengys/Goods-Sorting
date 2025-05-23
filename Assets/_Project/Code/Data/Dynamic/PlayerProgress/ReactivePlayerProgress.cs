@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using _Project.Code.Data.Dynamic.PlayerProgress.SerializableKeyValue;
 using _Project.Code.UI.Elements.Booster.Inventory;
 using _Project.Code.UI.Windows.Implementations;
 using R3;
@@ -71,20 +72,14 @@ namespace _Project.Code.Data.Dynamic.PlayerProgress
             set => CoinsReactive.Value = value;
         }
 
-        public static PlayerProgress Default
-        {
-            get
+        public static PlayerProgress Default =>
+            new()
             {
-                Debug.Log("Default");
-                return new()
-                {
-                    Coins = 0,
-                    Level = LevelInfo.Default,
-                    MenuBoosterInventory = new BoosterInventoryData().Boosters.ToList().ToSerializable(),
-                    GameplayBoosterInventory = new BoosterInventoryData().Boosters.ToList().ToSerializable()
-                };
-            }
-        }
+                Coins = 0,
+                Level = LevelInfo.Default,
+                MenuBoosterInventory = new BoosterInventoryData().Boosters.ToList().ToSerializable(),
+                GameplayBoosterInventory = new BoosterInventoryData().Boosters.ToList().ToSerializable()
+            };
 
         public void Dispose() => _disposables.Dispose();
     }
