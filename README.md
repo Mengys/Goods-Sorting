@@ -9,3 +9,4 @@ Dependecies:
 - R3
 - Google AdMob
 - Plugin Your Games 2.0
+- Firebase

@@ -1,0 +1,3 @@
+Build path: C:/Personal/Projects/Goods-Sorting/Builds/Android/build22051.apk
+Build number: 30
+PluginYG version: 2.0032

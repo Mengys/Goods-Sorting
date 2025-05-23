@@ -1,7 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Zenject-ReflectionBaking.csproj.meta
 guid: 91b0b4c77fdd1d24aa1af646e9d29960
-timeCreated: 1536994288
-licenseType: Store
+========
+guid: 54dc796b0fcbd31439e78102ba954774
+folderAsset: yes
+>>>>>>>> dev:Assets/_Project/Resources/Configs/FX.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

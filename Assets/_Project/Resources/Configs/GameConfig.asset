@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236c236a74d748818d28c4b831ce4470, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  <GameStateListConfig>k__BackingField: {fileID: 11400000, guid: a2f6c10a357f4f54a88ca3db85603b3d, type: 2}
+  <WindowConfigList>k__BackingField: {fileID: 11400000, guid: 67700e55b4d92b646a73363949f9eac1, type: 2}
+  <ParticlesConfig>k__BackingField: {fileID: 11400000, guid: 686c260343180cb45a7b28b23f405fbc, type: 2}
+  <SoundListConfig>k__BackingField: {fileID: 11400000, guid: 609b307b473864342877b4db443400be, type: 2}
+  <LevelConfigList>k__BackingField: {fileID: 11400000, guid: 22be4c6200d692248917ce9025e14137, type: 2}
+  <ShelfPrefabConfigList>k__BackingField: {fileID: 11400000, guid: f03efe5fe37872341bd2f40d6bf82edf, type: 2}
+  <ItemConfigList>k__BackingField: {fileID: 11400000, guid: 8976e3a3cc450224d9c238d8da4419a3, type: 2}
+  <BoosterConfigList>k__BackingField: {fileID: 11400000, guid: 35f32403fecd67e4fa69be592a8ba65f, type: 2}
+  <ScoreIncomeConfig>k__BackingField: {fileID: 11400000, guid: 12dc7533a4207104c99c7a401b6739a1, type: 2}
+  <MenuBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: c88e1f5747c82874481b476196a5f0c8, type: 2}
+  <GameplayBoosterInventoryConfig>k__BackingField: {fileID: 11400000, guid: 6bdce5fe0f2b47b46b2caa95b938c807, type: 2}
+  <BoosterCellPrefab>k__BackingField: {fileID: 5610539557055436510, guid: 023e4e393e1004043bb90525aa802801, type: 3}
