@@ -125,17 +125,30 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 711507144154206320}
-        m_TargetAssemblyTypeName: _Project.Code.UI.Buttons.ImageColorToggleHandler,
+        m_TargetAssemblyTypeName: _Project.Code.UI.Elements.ImageColorToggleHandler,
           Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 0
+        m_MethodName: ToggleAudio
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 711507144154206320}
+        m_TargetAssemblyTypeName: _Project.Code.UI.Elements.ImageColorToggleHandler,
+          Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   m_IsOn: 1
 --- !u!114 &711507144154206320
@@ -152,6 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorOn: {r: 1, g: 1, b: 1, a: 1}
   _colorOff: {r: 0.72895813, g: 0.72895813, b: 0.72895813, a: 1}
+  _audioOnSprite: {fileID: 755863864, guid: 7808a137089852c408ac18ddf08407c7, type: 3}
+  _audioOffSprite: {fileID: 755863864, guid: 7808a137089852c408ac18ddf08407c7, type: 3}
+  _vibrationOnSprite: {fileID: -1317768034, guid: 7808a137089852c408ac18ddf08407c7, type: 3}
+  _vibrationOffSprite: {fileID: -1317768034, guid: 7808a137089852c408ac18ddf08407c7, type: 3}
 --- !u!1 &2424868339904296675
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +514,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7347728146648383645}
+        m_TargetAssemblyTypeName: _Project.Code.UI.Elements.ImageColorToggleHandler,
+          Assembly-CSharp
+        m_MethodName: ToggleVibration
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!114 &7347728146648383645
 MonoBehaviour:
@@ -512,6 +542,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorOn: {r: 1, g: 1, b: 1, a: 1}
   _colorOff: {r: 0.72895813, g: 0.72895813, b: 0.72895813, a: 1}
+  _audioOnSprite: {fileID: 0}
+  _audioOffSprite: {fileID: 0}
+  _vibrationOnSprite: {fileID: 0}
+  _vibrationOffSprite: {fileID: 0}
 --- !u!1 &8215027037968213307
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +698,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorOn: {r: 1, g: 1, b: 1, a: 1}
   _colorOff: {r: 0.72895813, g: 0.72895813, b: 0.72895813, a: 1}
+  _audioOnSprite: {fileID: 0}
+  _audioOffSprite: {fileID: 0}
+  _vibrationOnSprite: {fileID: 0}
+  _vibrationOffSprite: {fileID: 0}
 --- !u!1001 &3940180840261448944
 PrefabInstance:
   m_ObjectHideFlags: 0

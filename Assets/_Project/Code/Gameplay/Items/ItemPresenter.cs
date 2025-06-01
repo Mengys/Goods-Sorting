@@ -1,5 +1,6 @@
 using _Project.Code.Gameplay.DragAndDrop;
 using UnityEngine;
+using DG.Tweening;
 
 namespace _Project.Code.Gameplay.Items
 {
@@ -21,7 +22,15 @@ namespace _Project.Code.Gameplay.Items
         public void SetActive(bool value) => 
             _view.SetActive(value);
         
-        public void Destroy() => 
-            Object.Destroy(_view.gameObject);
+        public void Destroy()
+        {
+            _view.transform.DOScale(Vector3.zero, 0.3f)
+                .SetEase(Ease.InBack)
+                .OnComplete(() =>
+                {
+                    Object.Destroy(_view.gameObject);
+                    Debug.Log(111);
+                });
+        }
     }
 }

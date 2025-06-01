@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 namespace _Project.Code.Gameplay.Shelves
 {
@@ -33,8 +34,16 @@ namespace _Project.Code.Gameplay.Shelves
             if (!IsValidColumnIndex(column, out var exception))
                 throw exception;
 
-            item.transform.SetParent(GetLayer(layer), false);
-            item.transform.position = GetCellPosition(column, layer);
+            var targetLayer = GetLayer(layer);
+            item.SetParent(targetLayer, false);
+
+            var targetPos = GetCellPosition(column, layer);
+            item.position = targetPos + Vector3.up * 100f;
+
+            item.localScale = Vector3.one * 1.2f;
+
+            item.DOMove(targetPos, 0.25f).SetEase(Ease.OutQuad);
+            item.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
         }
 
         public Vector3 GetCellPosition(int column, int layer)
