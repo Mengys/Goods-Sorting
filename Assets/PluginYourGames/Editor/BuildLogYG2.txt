@@ -1,3 +1,3 @@
-Build path: C:/Personal/Projects/Goods-Sorting/Builds/Android/build22051.apk
-Build number: 30
+Build path: C:/Users/denya/Downloads/goodsortning.apk
+Build number: 32
 PluginYG version: 2.0032

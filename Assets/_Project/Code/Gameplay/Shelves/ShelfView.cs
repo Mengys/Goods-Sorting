@@ -38,13 +38,25 @@ namespace _Project.Code.Gameplay.Shelves
             item.SetParent(targetLayer, false);
 
             var targetPos = GetCellPosition(column, layer);
-            item.position = targetPos + Vector3.up * 100f;
+            item.position = targetPos;
 
-            item.localScale = Vector3.one * 1.2f;
+            item.localScale = new Vector3(1f, 1.2f, 1f); 
 
-            item.DOMove(targetPos, 0.25f).SetEase(Ease.OutQuad);
-            item.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
+            
+            item.DOMove(targetPos, 0.25f)
+                .SetEase(Ease.OutQuad);
+
+            var audioSource = GameObject.Find("placeAudio")?.GetComponent<AudioSource>();
+            audioSource?.Play();
+            item.DOScale(new Vector3(1.3f, 0.7f, 1f), 0.12f)
+                .SetEase(Ease.InQuad)
+                .OnComplete(() =>
+                {
+                    item.DOScale(Vector3.one, 0.15f)
+                        .SetEase(Ease.OutBack);
+                });
         }
+
 
         public Vector3 GetCellPosition(int column, int layer)
         {

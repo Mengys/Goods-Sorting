@@ -27,7 +27,7 @@ namespace _Project.Code.Utils
                         }
                         catch (Exception ex)
                         {
-                            Debug.LogError($"[DataPersistence] Failed to save on quit: {ex}");
+                                Debug.LogError($"[DataPersistence] Failed to save on quit: {ex}");
                         }
                     },
                     awaitOperation: AwaitOperation.Sequential,

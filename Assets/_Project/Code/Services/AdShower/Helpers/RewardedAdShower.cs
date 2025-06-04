@@ -10,6 +10,8 @@ namespace _Project.Code.Services.AdShower.Helpers
         private readonly string _adUnitId;
         private Action _onFinished;
         private Action _onFailed;
+        private bool _isLoading;
+        private bool _shouldShowAfterLoad;
 
         public RewardedAdShower(string adUnitId)
         {
@@ -19,26 +21,52 @@ namespace _Project.Code.Services.AdShower.Helpers
 
         private void LoadAd()
         {
+            if (_isLoading) return;
+
+            _isLoading = true;
+            Debug.Log("Loading rewarded ad...");
             var adRequest = new AdRequest();
             RewardedAd.Load(_adUnitId, adRequest, OnAdLoaded);
         }
 
         private void OnAdLoaded(RewardedAd ad, LoadAdError error)
         {
+            _isLoading = false;
+
             if (error != null || ad == null)
             {
                 Debug.LogError($"Failed to load rewarded ad: {error}");
+                _onFailed?.Invoke(); // Если был Show — отреагировать
                 return;
             }
 
+            if (_rewardedAd != null)
+                UnregisterEventHandlers();
+
             _rewardedAd = ad;
             RegisterEventHandlers();
+
+            Debug.Log("Rewarded ad loaded successfully.");
+
+            if (_shouldShowAfterLoad)
+            {
+                _shouldShowAfterLoad = false;
+                Show(_onFinished, _onFailed); // Попробовать снова показать
+            }
         }
 
         private void RegisterEventHandlers()
         {
             _rewardedAd.OnAdFullScreenContentClosed += HandleAdClosed;
             _rewardedAd.OnAdFullScreenContentFailed += HandleAdFailedToShow;
+        }
+
+        private void UnregisterEventHandlers()
+        {
+            if (_rewardedAd == null) return;
+
+            _rewardedAd.OnAdFullScreenContentClosed -= HandleAdClosed;
+            _rewardedAd.OnAdFullScreenContentFailed -= HandleAdFailedToShow;
         }
 
         public void Show(Action onFinished = null, Action onFailed = null)
@@ -48,43 +76,43 @@ namespace _Project.Code.Services.AdShower.Helpers
 
             if (_rewardedAd != null && _rewardedAd.CanShowAd())
             {
+                Debug.Log("Showing rewarded ad.");
                 _rewardedAd.Show(HandleUserEarnedReward);
             }
             else
             {
-                Debug.LogWarning("Rewarded ad is not ready to be shown.");
-                _onFailed?.Invoke();
-                LoadAd(); // Attempt to load a new ad
+                Debug.LogWarning("Rewarded ad not ready. Will show after load.");
+                _shouldShowAfterLoad = true;
+                LoadAd();
             }
         }
 
         private void HandleUserEarnedReward(Reward reward)
         {
             Debug.Log($"User earned reward: {reward.Amount} {reward.Type}");
+            Time.timeScale = 1;
             _onFinished?.Invoke();
         }
 
         private void HandleAdClosed()
         {
             Debug.Log("Rewarded ad closed.");
-            LoadAd(); // Load a new ad for the next opportunity
+            LoadAd(); // Загружаем следующую рекламу
         }
 
         private void HandleAdFailedToShow(AdError error)
         {
             Debug.LogError($"Rewarded ad failed to show: {error}");
             _onFailed?.Invoke();
-            LoadAd(); // Attempt to load a new ad
+            LoadAd(); // Перезагружаем при ошибке
         }
 
         public void Dispose()
         {
-            if (_rewardedAd != null)
-            {
-                _rewardedAd.OnAdFullScreenContentClosed -= HandleAdClosed;
-                _rewardedAd.OnAdFullScreenContentFailed -= HandleAdFailedToShow;
-                _rewardedAd = null;
-            }
+            _onFinished = null;
+            _onFailed = null;
+            UnregisterEventHandlers();
+            _rewardedAd = null;
         }
     }
 }

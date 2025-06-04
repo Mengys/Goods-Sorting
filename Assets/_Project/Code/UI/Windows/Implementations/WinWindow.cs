@@ -32,6 +32,7 @@ namespace _Project.Code.UI.Windows.Implementations
         private readonly CompositeDisposable _disposer = new();
         private IProgressProvider _progressProvider;
         private IAdShower _adShower;
+        
 
         [Inject]
         private void Construct(
@@ -75,6 +76,7 @@ namespace _Project.Code.UI.Windows.Implementations
                     });
                 })
                 .AddTo(_disposer);
+            _disposer.Add(_adShower);
         }
 
         public override void OnDestroy() =>

@@ -1,12 +1,13 @@
 using System;
 using _Project.Code.Services.AdShower.Helpers;
+using UnityEngine;
 
 namespace _Project.Code.Services.AdShower
 {
     public class AdShower : IAdShower, IDisposable
     {
-        private readonly RewardedAdShower _rewardedShower;
-        private readonly BannerAdShower _bannerShower;
+        private RewardedAdShower _rewardedShower;
+        private BannerAdShower _bannerShower;
 
         private readonly string _rewardedAdUnitId;
         private readonly string _bannerAdUnitId;

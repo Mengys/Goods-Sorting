@@ -24,6 +24,7 @@ namespace _Project.Code.Gameplay.Items
         
         public void Destroy()
         {
+            Object.Destroy(_view.gameObject);
             _view.transform.DOScale(Vector3.zero, 0.3f)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
