@@ -101,6 +101,7 @@ namespace _Project.Code.Gameplay.GridFeature.Services
 
         private void OnEnd(PointerEventData data, ItemPresenter item)
         {
+            Debug.Log("On End");
             if (!_isDraggingItem) return;
 
             _isDraggingItem = false;
@@ -109,7 +110,14 @@ namespace _Project.Code.Gameplay.GridFeature.Services
             CellGridPosition? closestCellPosition = _itemInventory.GetClosestCellPosition(item.Transform.position);
 
             if (closestCellPosition != null && CanPlace(item, closestCellPosition.Value))
-                targetCellPosition = closestCellPosition.Value;
+            {
+                Debug.Log("cell not null");
+                if (CanPlace(item, closestCellPosition.Value))
+                {
+                    targetCellPosition = closestCellPosition.Value;
+                    Debug.Log("Can place");
+                }
+            }
 
             if (targetCellPosition.Equals(_startCellPosition))
                 _itemInventory.Set(targetCellPosition, item);

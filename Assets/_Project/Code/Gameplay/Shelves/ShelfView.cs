@@ -33,19 +33,22 @@ namespace _Project.Code.Gameplay.Shelves
         {
             if (!IsValidColumnIndex(column, out var exception))
                 throw exception;
-
+            Debug.Log(transform.parent);
+            
             var targetLayer = GetLayer(layer);
+            var parent1 = transform.parent;
             item.SetParent(targetLayer, false);
-
-            var targetPos = GetCellPosition(column, layer);
-            item.position = targetPos;
-
+            var parent2 = transform.parent;
+            var targetPos = GetCellRectPosition(column, layer);
+            //var targetPos = GetCellPosition(column, layer);
+            item.GetComponent<RectTransform>().anchoredPosition = targetPos;
+            Debug.Log(parent1 == parent2);
             item.localScale = new Vector3(1f, 1.2f, 1f); 
 
             
-            item.DOMove(targetPos, 0.25f)
+            item.GetComponent<RectTransform>().DOAnchorPos(targetPos, 0.25f)
                 .SetEase(Ease.OutQuad);
-
+            Debug.Log(targetPos);
             var audioSource = GameObject.Find("placeAudio")?.GetComponent<AudioSource>();
             audioSource?.Play();
             item.DOScale(new Vector3(1.3f, 0.7f, 1f), 0.12f)
@@ -66,6 +69,14 @@ namespace _Project.Code.Gameplay.Shelves
             return FirstLayerCells[column].position;
         }
 
+        public Vector3 GetCellRectPosition(int column, int layer)
+        {
+            if (!IsValidColumnIndex(column, out var exception))
+                throw exception;
+
+            return FirstLayerCells[column].GetComponent<RectTransform>().anchoredPosition;
+        }
+        
         private bool IsValidColumnIndex(int index, out Exception exception)
         {
             bool isValid = index >= 0 || index < ColumnsCount;

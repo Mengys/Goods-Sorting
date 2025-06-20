@@ -12,6 +12,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using DG.Tweening;
 
 namespace _Project.Code.UI.Windows.Implementations
 {
@@ -61,8 +62,12 @@ namespace _Project.Code.UI.Windows.Implementations
             _continue.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    _winIncomeHandler.HandleDefault();
-                    _stateMachine.Enter(GameStateId.Menu);
+                    // Анимация: сначала масштаб 1 -> 0.8 за 0.3 сек, потом 0.8 -> 3 за 0.4 сек
+                    gameObject.transform.DOScale(1.6f, 0.3f).OnComplete(() =>
+                    {
+                            _winIncomeHandler.HandleDefault();
+                            _stateMachine.Enter(GameStateId.Menu);
+                    });
                 })
                 .AddTo(_disposer);
 
@@ -71,11 +76,16 @@ namespace _Project.Code.UI.Windows.Implementations
                 {
                     _adShower.ShowRewarded(() =>
                     {
-                        _winIncomeHandler.HandleRewarded();
-                        _stateMachine.Enter(GameStateId.Menu);
+                        gameObject.transform.DOScale(1.6f, 0.3f).OnComplete(() =>
+                        {
+                            _winIncomeHandler.HandleRewarded();
+                            _stateMachine.Enter(GameStateId.Menu);
+                        });
                     });
                 })
                 .AddTo(_disposer);
+
+
             _disposer.Add(_adShower);
         }
 
