@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b314dae87d48769cefba6bba627d7c, type: 3}
+  m_Name: Level 2
+  m_EditorClassIdentifier: 
+  Difficulty: 0
+  Grid:
+    Shelves:
+    - Id: Default
+      Position: {x: -165.4867, y: 73.23682}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - Cola
+        - 
+        - Macarons
+        - Icycle
+        - Cola
+        - Icycle
+    - Id: Default
+      Position: {x: 168.0466, y: 73.21867}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - Cola
+        - 
+        - Icecream
+        - Popcorn
+        - Milk
+        - Popcorn
+    - Id: Default
+      Position: {x: -165.01358, y: -115.92517}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Icecream
+        - Icecream
+        - Popcorn
+        - 
+        - 
+    - Id: Default
+      Position: {x: 170.59245, y: -115.17123}
+      ItemGridAssetConfig:
+        Rows: 2
+        Columns: 3
+        Cells:
+        - 
+        - Macarons
+        - Macarons
+        - Icycle
+        - 
+        - 

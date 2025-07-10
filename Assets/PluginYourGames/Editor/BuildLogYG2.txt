@@ -1,0 +1,3 @@
+Build path: D:/Program Files/Unity/Work/Goods-Sorting-dev/Build/good sorting8.apk
+Build number: 44
+PluginYG version: 2.0032
