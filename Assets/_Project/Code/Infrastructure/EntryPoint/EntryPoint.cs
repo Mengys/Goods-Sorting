@@ -25,6 +25,7 @@ using _Project.Code.Services.StateMachine;
 using _Project.Code.Services.StateMachine.Game;
 using _Project.Code.UI.Elements;
 using _Project.Code.UI.Elements.Booster.Factory;
+using _Project.Code.UI.Windows.Implementations;
 using _Project.Code.Utils;
 using R3;
 using UnityEngine;
@@ -97,6 +98,8 @@ namespace _Project.Code.Infrastructure.EntryPoint
         private void BindSceneArgs()
         {
             Container.BindInterfacesAndSelfTo<SceneArgs>().AsSingle();
+            //var sceneArgs = Container.Resolve<SceneArgs>();
+            Container.BindInterfacesAndSelfTo<LevelInitialBooster>().AsSingle();
         }
 
         private void BindSceneLoader()

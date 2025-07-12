@@ -23,12 +23,13 @@ namespace _Project.Code.Infrastructure.Bootstrappers
     public class GameplayBootstrapper : MonoInstaller
     {
         [Inject] private ISceneInputArgs _inputArgs;
+        [Inject] private LevelInitialBooster _levelInitialBooster;
         private BannerView _bannerView;
 
         private void Awake()
         {
-            var initialBoosterId = _inputArgs.Input.Resolve<LevelInitialBooster>().Value;
-            Container.Resolve<ILevelFlow>().Initialize(initialBoosterId);
+            //var initialBoosterId = _inputArgs.Input.Resolve<LevelInitialBooster>().Value;
+            Container.Resolve<ILevelFlow>().Initialize(_levelInitialBooster.Value);
             Container.Resolve<IAdShower>().ShowBanner();
         }
         

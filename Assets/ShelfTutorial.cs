@@ -24,7 +24,7 @@ public class ShelfTutorial : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        _hand.SetActive(true);
         _hand.transform.position = _start.transform.position;
         transform.SetAsLastSibling();
         Sequence seq = DOTween.Sequence();

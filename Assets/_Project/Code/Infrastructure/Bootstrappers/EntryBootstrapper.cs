@@ -27,7 +27,7 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             await InitializeMobileAdsAsync();
             await InitializeProgressAsync();
 
-            _stateMachine.Enter(GameStateId.Menu);
+            _stateMachine.Enter(GameStateId.Gameplay);
         }
 
         private async Task InitializeProgressAsync()
