@@ -1,0 +1,287 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b314dae87d48769cefba6bba627d7c, type: 3}
+  m_Name: NewLevel6
+  m_EditorClassIdentifier: 
+  Difficulty: 0
+  Grid:
+    Shelves:
+    - Id: Default
+      Position: {x: -280, y: -250}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 1
+        - 1
+        - 2
+        - 19
+        - 20
+        - 19
+        - 23
+        - 23
+        - 24
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 0, y: -250}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 0
+        - 3
+        - 4
+        - 10
+        - 
+        - 21
+        - 18
+        - 18
+        - 32
+        - 
+        - 
+        - 39
+    - Id: Default
+      Position: {x: 280, y: -250}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 5
+        - 6
+        - 
+        - 22
+        - 15
+        - 15
+        - 33
+        - 33
+        - 34
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: -280, y: -120}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 2
+        - 7
+        - 2
+        - 23
+        - 16
+        - 16
+        - 35
+        - 
+        - 1
+        - 
+        - 40
+        - 40
+    - Id: Default
+      Position: {x: 0, y: -120}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 
+        - 8
+        - 9
+        - 
+        - 24
+        - 24
+        - 35
+        - 10
+        - 35
+        - 
+        - 41
+        - 41
+    - Id: Default
+      Position: {x: 280, y: -120}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 10
+        - 5
+        - 5
+        - 25
+        - 17
+        - 8
+        - 14
+        - 14
+        - 
+        - 39
+        - 
+        - 
+    - Id: Default
+      Position: {x: -280, y: 10}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 11
+        - 11
+        - 12
+        - 19
+        - 26
+        - 
+        - 31
+        - 34
+        - 34
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 0, y: 10}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 3
+        - 3
+        - 
+        - 
+        - 27
+        - 28
+        - 33
+        - 
+        - 36
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 280, y: 10}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 13
+        - 13
+        - 14
+        - 29
+        - 30
+        - 29
+        - 32
+        - 32
+        - 
+        - 38
+        - 
+        - 38
+    - Id: Default
+      Position: {x: -280, y: 140}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 
+        - 7
+        - 7
+        - 
+        - 28
+        - 28
+        - 26
+        - 26
+        - 36
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 0, y: 140}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 0
+        - 15
+        - 6
+        - 0
+        - 27
+        - 27
+        - 
+        - 37
+        - 37
+        - 39
+        - 
+        - 
+    - Id: Default
+      Position: {x: 280, y: 140}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 4
+        - 4
+        - 18
+        - 30
+        - 30
+        - 
+        - 38
+        - 11
+        - 
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: -280, y: 270}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 13
+        - 8
+        - 16
+        - 31
+        - 21
+        - 21
+        - 20
+        - 29
+        - 36
+        - 
+        - 
+        - 
+    - Id: Default
+      Position: {x: 0, y: 270}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 
+        - 17
+        - 17
+        - 
+        - 12
+        - 12
+        - 22
+        - 22
+        - 
+        - 9
+        - 40
+        - 
+    - Id: Default
+      Position: {x: 280, y: 270}
+      ItemGridAssetConfig:
+        Rows: 4
+        Columns: 3
+        Cells:
+        - 9
+        - 6
+        - 
+        - 
+        - 25
+        - 25
+        - 37
+        - 
+        - 31
+        - 20
+        - 
+        - 41
