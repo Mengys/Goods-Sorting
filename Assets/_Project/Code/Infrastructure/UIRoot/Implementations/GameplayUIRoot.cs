@@ -28,16 +28,16 @@ namespace _Project.Code.Infrastructure.UIRoot.Implementations
             Color color = Color.white;
             switch (difficulty){
                 case Data.Static.Level.DifficultyType.Easy:
-                    color = new Color(0.9f, 0.8f, 0.7f);
+                    color = new Color(0.6622641f, 0.9870793f, 1f);
                     break;
                 case Data.Static.Level.DifficultyType.Medium:
-                    color = new Color(0.85f, 0.75f, 0.65f);
+                    color = new Color(0.6622641f, 0.9870793f, 1f);
                     break;
                 case Data.Static.Level.DifficultyType.Hard:
-                    color = new Color(0.8f, 0.7f, 0.6f); 
+                    color = new Color(0.6622641f, 0.9870793f, 1f);
                     break;
             }
-            Camera.main.backgroundColor = color;
+            //Camera.main.backgroundColor = color;
         }
     }
 }

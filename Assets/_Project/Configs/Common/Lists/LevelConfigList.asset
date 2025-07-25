@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: LevelConfigList
   m_EditorClassIdentifier: 
   <Configs>k__BackingField:
+  - {fileID: 11400000, guid: e988cf9d8d20c5542bb76db9fc513d8a, type: 2}
+  - {fileID: 11400000, guid: 68a12deabfc2afb4194769b9761d6d06, type: 2}
+  - {fileID: 11400000, guid: 24b740b16ce8c4b479e1ca78bf482ccc, type: 2}
+  - {fileID: 11400000, guid: bf07c388170becf44a7d0ece10879843, type: 2}
+  - {fileID: 11400000, guid: 40019282f2ed1ec47a043d8ab588b58d, type: 2}
+  - {fileID: 11400000, guid: 576c38dc765cf4e4b91bda61739bef47, type: 2}
   - {fileID: 11400000, guid: 8079fa29d7c382548bb37688f66bfbf6, type: 2}
   - {fileID: 11400000, guid: 52ab52e31ae841242964d985d50040be, type: 2}
   - {fileID: 11400000, guid: f2828362b2cc2ad49940fd3e33c16799, type: 2}

@@ -2,6 +2,7 @@ using _Project.Code.Data.Static.GameState;
 using _Project.Code.Services.StateMachine;
 using R3;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace _Project.Code.UI.Buttons.Window
@@ -36,6 +37,7 @@ namespace _Project.Code.UI.Buttons.Window
         }
 
         protected override void OnClicked() =>
-            _stateMachine.Enter(GameStateId.Menu);
+            //_stateMachine.Enter(GameStateId.Menu);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -40,5 +40,9 @@ public class ShelfTutorial : MonoBehaviour
             PlayerPrefs.SetInt("ShelfTutorial", 1);
             Destroy(gameObject);
         }
+        if (Input.GetMouseButtonDown(0)) {
+            PlayerPrefs.SetInt("ShelfTutorial", 1);
+            Destroy(gameObject);
+        }
     }
 }

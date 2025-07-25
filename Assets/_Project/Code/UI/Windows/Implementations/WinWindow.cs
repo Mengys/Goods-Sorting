@@ -7,9 +7,11 @@ using _Project.Code.Services.Factories.UI;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
 using _Project.Code.UI.Windows.Base;
+using DG.Tweening;
 using R3;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -32,6 +34,11 @@ namespace _Project.Code.UI.Windows.Implementations
         private readonly CompositeDisposable _disposer = new();
         private IProgressProvider _progressProvider;
         private IAdShower _adShower;
+
+        private void Awake() {
+            transform.localScale = Vector3.zero;
+            transform.DOScale(1,1).SetEase(Ease.OutSine);
+        }
 
         [Inject]
         private void Construct(
@@ -61,7 +68,8 @@ namespace _Project.Code.UI.Windows.Implementations
                 .Subscribe(_ =>
                 {
                     _winIncomeHandler.HandleDefault();
-                    _stateMachine.Enter(GameStateId.Menu);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    //_stateMachine.Enter(GameStateId.Menu);
                 })
                 .AddTo(_disposer);
 
@@ -71,7 +79,8 @@ namespace _Project.Code.UI.Windows.Implementations
                     _adShower.ShowRewarded(() =>
                     {
                         _winIncomeHandler.HandleRewarded();
-                        _stateMachine.Enter(GameStateId.Menu);
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        //_stateMachine.Enter(GameStateId.Menu);
                     });
                 })
                 .AddTo(_disposer);

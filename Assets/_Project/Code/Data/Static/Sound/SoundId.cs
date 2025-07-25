@@ -4,5 +4,7 @@ namespace _Project.Code.Data.Static.Sound
     {
         None = 0,
         Click = 1,
+        Background = 2,
+        Match3 = 3,
     }
 }

@@ -3,6 +3,7 @@ using _Project.Code.Services.StateMachine;
 using _Project.Code.UI.Windows.Base;
 using R3;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -24,7 +25,8 @@ namespace _Project.Code.UI.Windows.Implementations
         public override void Initialize()
         {
             _retry.OnClickAsObservable()
-                .Subscribe(_ => _stateMachine.Enter(GameStateId.Menu))
+                .Subscribe(_ => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex))
+                //.Subscribe(_ => _stateMachine.Enter(GameStateId.Menu))
                 .AddTo(_disposable);
         }
 

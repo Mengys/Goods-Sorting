@@ -10,7 +10,9 @@ public class ShelfScaler : MonoBehaviour {
 
     private void Start() {
         if (_gameplayUIRoot.Container.Resolve<IProgressProvider>().PlayerProgress.Level.Number == 1) {
-            ScaleShelfs(1.5f);
+            ScaleShelfs(1.2f);
+        } else {
+            ScaleShelfs(0.8f);
         }
     }
 

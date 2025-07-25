@@ -56,12 +56,12 @@ namespace _Project.Code.Services.BoosterUser.Boosters.Boosters
 
         private void Collect(List<CellGridPosition> positions)
         {
-            BoostAnimations.Instance.BombAnimation();
+            BoostAnimations.Instance.BombAnimation(positions, _grid, _itemCollectHandler);
 
-            DOVirtual.DelayedCall(1f, () => {
-                positions.ForEach(_grid.ItemInventory.Clear);
-                _itemCollectHandler.Handle(positions.Count);
-            });
+            //DOVirtual.DelayedCall(1f, () => {
+            //    positions.ForEach(_grid.ItemInventory.Clear);
+            //    _itemCollectHandler.Handle(positions.Count);
+            //});
         }
     }
 }

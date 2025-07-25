@@ -45,6 +45,9 @@ public class BustersTutorial : MonoBehaviour
         if (Input.touchCount > 0) {
             Destroy(gameObject);
         }
+        if (Input.GetMouseButtonDown(0)) {
+            Destroy(gameObject);
+        }
     }
 
     private void StartMagnetTutorial() {

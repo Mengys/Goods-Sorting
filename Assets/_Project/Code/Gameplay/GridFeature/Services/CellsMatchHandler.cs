@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Code.Data.Dynamic;
+using _Project.Code.Data.Static.Sound;
 using _Project.Code.Gameplay.Shelves;
 using R3;
 using Solo.MOST_IN_ONE;
@@ -50,7 +51,7 @@ namespace _Project.Code.Gameplay.GridFeature.Services
         private void OnMatchFound(List<CellGridPosition> positions)
         {
             Most_HapticFeedback.Generate(HapticTypes.LightImpact);
-
+            SoundManager.Instance.PlaySound(SoundId.Match3);
             foreach (var position in positions) 
                 _itemInventory.Clear(position);
             

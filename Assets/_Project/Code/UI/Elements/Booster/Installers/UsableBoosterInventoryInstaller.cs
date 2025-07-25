@@ -19,7 +19,7 @@ namespace _Project.Code.UI.Elements.Booster.Installers
             _inventoryFactory = factory;
         }
 
-        private void Awake() => 
+        private void Awake() =>
             _inventoryFactory.CreateForGameplay(transform, _context);
     }
 }

@@ -15,11 +15,13 @@ MonoBehaviour:
   Config:
     Cells: 0100000002000000030000000400000005000000
     Blocks:
-    - CellIndex: 1
+    - CellIndex: 0
       UnblockLevelIndex: 0
-    - CellIndex: 2
+    - CellIndex: 1
       UnblockLevelIndex: 1
-    - CellIndex: 3
+    - CellIndex: 2
       UnblockLevelIndex: 2
-    - CellIndex: 4
+    - CellIndex: 3
       UnblockLevelIndex: 3
+    - CellIndex: 4
+      UnblockLevelIndex: 4

@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7943ad0dc0e84dfb95741d2588689eea, type: 3}
   m_Name: SoundListConfig
   m_EditorClassIdentifier: 
-  <Sounds>k__BackingField: []
+  <Sounds>k__BackingField:
+  - Id: 2
+    AudioClip: {fileID: 8300000, guid: da825fc509015554ba4ffa350ef750c1, type: 3}
+  - Id: 3
+    AudioClip: {fileID: 8300000, guid: dde07224a1b38f347914a50cee7cde49, type: 3}

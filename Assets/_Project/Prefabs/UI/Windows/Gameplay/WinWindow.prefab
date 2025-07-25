@@ -1398,6 +1398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContinueButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8503325622189622336, guid: 8b50f9faf189dce46963f9167fdf575e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8972833734775102560, guid: 8b50f9faf189dce46963f9167fdf575e, type: 3}
       propertyPath: m_Name
       value: WinWindow

@@ -5,7 +5,9 @@ using _Project.Code.Data.Static.GameState;
 using _Project.Code.Services.DataPersistence;
 using _Project.Code.Services.ProgressProvider;
 using _Project.Code.Services.StateMachine;
+#if !UNITY_WEBGL
 using Firebase;
+#endif
 using GoogleMobileAds.Api;
 using R3;
 using UnityEngine;
@@ -38,6 +40,7 @@ namespace _Project.Code.Infrastructure.Bootstrappers
 
         private async Task InitializeFirebaseAsync()
         {
+#if !UNITY_WEBGL
             try
             {
                 var status = await FirebaseApp.CheckDependenciesAsync();
@@ -50,6 +53,7 @@ namespace _Project.Code.Infrastructure.Bootstrappers
             {
                 Debug.LogException(e);
             }
+#endif
         }
 
         private async Task InitializeMobileAdsAsync()

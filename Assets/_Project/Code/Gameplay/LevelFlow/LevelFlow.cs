@@ -101,31 +101,37 @@ namespace _Project.Code.Gameplay.LevelFlow
 
         private void HandleLevelLoseAnalytics()
         {
+#if !UNITY_WEBGL
             Firebase.Analytics.FirebaseAnalytics
                 .LogEvent(
                     "level_lose",
                     Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
                     LevelId);
+#endif
         }
         
         private void HandleLevelWinAnalytics()
         {
+#if !UNITY_WEBGL
             Firebase.Analytics.FirebaseAnalytics
                 .LogEvent(
                     "level_win",
                     Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
                     LevelId);
+#endif
         }
 
         private void HandleLevelStartAnalytics()
         {
+#if !UNITY_WEBGL
             Firebase.Analytics.FirebaseAnalytics
                 .LogEvent(
                     Firebase.Analytics.FirebaseAnalytics.EventLevelStart,
                     Firebase.Analytics.FirebaseAnalytics.ParameterLevelName,
                     LevelId);    
+#endif
         }
-        
+
         private void Start()
         {
             _timer.Start();

@@ -34,6 +34,6 @@ public class BombAnimation : MonoBehaviour
     }
 
     private void OnDestroy() {
-        //_explosion.SetActive(true);
+        Instantiate(_explosionPref);
     }
 }
